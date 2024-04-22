@@ -7,3 +7,5 @@ build/
 .vscode
 .DS_Store
 *.dSYM
+
+cub3D
