@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 15:00:59 by demre            ###   ########.fr       */
+/*   Created: 2024/04/22 14:56:10 by demre             #+#    #+#             */
+/*   Updated: 2024/04/22 14:56:27 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* static void hook(void* param)
+void	free_string_array(char **str_array)
 {
-	const mlx_t* mlx = param;
-} */
+	int	i;
 
-int	main(int argc, char **argv)
+	i = 0;
+	if (str_array)
+	{
+		while (str_array[i])
+		{
+			free(str_array[i]);
+			str_array[i] = NULL;
+			i++;
+		}
+	}
+	free(str_array);
+}
+
+void	free_n_string_array(char **str_array, int n)
 {
-//	t_data	data;
-	(void)argv;
-	if (argc != 2)
-		print_and_exit("Wrong arg number", 2, EXIT_FAILURE);
-	
-	mlx_t* mlx = mlx_init(2500, 1250, "cub3d", false);
-	if (!mlx)
-		printf("Error");
-
-//	mlx_loop_hook(mlx, hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+	while (n > 0)
+	{
+		free(str_array[n - 1]);
+		str_array[n - 1] = NULL;
+		n--;
+	}
+	free(str_array);
 }

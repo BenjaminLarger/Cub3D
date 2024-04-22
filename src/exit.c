@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 15:00:59 by demre            ###   ########.fr       */
+/*   Created: 2024/04/22 14:55:53 by demre             #+#    #+#             */
+/*   Updated: 2024/04/22 14:56:31 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* static void hook(void* param)
+void	exit_game(t_data *data)
 {
-	const mlx_t* mlx = param;
-} */
-
-int	main(int argc, char **argv)
-{
-//	t_data	data;
-	(void)argv;
-	if (argc != 2)
-		print_and_exit("Wrong arg number", 2, EXIT_FAILURE);
-	
-	mlx_t* mlx = mlx_init(2500, 1250, "cub3d", false);
-	if (!mlx)
-		printf("Error");
-
-//	mlx_loop_hook(mlx, hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+//	mlx_delete_xpm42(data->tex_wall);
+	mlx_terminate(data->mlx);
+//	free_map(data->map, data->row);
 }

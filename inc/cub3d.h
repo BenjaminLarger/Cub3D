@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 14:36:10 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/22 14:59:41 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,18 @@
 # define TRUE 1
 # define FAILURE 1
 # define SUCCESS 0
+
+// Exit
+
+void	exit_game(t_data *data);
+
+// Print
+
+void	print_and_exit(char *message, int fd, int exit_code);
+
+// Free
+
+void	free_string_array(char **str_array);
+void	free_n_string_array(char **str_array, int n);
 
 #endif

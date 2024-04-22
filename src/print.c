@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 15:00:59 by demre            ###   ########.fr       */
+/*   Created: 2024/04/22 14:48:49 by demre             #+#    #+#             */
+/*   Updated: 2024/04/22 15:00:11 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* static void hook(void* param)
+void	print_and_exit(char *message, int fd, int exit_code)
 {
-	const mlx_t* mlx = param;
-} */
-
-int	main(int argc, char **argv)
-{
-//	t_data	data;
-	(void)argv;
-	if (argc != 2)
-		print_and_exit("Wrong arg number", 2, EXIT_FAILURE);
-	
-	mlx_t* mlx = mlx_init(2500, 1250, "cub3d", false);
-	if (!mlx)
-		printf("Error");
-
-//	mlx_loop_hook(mlx, hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+	if (exit_code == EXIT_FAILURE)
+	{
+		ft_putstr_fd("Error\n", fd);
+		ft_putstr_fd(message, fd);
+	}
+	else
+		ft_putstr_fd(message, fd);
+	ft_putstr_fd("\n", fd);
+	exit(exit_code);
 }

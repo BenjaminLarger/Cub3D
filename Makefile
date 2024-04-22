@@ -18,7 +18,7 @@ HEADER_DIR	:=	inc/
 HEADERS		= -I  $(HEADER_DIR) -I ${LIBMLX}/include -I ${LIBFT}
 
 ## SOURCE ##
-SRCS		:= main.c
+SRCS		:= main.c free.c print.c exit.c 
 
 SRC_DIR		:= src
 BUILD_DIR	:= build
