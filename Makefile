@@ -20,7 +20,7 @@ HEADERS		= -I  $(HEADER_DIR) -I ${LIBMLX}/include -I ${LIBFT}
 ## SOURCE ##
 SRCS		:= main.c free.c print.c exit.c dev_utils.c \
 	initialise.c \
-	file_load.c \
+	file_load.c file_elements.c \
 	user_input.c \
 	input_check_map.c \
 
