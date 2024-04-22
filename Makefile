@@ -13,7 +13,7 @@ LINKER		:= -L "$(HOME)/.brew/opt/glfw/lib/" -ldl -lglfw -pthread -lm
 LIBS		= ${LINKER} ${LIBMLX}/libmlx42.a ${LIBFT}/libft.a
 
 ## HEADERS ##
-HEADER_SRCS	:=	cub3d.h
+HEADER_SRCS	:=	cub3d.h errors.h structures.h
 HEADER_DIR	:=	inc/
 HEADERS		= -I  $(HEADER_DIR) -I ${LIBMLX}/include -I ${LIBFT}
 
@@ -61,9 +61,15 @@ clean	:
 fclean	: clean
 	rm -f $(NAME)
 
+fresh	:
+	@echo "$(RED)Cleaning$(NC)"
+	rm -f $(OBJS)
+	rm -rf $(BUILD_DIR)
+	rm -f $(NAME)
+
 re		: fclean all
 
-.PHONY	: all, clean, fclean, re, libmlx, libft
+.PHONY	: all, clean, fclean, re, libmlx, libft, fresh
 .DEFAULT_GOAL := all
 
 ## Colors ##

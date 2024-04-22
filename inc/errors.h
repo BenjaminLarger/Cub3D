@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 14:36:10 by demre            ###   ########.fr       */
+/*   Created: 2024/03/01 12:18:07 by demre             #+#    #+#             */
+/*   Updated: 2024/04/22 14:22:18 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef ERRORS_H
+# define ERRORS_H
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <errno.h>
-# include <string.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include "MLX42/MLX42.h"
-# include "libft.h"
-# include "errors.h"
-# include "structures.h"
-
-# define FALSE 0
-# define TRUE 1
-# define FAILURE 1
-# define SUCCESS 0
+# define MALLOC_FAIL	"Memory allocation failed.\n"
+# define FILE			"No such file or directory \n"
 
 #endif
