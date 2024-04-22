@@ -1,0 +1,9 @@
+**/*.a
+**/*.o
+**/*.gch
+a.out
+build/
+
+.vscode
+.DS_Store
+*.dSYM
