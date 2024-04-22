@@ -11,7 +11,7 @@ CFLAGS		:= -Wextra -Wall -Werror \
 
 ## LIBS ##
 LINKER		:= -L "$(HOME)/.brew/opt/glfw/lib/" -ldl -lglfw -pthread -lm
-LIBS		= ${LINKER} ${LIBMLX}/build/libmlx42.a ${LIBFT}/libft.a
+LIBS		= ${LINKER} ${LIBMLX}/libmlx42.a ${LIBFT}/libft.a
 
 ## HEADERS ##
 HEADER_SRCS	:=	cub3d.h
@@ -33,22 +33,22 @@ all	: libmlx libft $(NAME)
 
 libmlx:
 	@echo "${MAG}Building ${BMAG}MLX42...${NC}"
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	@${MAKE} -C ${LIBMLX}
 	@echo "${MAG}MLX42 build complete.${NC}"
 
 libft:
 	@echo "${MAG}Building ${BMAG}libft...${NC}"
-	${MAKE} -C ${LIBFT}
+	@${MAKE} -C ${LIBFT}
 	@echo "${MAG}libft build complete.${NC}"
 
 $(NAME): $(OBJS)
 	@echo "${BCYA}Creating executable: $(NAME)${NC}"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 	@echo "${MAG}$(NAME) build complete.${NC}"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 	@mkdir -p $(BUILD_DIR)
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 	@echo "${BGRE}Compiling:${NC} $(notdir $<) \
 		${MAG}for ${BMAG}$(NAME)${NC} "
 
@@ -57,6 +57,7 @@ clean	:
 	rm -f $(OBJS)
 	rm -rf $(BUILD_DIR)
 	rm -rf $(LIBMLX)/build
+	rm -rf $(LIBMLX)/libmlx42.a
 	${MAKE} -C ${LIBFT} fclean
 
 fclean	: clean

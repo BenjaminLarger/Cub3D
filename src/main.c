@@ -6,8 +6,15 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 13:05:36 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/22 13:24:24 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
+
+int main()
+{
+	printf("hello\n");
+	return 0;
+}
