@@ -1,15 +1,14 @@
 SHELL		= /bin/sh
 
-NAME		:= cub3d
-
-LIBMLX		:= ./lib/MLX42
-LIBFT		:= ./lib/libft
+NAME		:= cub3D
 
 CC			= cc
 CFLAGS		:= -Wextra -Wall -Werror \
 	-Wunreachable-code -g -fsanitize=address,undefined \
 
 ## LIBS ##
+LIBMLX		:= ./lib/MLX42
+LIBFT		:= ./lib/libft
 LINKER		:= -L "$(HOME)/.brew/opt/glfw/lib/" -ldl -lglfw -pthread -lm
 LIBS		= ${LINKER} ${LIBMLX}/libmlx42.a ${LIBFT}/libft.a
 
@@ -43,12 +42,12 @@ libft:
 
 $(NAME): $(OBJS)
 	@echo "${BCYA}Creating executable: $(NAME)${NC}"
-	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 	@echo "${MAG}$(NAME) build complete.${NC}"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 	@mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 	@echo "${BGRE}Compiling:${NC} $(notdir $<) \
 		${MAG}for ${BMAG}$(NAME)${NC} "
 
@@ -56,8 +55,7 @@ clean	:
 	@echo "$(RED)Cleaning$(NC)"
 	rm -f $(OBJS)
 	rm -rf $(BUILD_DIR)
-	rm -rf $(LIBMLX)/build
-	rm -rf $(LIBMLX)/libmlx42.a
+	${MAKE} -C ${LIBMLX} fclean
 	${MAKE} -C ${LIBFT} fclean
 
 fclean	: clean
