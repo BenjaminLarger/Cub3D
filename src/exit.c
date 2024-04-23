@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:55:53 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 14:56:31 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 12:03:54 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void	exit_game(t_data *data)
 {
-//	mlx_delete_xpm42(data->tex_wall);
 	mlx_terminate(data->mlx);
-//	free_map(data->map, data->row);
+	free_string_array(data->map);
+	free(data->north_path);
+	free(data->south_path);
+	free(data->west_path);
+	free(data->east_path);
+	free(data->floor_color);
+	free(data->ceiling_color);
 }

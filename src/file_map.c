@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
+/*   Updated: 2024/04/23 12:05:06 by demre            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int	check_map(t_data *data)
+static int	check_map(t_data *data)
 {
 	int	i;
 	int	j;
@@ -29,7 +41,7 @@ int	check_map(t_data *data)
 	return (SUCCESS);
 }
 
-bool	splitted_map(char *map)
+static bool	splitted_map(char *map)
 {
 	int	i;
 
@@ -53,7 +65,7 @@ bool	splitted_map(char *map)
 	return (false);
 }
 
-int	get_rid_of_empty_line(t_data *data, int fd, char *line, char **map)
+static int	get_rid_of_empty_line(t_data *data, int fd, char *line, char **map)
 {
 	data->map_departure_count = 0;
 	while (true)
@@ -67,6 +79,8 @@ int	get_rid_of_empty_line(t_data *data, int fd, char *line, char **map)
 	}
 	*map = ft_strdup(line);
 	free(line);
+	if (!(*map))
+		return (FAILURE);
 	return (SUCCESS);
 }
 
@@ -78,13 +92,15 @@ int	load_map(t_data *data, int fd)
 	line = NULL;
 	map = NULL;
 	if (get_rid_of_empty_line(data, fd, line, &map) == FAILURE)
-		return (FAILURE);
+		print_and_exit(MALLOC_FAIL, 2, EXIT_FAILURE);
 	data->map_column = 0;
 	while (line)
 	{
 		data->map_column++;
 		line = ft_get_next_line(fd);
 		map = ft_strjoin_free(map, line);
+		if (!map)
+			print_and_exit(MALLOC_FAIL, 2, EXIT_FAILURE);
 		free(line);
 	}
 	if (splitted_map(map) == true)
@@ -92,7 +108,7 @@ int	load_map(t_data *data, int fd)
 	data->map = ft_split(map, '\n');
 	free(map);
 	if (!data->map)
-		return (FAILURE);
+		print_and_exit(MALLOC_FAIL, 2, EXIT_FAILURE);
 	print_map(data->map);
 	if (check_map(data) == FAILURE)
 		return (free_string_array_and_return(data->map, FAILURE));
