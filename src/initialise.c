@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 15:40:10 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 09:31:45 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	initialise(char *filename, t_data *data)
 		return (print_and_exit("Wrong file extension", 2, EXIT_FAILURE));
 	if (get_data_from_file(filename, data) != SUCCESS)
 		return (print_and_exit("Wrong map", 2, EXIT_FAILURE));
-	//if (check_map(data) == FAILURE)
-		//return (print_and_exit("Wrong map", 2, EXIT_FAILURE));
 	data->mlx = mlx_init(2500, 1250, "cub3d", false);
 	if (!data->mlx)
 		printf("Error");

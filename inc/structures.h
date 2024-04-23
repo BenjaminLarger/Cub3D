@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 17:48:23 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 10:54:24 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ typedef struct s_data
 	xpm_t			*tex_player;
 	t_textures		*texture;
 	t_images		*image;
+	int				map_column;
+	int				map_departure_count;
+	char			depart_position;
+	char			**map;
 	char			*north_path;
 	char			*south_path;
 	char			*west_path;
@@ -51,7 +55,6 @@ typedef struct s_data
 	unsigned int	row;
 	unsigned int	window_width;
 	unsigned int	window_height;
-	char			**map;
 	int				player_x;
 	int				player_y;
 }	t_data;

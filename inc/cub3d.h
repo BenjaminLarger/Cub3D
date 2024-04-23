@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 09:18:33 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/23 11:21:31 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,31 @@
 # define SUCCESS 0
 
 // Map input
-# define EMPTY ' '
+# define OUT ' '
 # define WEST 'W'
-# define WALL 1
+# define WALL '1'
 # define NORTH 'N'
 # define SOUTH 'S'
 # define EST 'E'
+# define EMPTY '0'
 
 // Initialisation
 
 void	initialise(char *filename, t_data *data);
 int		get_data_from_file(char *filename, t_data *data);
 void	load_elements(int *n_elements, t_data *data, int fd);
+int		load_map(t_data *data, int fd);
+
 
 // User input
 
 void	player_input(mlx_key_data_t keydata, void *param);
 
 // Exit
-
 void	exit_game(t_data *data);
 
 // Print
-
+void	print_map(char **map);
 void	print_and_exit(char *message, int fd, int exit_code);
 
 // Free
@@ -66,6 +68,11 @@ int		free_n_string_array_and_return(char **str_array, int n, int to_return);
 
 // Utils
 char	*ft_strjoin_free(char *s1, char *s2);
+
+// Map utils
+int	check_horizontal_wall(char *line);
+int	line_has_valid_char(t_data *data, char *line);
+int	valid_surrounded_wall(t_data *data, int i, int j);
 
 // Dev utils
 

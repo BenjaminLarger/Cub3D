@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dev_utils.c                                        :+:      :+:    :+:   */
+/*   utils_dev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:16:07 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 16:20:31 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 09:41:26 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,24 @@ void	print_array(char **array, char *message)
 		i++;
 	}
 	dprintf(2, "array[%d]: '%s'\n", i, array[i]); // check NULL
+}
+
+void	print_map(char **map)
+{
+	int	i;
+	int	j;
+
+	printf("check map\n");
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			printf("%c", map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }

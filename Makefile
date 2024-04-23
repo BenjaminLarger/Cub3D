@@ -18,12 +18,12 @@ HEADER_DIR	:=	inc/
 HEADERS		= -I  $(HEADER_DIR) -I ${LIBMLX}/include -I ${LIBFT}
 
 ## SOURCE ##
-SRCS		:= main.c free.c print.c exit.c dev_utils.c \
+SRCS		:= main.c free.c print.c exit.c \
 	initialise.c \
 	file_load.c file_elements.c \
 	user_input.c \
-	input_check_map.c \
-	utils_joinfree.c \
+	input_check_map.c utils_valid_map.c\
+	utils_joinfree.c utils_dev.c\
 
 SRC_DIR		:= src
 BUILD_DIR	:= build
