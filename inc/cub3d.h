@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 16:31:31 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 09:11:46 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	free_n_string_array(char **str_array, int n);
 int		free_string_array_and_return(char **str_array, int to_return);
 int		free_n_string_array_and_return(char **str_array, int n, int to_return);
 
+// Utils
+char	*ft_strjoin_free(char *s1, char *s2);
 
 // Dev utils
 

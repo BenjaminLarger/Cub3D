@@ -23,6 +23,7 @@ SRCS		:= main.c free.c print.c exit.c dev_utils.c \
 	file_load.c \
 	user_input.c \
 	input_check_map.c \
+	utils_joinfree.c \
 
 SRC_DIR		:= src
 BUILD_DIR	:= build
