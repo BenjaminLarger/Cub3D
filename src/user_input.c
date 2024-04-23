@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 16:14:15 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 15:28:49 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,55 @@ void	key_pressed(int key, t_data *data)
 	(void)data;
 	if (key == MLX_KEY_UP)
 	{
-//		data->img_player->instances[0].y -= data->tile_height;
-//		data->player_y--;
+		for (uint32_t x = 0; x < WIDTH; ++x)
+		{
+			for (uint32_t y = 0; y < HEIGHT / 2; ++y)
+			{
+				mlx_put_pixel(data->window, x, y, 0xabcdefFF);
+			}
+		}
+		data->test = mlx_texture_to_image(data->mlx, data->wall_no);
 	}
 	else if (key == MLX_KEY_DOWN)
 	{
+		for (uint32_t x = 0; x < WIDTH; ++x)
+		{
+			for (uint32_t y = HEIGHT / 2; y < HEIGHT; ++y)
+			{
+				mlx_put_pixel(data->window, x, y, 0xcbacbaFF);
+			}
+		}
+		data->test = mlx_texture_to_image(data->mlx, data->wall_so);
 //		data->img_player->instances[0].y += data->tile_height;
 //		data->player_y++;
 	}
 	else if (key == MLX_KEY_LEFT)
 	{
+		for (uint32_t x = 0; x < WIDTH; ++x)
+		{
+			for (uint32_t y = HEIGHT / 2; y < HEIGHT; ++y)
+			{
+				mlx_put_pixel(data->window, x, y, 0xfedfedFF);
+			}
+		}
+		data->test = mlx_texture_to_image(data->mlx, data->wall_we);
 //		data->img_player->instances[0].x -= data->tile_width;
 //		data->player_x--;
 	}
 	else if (key == MLX_KEY_RIGHT)
 	{
+		for (uint32_t x = 0; x < WIDTH; ++x)
+		{
+			for (uint32_t y = 0; y < HEIGHT / 2; ++y)
+			{
+				mlx_put_pixel(data->window, x, y, 0xabcabcFF);
+			}
+		}
+		data->test = mlx_texture_to_image(data->mlx, data->wall_ea);
 //		data->img_player->instances[0].x += data->tile_width;
 //		data->player_x++;
 	}
+	mlx_image_to_window(data->mlx, data->test, WIDTH / 3, HEIGHT / 4);
 }
 
 void	player_input(mlx_key_data_t keydata, void *param)

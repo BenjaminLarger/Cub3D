@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 10:54:24 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/23 15:19:01 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,31 @@ typedef struct s_textures
 {
 	mlx_texture_t	*ceiling;
 	mlx_texture_t	*floor;
-	mlx_texture_t	*wall;
-}				t_textures;
+}			t_textures;
 
 // ----------- IMAGES
 typedef struct s_images
 {
 	mlx_image_t		*ceiling;
 	mlx_image_t		*floor;
-	mlx_image_t		*wall;
+	mlx_image_t		*wall_no;
+	mlx_image_t		*wall_so;
+	mlx_image_t		*wall_we;
+	mlx_image_t		*wall_ea;
 }			t_images;
 
 // ----------- MAIN
 typedef struct s_data
 {
 	mlx_t			*mlx;
-	xpm_t			*tex_ceiling;
-	xpm_t			*tex_floor;
-	xpm_t			*tex_wall;
-	xpm_t			*tex_player;
 	t_textures		*texture;
 	t_images		*image;
+	mlx_image_t		*window;
+	mlx_texture_t	*wall_no;
+	mlx_texture_t	*wall_so;
+	mlx_texture_t	*wall_we;
+	mlx_texture_t	*wall_ea;
+	mlx_image_t		*test;
 	int				map_column;
 	int				map_departure_count;
 	char			depart_position;
@@ -57,7 +61,7 @@ typedef struct s_data
 	unsigned int	window_height;
 	int				player_x;
 	int				player_y;
-}	t_data;
+}			t_data;
 
 
 // ----------- Identifier flags
