@@ -6,8 +6,8 @@ WE ./texture/purple.png
 
 EA ./texture/yellow.png
 
-F 220,100,0
-C 225,30,0
+C 0,51,102
+F 123,63,0
 
 
 

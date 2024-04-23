@@ -6,10 +6,9 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 15:30:27 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 17:56:58 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -26,12 +25,14 @@
 # include "structures.h"
 
 // Boolean
+
 # define FALSE 0
 # define TRUE 1
 # define FAILURE 1
 # define SUCCESS 0
 
 // Map input
+
 # define OUT ' '
 # define WEST 'W'
 # define WALL '1'
@@ -45,41 +46,45 @@
 
 // Initialisation
 
-void	initialise(char *filename, t_data *data);
-int		get_data_from_file(char *filename, t_data *data);
-void	load_elements(int *n_elements, t_data *data, int fd);
-int		load_map(t_data *data, int fd);
-
+void			initialise(char *filename, t_data *data);
+int				get_data_from_file(char *filename, t_data *data);
+void			load_elements(int *n_elements, t_data *data, int fd);
+unsigned int	rgb_to_hex(char *rgb_str);
+int				load_map(t_data *data, int fd);
 
 // User input
 
-void	player_input(mlx_key_data_t keydata, void *param);
+void			player_input(mlx_key_data_t keydata, void *param);
 
 // Exit
-void	exit_game(t_data *data);
+
+void			exit_game(t_data *data);
 
 // Print
-void	print_map(char **map);
-void	print_and_exit(char *message, int fd, int exit_code);
+
+void			print_map(char **map);
+void			print_and_exit(char *message, int fd, int exit_code);
 
 // Free
 
-void	free_string_array(char **str_array);
-void	free_n_string_array(char **str_array, int n);
-int		free_string_array_and_return(char **str_array, int to_return);
-int		free_n_string_array_and_return(char **str_array, int n, int to_return);
+void			free_string_array(char **str_array);
+void			free_n_string_array(char **str_array, int n);
+int				free_string_array_and_return(char **str_array, int to_return);
+int				free_n_string_array_and_return(char **str_array, int n,
+					int to_return);
 
 // Utils
-char	*ft_strjoin_free(char *s1, char *s2);
+
+char			*ft_strjoin_free(char *s1, char *s2);
 
 // Map utils
-int	check_horizontal_wall(char *line);
-int	line_has_valid_char(t_data *data, char *line);
-int	valid_surrounded_wall(t_data *data, int i, int j);
+
+int				check_horizontal_wall(char *line);
+int				line_has_valid_char(t_data *data, char *line);
+int				valid_surrounded_wall(t_data *data, int i, int j);
 
 // Dev utils
 
-
-void	print_array(char **array, char *message);
+void			print_array(char **array, char *message);
 
 #endif

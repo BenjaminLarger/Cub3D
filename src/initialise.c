@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 15:31:53 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 18:15:06 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,6 @@ static void	initialise_mlx(t_data *data)
 		print_and_exit("Failed to initialise graphic engine", 2, EXIT_FAILURE);
 	data->window = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(data->mlx, data->window, 0, 0);
-
-	for (uint32_t x = 0; x < WIDTH; ++x)
-		{
-			for (uint32_t y = 0; y < HEIGHT; ++y)
-			{
-				mlx_put_pixel(data->window, x, y, 0x000000FF);
-			}
-		}
 }
 
 static void	initialise_texture(t_data *data)
@@ -53,10 +45,23 @@ static void	initialise_texture(t_data *data)
 	free(data->east_path);
 	if (!data->wall_no || !data->wall_so || !data->wall_we || !data->wall_ea)
 		print_and_exit("Failed to initialise textures", 2, EXIT_FAILURE);
+}
 
-	
-	data->test = mlx_texture_to_image(data->mlx, data->wall_no);
-	mlx_image_to_window(data->mlx, data->test, 0, 0);
+void	paint_sky_floor(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT / 2)
+			mlx_put_pixel(data->window, x, y++, data->sky_color);
+		while (y < HEIGHT)
+			mlx_put_pixel(data->window, x, y++, data->floor_color);
+		x++;
+	}
 }
 
 void	initialise(char *filename, t_data *data)
@@ -67,4 +72,5 @@ void	initialise(char *filename, t_data *data)
 		return (print_and_exit("Wrong map", 2, EXIT_FAILURE));
 	initialise_mlx(data);
 	initialise_texture(data);
+	paint_sky_floor(data);
 }

@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 15:19:01 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 17:57:17 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 // ----------- TEXTURES
 typedef struct s_textures
 {
-	mlx_texture_t	*ceiling;
+	mlx_texture_t	*sky;
 	mlx_texture_t	*floor;
 }			t_textures;
 
 // ----------- IMAGES
 typedef struct s_images
 {
-	mlx_image_t		*ceiling;
+	mlx_image_t		*sky;
 	mlx_image_t		*floor;
 	mlx_image_t		*wall_no;
 	mlx_image_t		*wall_so;
@@ -51,8 +51,8 @@ typedef struct s_data
 	char			*south_path;
 	char			*west_path;
 	char			*east_path;
-	char			*floor_color;
-	char			*ceiling_color;
+	unsigned int	floor_color;
+	unsigned int	sky_color;
 	unsigned int	tile_width;
 	unsigned int	tile_height;
 	unsigned int	col;
@@ -62,7 +62,6 @@ typedef struct s_data
 	int				player_x;
 	int				player_y;
 }			t_data;
-
 
 // ----------- Identifier flags
 typedef struct s_id_flags
@@ -74,5 +73,15 @@ typedef struct s_id_flags
 	int		id_f;
 	int		id_c;
 }			t_id_flags;
+
+// ----------- Identifier flags
+typedef struct s_rgb
+{
+	int				r;
+	int				g;
+	int				b;
+	int				index;
+	unsigned int	num;
+}			t_rgb;
 
 #endif

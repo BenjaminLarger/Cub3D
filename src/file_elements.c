@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:20:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 18:13:02 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 18:13:23 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	get_element(char **name, char **split_line, int *flag,
 	int *n_elements)
 {
 	int	len;
-	
+
 	len = ft_strlen(split_line[1]);
 	*name = (char *)malloc(len * sizeof(char));
 	if (!(*name))
@@ -40,10 +40,31 @@ static void	get_element(char **name, char **split_line, int *flag,
 	free_string_array(split_line);
 }
 
+static void	get_colour(unsigned int *name, char **split_line, int *flag,
+	int *n_elements)
+{
+	int		len;
+	char	*temp;
+
+	len = ft_strlen(split_line[1]);
+	temp = (char *)malloc(len * sizeof(char));
+	if (!temp)
+	{
+		free_string_array(split_line);
+		print_and_exit(MALLOC_FAIL, 2, EXIT_FAILURE);
+	}
+	ft_strlcpy(temp, split_line[1], len);
+	free_string_array(split_line);
+	*name = rgb_to_hex(temp);
+	free(temp);
+	*flag = TRUE;
+	*n_elements += 1;
+}
+
 static void	assign_elements(t_data *data, char **split_line,
 	t_id_flags *flag, int *n_elements)
 {
-	if (split_line[2] != NULL)
+	if (!split_line || split_line[1] == NULL || split_line[2] != NULL)
 		print_and_exit("Wrong information on file line", 2, EXIT_FAILURE);
 	if (ft_strcmp(split_line[0], "NO") == 0 && flag->id_no == FALSE)
 		get_element(&data->north_path, split_line, &flag->id_no, n_elements);
@@ -54,9 +75,9 @@ static void	assign_elements(t_data *data, char **split_line,
 	else if (ft_strcmp(split_line[0], "EA") == 0 && flag->id_ea == FALSE)
 		get_element(&data->east_path, split_line, &flag->id_ea, n_elements);
 	else if (ft_strcmp(split_line[0], "F") == 0 && flag->id_f == FALSE)
-		get_element(&data->floor_color, split_line, &flag->id_f, n_elements);
+		get_colour(&data->floor_color, split_line, &flag->id_f, n_elements);
 	else if (ft_strcmp(split_line[0], "C") == 0 && flag->id_c == FALSE)
-		get_element(&data->ceiling_color, split_line, &flag->id_c, n_elements);
+		get_colour(&data->sky_color, split_line, &flag->id_c, n_elements);
 	else
 		print_and_exit("Wrong or duplicate identifier", 2, EXIT_FAILURE);
 }
