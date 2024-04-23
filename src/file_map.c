@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 12:05:06 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/23 12:07:16 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,20 @@ static bool	splitted_map(char *map)
 	return (false);
 }
 
-static int	get_rid_of_empty_line(t_data *data, int fd, char *line, char **map)
+static int	get_rid_of_empty_line(t_data *data, int fd, char **line, char **map)
 {
 	data->map_departure_count = 0;
 	while (true)
 	{
-		line = ft_get_next_line(fd);
-		if (!line)
+		*line = ft_get_next_line(fd);
+		if (!(*line))
 			return (FAILURE);
-		if (ft_strcmp(line, "\n"))
+		if (ft_strcmp(*line, "\n"))
 			break ;
-		free(line);
+		free(*line);
 	}
-	*map = ft_strdup(line);
-	free(line);
+	*map = ft_strdup(*line);
+	free(*line);
 	if (!(*map))
 		return (FAILURE);
 	return (SUCCESS);
@@ -91,7 +91,7 @@ int	load_map(t_data *data, int fd)
 
 	line = NULL;
 	map = NULL;
-	if (get_rid_of_empty_line(data, fd, line, &map) == FAILURE)
+	if (get_rid_of_empty_line(data, fd, &line, &map) == FAILURE)
 		print_and_exit(MALLOC_FAIL, 2, EXIT_FAILURE);
 	data->map_column = 0;
 	while (line)
