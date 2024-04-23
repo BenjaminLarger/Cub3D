@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 09:11:46 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/23 09:18:33 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 
 void	initialise(char *filename, t_data *data);
 int		get_data_from_file(char *filename, t_data *data);
+void	load_elements(int *n_elements, t_data *data, int fd);
 
 // User input
 

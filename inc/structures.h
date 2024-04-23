@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/22 16:12:41 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/22 17:48:23 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,17 @@ typedef struct s_data
 	int				player_x;
 	int				player_y;
 }	t_data;
+
+
+// ----------- Identifier flags
+typedef struct s_id_flags
+{
+	int		id_no;
+	int		id_so;
+	int		id_we;
+	int		id_ea;
+	int		id_f;
+	int		id_c;
+}			t_id_flags;
 
 #endif
