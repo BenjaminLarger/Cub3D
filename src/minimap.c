@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 18:03:27 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/24 18:58:45 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,30 @@ static void	paint_player(t_data *data)
 	paint_one_tile(data, 0xff0000AA, data->player_x, data->player_y);
 }
 
+static double	get_line_length(t_data *data)
+{
+	double	distance_to_wall = 0;
+	double	ray_x = data->player_x;
+	double	ray_y = data->player_y;
+	double	ray_dx = cos(data->player_angle);
+	double	ray_dy = sin(data->player_angle);
+	printf("int ray_dx = %d, ray_dy = %d\n", (int)ray_dx, (int)ray_dy);
+	printf("double ray_dx = %f, ray_dy = %f\n", ray_dx, ray_dy);
+	while (1)
+	{
+		distance_to_wall += 1;
+		ray_x += ray_dx;
+		ray_y += ray_dy;
+		if (data->map[(int)ray_y][(int)ray_x] == WALL)
+			break;
+	}
+	return (distance_to_wall);
+}
+
 static void	paint_field_of_view(t_data *data)
 {
-	double line_length = 10;
+	double line_length = get_line_length(data);
+	printf("line_length = %f\n", line_length);
 	double endX = data->player_x + line_length * cos(data->player_angle);
 	double endY = data->player_y + line_length * sin(data->player_angle);
 
