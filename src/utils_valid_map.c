@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/04/23 11:19:58 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/24 11:26:27 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,23 @@ int	check_horizontal_wall(char *line)
 	return (SUCCESS);
 }
 
-int	line_has_valid_char(t_data *data, char *line)
+static void	player_init_attributes(t_data *data, char angle_start, int y, int x)
+{
+	data->depart_position = angle_start;
+	if (angle_start == EST)
+		data->player_angle = 0.0;
+	else if (angle_start == SOUTH)
+		data->player_angle = M_PI_2;
+	else if (angle_start == WEST)
+		data->player_angle = M_PI;
+	else if (angle_start == NORTH)
+		data->player_angle = M_PI_2 * 3;
+	data->player_x = x;
+	data->player_y = y;
+	data->map_departure_count++;
+}
+
+int	line_has_valid_char(t_data *data, char *line, int y)
 {
 	int	i;
 
@@ -42,10 +58,7 @@ int	line_has_valid_char(t_data *data, char *line)
 			return (FAILURE);
 		if (line[i] == WEST || line[i] == EST
 			|| line[i] == NORTH || line[i] == SOUTH)
-		{
-			data->depart_position = line[i];
-			data->map_departure_count++;
-		}
+			player_init_attributes(data, line[i], y, i);
 		i++;
 	}
 	if ((line[i - 1] != OUT && line[i - 1] != WALL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 13:32:35 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/24 08:43:44 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ static void hook(void* param)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	
+
 	if (argc != 2)
 		print_and_exit("Wrong arg number", 2, EXIT_FAILURE);
-	
 	initialise(argv[1], &data);
-
 	mlx_loop_hook(data.mlx, hook, &data);
 	mlx_key_hook(data.mlx, &player_input, &data);
 	mlx_loop(data.mlx);

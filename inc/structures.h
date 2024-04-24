@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 17:57:17 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/24 11:28:06 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,11 @@ typedef struct s_data
 	unsigned int	row;
 	unsigned int	window_width;
 	unsigned int	window_height;
-	int				player_x;
-	int				player_y;
+	double			player_x;
+	double			player_y;
+	double			pdx;//player direction x
+	double			pdy;//player direction y
+	double 			player_angle;
 }			t_data;
 
 // ----------- Identifier flags

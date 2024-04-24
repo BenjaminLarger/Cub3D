@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 17:56:58 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/24 11:27:04 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <math.h>
 # include "MLX42/MLX42.h"
 # include "libft.h"
 # include "errors.h"
@@ -80,7 +81,7 @@ char			*ft_strjoin_free(char *s1, char *s2);
 // Map utils
 
 int				check_horizontal_wall(char *line);
-int				line_has_valid_char(t_data *data, char *line);
+int				line_has_valid_char(t_data *data, char *line, int y);
 int				valid_surrounded_wall(t_data *data, int i, int j);
 
 // Dev utils

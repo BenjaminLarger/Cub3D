@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 18:15:06 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/24 11:59:48 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	paint_sky_floor(t_data *data)
 {
 	int	x;
 	int	y;
+/* 	int	i;
+	int	j; */
 
 	x = 0;
 	while (x < WIDTH)
@@ -62,6 +64,18 @@ void	paint_sky_floor(t_data *data)
 			mlx_put_pixel(data->window, x, y++, data->floor_color);
 		x++;
 	}
+	/* i = data->player_x - 2;
+	j = data->player_y - 2;
+	while (i < data->player_x + 2)
+	{
+		j = 0;
+		while (j < data->player_y + 2)
+		{
+			mlx_put_pixel(data->window, i, j, 0xffffff);
+			j++;
+		}
+		i++; */
+	//}
 }
 
 void	initialise(char *filename, t_data *data)
