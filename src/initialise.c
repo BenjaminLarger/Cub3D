@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 11:59:48 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/24 13:06:28 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,35 @@ void	paint_sky_floor(t_data *data)
 	//}
 }
 
+void	get_map_size(t_data *data)
+{
+	unsigned int	temp_col;
+
+	data->col = 0;
+	data->row = 0;
+	temp_col = 0;
+	while (data->map[data->row])
+	{
+		temp_col = 0;
+		while (data->map[data->row][temp_col])
+			temp_col++;
+		if (temp_col > data->col)
+			data->col = temp_col;
+		data->row++;
+	}
+}
+
 void	initialise(char *filename, t_data *data)
 {
+	data->minimap_tile_px = 16;
 	if (check_file_extension(filename) != SUCCESS)
 		return (print_and_exit("Wrong file extension", 2, EXIT_FAILURE));
 	if (get_data_from_file(filename, data) != SUCCESS)
 		return (print_and_exit("Wrong map", 2, EXIT_FAILURE));
+	get_map_size(data);
+	printf("data->col: %u, data->row: %u\n", data->col, data->row);
 	initialise_mlx(data);
 	initialise_texture(data);
 	paint_sky_floor(data);
+	paint_minimap(data);
 }

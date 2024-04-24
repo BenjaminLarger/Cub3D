@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 11:28:06 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/24 13:17:35 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_data
 	t_textures		*texture;
 	t_images		*image;
 	mlx_image_t		*window;
+	mlx_image_t		*minimap;
 	mlx_texture_t	*wall_no;
 	mlx_texture_t	*wall_so;
 	mlx_texture_t	*wall_we;
@@ -53,12 +54,11 @@ typedef struct s_data
 	char			*east_path;
 	unsigned int	floor_color;
 	unsigned int	sky_color;
-	unsigned int	tile_width;
-	unsigned int	tile_height;
-	unsigned int	col;
-	unsigned int	row;
-	unsigned int	window_width;
-	unsigned int	window_height;
+	unsigned int	minimap_tile_px;
+	unsigned int	col; // total number of col in map
+	unsigned int	row; // total number of row in map
+	unsigned int	window_width; // not used
+	unsigned int	window_height; // not used
 	double			player_x;
 	double			player_y;
 	double			pdx;//player direction x
@@ -77,7 +77,7 @@ typedef struct s_id_flags
 	int		id_c;
 }			t_id_flags;
 
-// ----------- Identifier flags
+// ----------- RGB to hex conversion
 typedef struct s_rgb
 {
 	int				r;
