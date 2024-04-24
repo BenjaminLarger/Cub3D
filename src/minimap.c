@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 18:58:45 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/24 19:21:40 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static void	paint_line(char *line, t_data *data, unsigned int row)
 	col = 0;
 	while (line[col])
 	{
-		if (line[col] == '1')
+		if (line[col] == WALL)
 			paint_one_tile(data, 0xaaaaaa99, col, row);
-		else if (line[col] != ' ')
+		else if (line[col] != OUT)
 			paint_one_tile(data, 0x11111199, col, row);
 		col++;
 	}
@@ -75,29 +75,29 @@ static double	get_line_length(t_data *data)
 
 static void	paint_field_of_view(t_data *data)
 {
-	double line_length = get_line_length(data);
-	printf("line_length = %f\n", line_length);
-	double endX = data->player_x + line_length * cos(data->player_angle);
-	double endY = data->player_y + line_length * sin(data->player_angle);
+	double ray_length = get_line_length(data);
+	printf("ray_length = %f\n", ray_length);
+	double endX = ray_length * cos(data->player_angle);
+	double endY = ray_length * sin(data->player_angle);
 
 	printf("Player position: (%.2f, %.2f), angle: %.2f\n", data->player_x, data->player_y, data->player_angle);
-	printf("Line endpoint: (%.2f, %.2f)\n", endX, endY);
-	double deltaX = endX - data->player_x;
-	double deltaY = endY - data->player_y;
-	int n_pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY))
+	printf("Ray length (X,Y): (%.2f, %.2f)\n", endX, endY);
+	int n_pixels_to_draw = sqrt((endX * endX) + (endY * endY))
 		* data->minimap_tile_px;
+	int total_pixels_to_draw = n_pixels_to_draw;
+	printf("minimap_tile_px: (%u), n_pixels: (%d), endX: %f, endY: %f\n", data->minimap_tile_px, n_pixels_to_draw, endX, endY);
 
 	double pixelX = (data->player_x * data->minimap_tile_px)
 		+ (data->minimap_tile_px / 2);
 	double pixelY = (data->player_y * data->minimap_tile_px)
 		+ (data->minimap_tile_px / 2);
-	while (n_pixels)
+	while (n_pixels_to_draw)
 	{
-//		printf("n_pixels: %d, pixelX: %f, pixelY: %f, data->player_angle: %f\n", n_pixels, pixelX, pixelY, data->player_angle);
+//		printf("n_pixels: %d, pixelX: %f, pixelY: %f, data->player_angle: %f\n", n_pixels_to_draw, pixelX, pixelY, data->player_angle);
 		mlx_put_pixel(data->minimap, pixelX, pixelY, 0xffaa00AA);
-		pixelX += (deltaX / data->minimap_tile_px);
-		pixelY += (deltaY / data->minimap_tile_px);
-		--n_pixels;
+		pixelX += endX * data->minimap_tile_px / total_pixels_to_draw;
+		pixelY += endY * data->minimap_tile_px / total_pixels_to_draw;
+		--n_pixels_to_draw;
 	}
 }
 

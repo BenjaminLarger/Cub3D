@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 17:56:17 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/24 19:17:08 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	get_map_size(t_data *data)
 
 void	initialise(char *filename, t_data *data)
 {
-	data->minimap_tile_px = 16;
+	data->minimap_tile_px = 32;
 	data->player_speed = 3;
 	if (check_file_extension(filename) != SUCCESS)
 		return (print_and_exit("Wrong file extension", 2, EXIT_FAILURE));
