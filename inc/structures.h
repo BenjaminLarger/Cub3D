@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 13:17:35 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/24 16:12:48 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_data
 	double			pdx;//player direction x
 	double			pdy;//player direction y
 	double 			player_angle;
+	double 			player_speed;
 }			t_data;
 
 // ----------- Identifier flags

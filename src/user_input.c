@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 09:38:29 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/24 17:47:06 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	key_pressed(int key, t_data *data)
 {
+	double	angle_rotate;
+
+	angle_rotate = 2 * M_PI * data->player_speed / 100;
 	printf("A key has been pressed\n");
-	(void)data;
 	if (key == MLX_KEY_UP)
 	{
 		for (uint32_t x = 0; x < WIDTH; ++x)
@@ -26,6 +28,7 @@ void	key_pressed(int key, t_data *data)
 			}
 		}
 		data->test = mlx_texture_to_image(data->mlx, data->wall_no);
+		mlx_image_to_window(data->mlx, data->test, WIDTH / 3, HEIGHT / 4);
 	}
 	else if (key == MLX_KEY_DOWN)
 	{
@@ -37,36 +40,27 @@ void	key_pressed(int key, t_data *data)
 			}
 		}
 		data->test = mlx_texture_to_image(data->mlx, data->wall_so);
+		mlx_image_to_window(data->mlx, data->test, WIDTH / 3, HEIGHT / 4);
 //		data->img_player->instances[0].y += data->tile_height;
 //		data->player_y++;
 	}
 	else if (key == MLX_KEY_LEFT)
 	{
-		for (uint32_t x = 0; x < WIDTH; ++x)
-		{
-			for (uint32_t y = HEIGHT / 2; y < HEIGHT; ++y)
-			{
-				mlx_put_pixel(data->window, x, y, 0xfedfedFF);
-			}
-		}
-		data->test = mlx_texture_to_image(data->mlx, data->wall_we);
-//		data->img_player->instances[0].x -= data->tile_width;
-//		data->player_x--;
+		if (data->player_angle - angle_rotate >= 0)
+			data->player_angle -= angle_rotate;
+		else
+			data->player_angle = (2 * M_PI + data->player_angle) - angle_rotate;
+		printf("data->player_angle: %f : %f\n", data->player_angle, data->player_angle * 180 / M_PI);
 	}
 	else if (key == MLX_KEY_RIGHT)
 	{
-		for (uint32_t x = 0; x < WIDTH; ++x)
-		{
-			for (uint32_t y = 0; y < HEIGHT / 2; ++y)
-			{
-				mlx_put_pixel(data->window, x, y, 0xabcabcFF);
-			}
-		}
-		data->test = mlx_texture_to_image(data->mlx, data->wall_ea);
-//		data->img_player->instances[0].x += data->tile_width;
-//		data->player_x++;
+		if (data->player_angle + angle_rotate < 2 * M_PI)
+			data->player_angle += angle_rotate;
+		else
+			data->player_angle = angle_rotate - (2 * M_PI - data->player_angle);
+		printf("data->player_angle: %f : %f\n", data->player_angle, data->player_angle * 180 / M_PI);
 	}
-	mlx_image_to_window(data->mlx, data->test, WIDTH / 3, HEIGHT / 4);
+	paint_minimap(data);
 }
 
 void	player_input(mlx_key_data_t keydata, void *param)
