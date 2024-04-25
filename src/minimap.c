@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 16:44:56 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 17:45:55 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	paint_line(char *line, t_data *data, unsigned int row)
 	{
 		if (line[col] == WALL)
 			paint_one_tile(data, 0xaaaaaa99, col, row);
-		else if (line[col] != OUT)
+		else if (line[col] != OUT && line[col] != '2')
 			paint_one_tile(data, 0x11111199, col, row);
 		col++;
 	}

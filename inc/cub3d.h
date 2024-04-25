@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 16:38:34 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 17:43:49 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@
 // Map input
 
 # define OUT ' '
-# define WEST 'W'
 # define WALL '1'
 # define NORTH 'N'
 # define SOUTH 'S'
 # define EST 'E'
-# define EMPTY '0'
+# define WEST 'W'
+# define FLOOR '0'
 
 # define WIDTH 1920
 # define HEIGHT 1280
