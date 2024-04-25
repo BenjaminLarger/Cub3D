@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 11:53:59 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 08:56:42 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static bool	splitted_map(char *map)
 static int	get_rid_of_empty_line(t_data *data, int fd, char **line, char **map)
 {
 	data->map_departure_count = 0;
-	data->map_column = 0;
+	data->map_line = 0;
 	while (true)
 	{
 		*line = ft_get_next_line(fd);
@@ -96,7 +96,7 @@ int	load_map(t_data *data, int fd)
 		print_and_exit(MALLOC_FAIL, 2, EXIT_FAILURE);
 	while (line)
 	{
-		data->map_column++;
+		data->map_line++;
 		line = ft_get_next_line(fd);
 		map = ft_strjoin_free(map, line);
 		if (!map)

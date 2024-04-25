@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_valid_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/04/24 15:33:13 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 08:56:48 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void	player_init_attributes(t_data *data, char angle_start, int y, int x)
 		data->player_angle = M_PI;
 	else if (angle_start == NORTH)
 		data->player_angle = M_PI_2 * 3;
-	data->player_x = x;
-	data->player_y = y;
+	data->player_x = x + 0.5;
+	data->player_y = y + 0.5;
 	data->map_departure_count++;
 }
 
@@ -69,7 +69,7 @@ int	line_has_valid_char(t_data *data, char *line, int y)
 
 int	valid_surrounded_wall(t_data *data, int i, int j)
 {
-	if (i + 1 < data->map_column && data->map[i + 1][j])
+	if (i + 1 < data->map_line && data->map[i + 1][j])
 	{
 		if (data->map[i + 1][j] != WALL && data->map[i + 1][j] != OUT)
 			return (FAILURE);

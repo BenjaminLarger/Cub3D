@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 19:21:40 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 09:41:09 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,45 +55,48 @@ static void	paint_player(t_data *data)
 
 static double	get_line_length(t_data *data)
 {
-	double	distance_to_wall = 0;
-	double	ray_x = data->player_x;
-	double	ray_y = data->player_y;
-	double	ray_dx = cos(data->player_angle);
-	double	ray_dy = sin(data->player_angle);
-	printf("int ray_dx = %d, ray_dy = %d\n", (int)ray_dx, (int)ray_dy);
-	printf("double ray_dx = %f, ray_dy = %f\n", ray_dx, ray_dy);
+	double	distance_to_wall;
+	double	ray_x;
+	double	ray_y;
+	double	ray_dx;
+	double	ray_dy;
+
+	distance_to_wall = 0;
+	ray_x = data->player_x;
+	ray_y = data->player_y;
+	ray_dx = cos(data->player_angle) * STEPSIZE;
+	ray_dy = sin(data->player_angle) * STEPSIZE;
 	while (1)
 	{
-		distance_to_wall += 1;
+		distance_to_wall += STEPSIZE;
 		ray_x += ray_dx;
 		ray_y += ray_dy;
 		if (data->map[(int)ray_y][(int)ray_x] == WALL)
-			break;
+			break ;
 	}
 	return (distance_to_wall);
 }
 
 static void	paint_field_of_view(t_data *data)
 {
-	double ray_length = get_line_length(data);
-	printf("ray_length = %f\n", ray_length);
-	double endX = ray_length * cos(data->player_angle);
-	double endY = ray_length * sin(data->player_angle);
+	double	ray_length;
+	double	endX;
+	double 	endY;
+	int		n_pixels_to_draw;
+	int 	total_pixels_to_draw;
+	double 	pixelX;
+	double 	pixelY;
 
-	printf("Player position: (%.2f, %.2f), angle: %.2f\n", data->player_x, data->player_y, data->player_angle);
-	printf("Ray length (X,Y): (%.2f, %.2f)\n", endX, endY);
-	int n_pixels_to_draw = sqrt((endX * endX) + (endY * endY))
+	ray_length = get_line_length(data);
+	endX = ray_length * cos(data->player_angle);
+	endY = ray_length * sin(data->player_angle);
+	n_pixels_to_draw = sqrt((endX * endX) + (endY * endY))
 		* data->minimap_tile_px;
-	int total_pixels_to_draw = n_pixels_to_draw;
-	printf("minimap_tile_px: (%u), n_pixels: (%d), endX: %f, endY: %f\n", data->minimap_tile_px, n_pixels_to_draw, endX, endY);
-
-	double pixelX = (data->player_x * data->minimap_tile_px)
-		+ (data->minimap_tile_px / 2);
-	double pixelY = (data->player_y * data->minimap_tile_px)
-		+ (data->minimap_tile_px / 2);
+	total_pixels_to_draw = n_pixels_to_draw;
+	pixelX = (data->player_x * data->minimap_tile_px);
+	pixelY = (data->player_y * data->minimap_tile_px);
 	while (n_pixels_to_draw)
 	{
-//		printf("n_pixels: %d, pixelX: %f, pixelY: %f, data->player_angle: %f\n", n_pixels_to_draw, pixelX, pixelY, data->player_angle);
 		mlx_put_pixel(data->minimap, pixelX, pixelY, 0xffaa00AA);
 		pixelX += endX * data->minimap_tile_px / total_pixels_to_draw;
 		pixelY += endY * data->minimap_tile_px / total_pixels_to_draw;
