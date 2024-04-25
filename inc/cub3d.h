@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 19:47:18 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 21:19:35 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void			paint_minimap(t_data *data);
 // User input
 
 void			player_input(mlx_key_data_t keydata, void *param);
-
+void			move_forward(t_data *data);
+void			move_backward(t_data *data);
+void			move_right(t_data *data);
+void			move_left(t_data *data);
 
 // Exit
 

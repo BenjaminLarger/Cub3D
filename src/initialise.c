@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 15:49:33 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 20:34:33 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	initialise(char *filename, t_data *data)
 		return (print_and_exit("Wrong map", 2, EXIT_FAILURE));
 	get_map_size(data);
 	printf("data->col: %u, data->row: %u\n", data->col, data->row);
+	printf("player_x: %f, player_y: %f\n", data->player_x, data->player_y);
 	initialise_mlx(data);
 	initialise_texture(data);
 	paint_sky_floor(data);
