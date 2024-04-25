@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 13:20:35 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 14:38:12 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,40 @@ void	move_player(int key, t_data *data)
 {
 	double	x;
 	double	y;
+	double	speed;
 
+	speed = data->player_speed / 10;
 	x = data->player_x;
 	y = data->player_y;
-	if (key == MLX_KEY_W
-		&& access_denied(data->map[(int)(y * (1 - 0.01))][(int)x]) == false)
+	if (key == MLX_KEY_W)
 	{
-		data->player_y = data->player_y * (1 - 0.01);
+		if (can_move(data->map[(int)(y - speed)][(int)x]))
+			data->player_y -= speed;
+		else
+			data->player_y = (int)round(y - speed) + 0.1;
 	}
-	else if (key == MLX_KEY_S
-		&& access_denied(data->map[(int)(y * (1 + 0.01))][(int)x]) == false)
+	else if (key == MLX_KEY_S)
 	{
-		data->player_y = data->player_y * (1 + 0.01);
+		if (can_move(data->map[(int)(y + speed)][(int)x]))
+			data->player_y += speed;
+		else
+			data->player_y = (int)round(y + speed) - 0.1;
 	}
-	else if (key == MLX_KEY_A
-		&& access_denied(data->map[(int)y][(int)(x * (1 - 0.01))]) == false)
+	else if (key == MLX_KEY_A)
 	{
-		data->player_x = data->player_x * (1 - 0.01);
+		if (can_move(data->map[(int)y][(int)(x - speed)]))
+			data->player_x -= speed;
+		else
+			data->player_x = (int)round(x - speed) + 0.1;
 	}
-	else if (key == MLX_KEY_D
-		&& access_denied(data->map[(int)y][(int)(x * (1 + 0.01))]) == false)
+	else if (key == MLX_KEY_D)
 	{
-		data->player_x = data->player_x * (1 + 0.01);
+		if (can_move(data->map[(int)y][(int)(x + speed)]))
+			data->player_x += speed;
+		else
+			data->player_x = (int)round(x + speed) - 0.1;
 	}
-	printf("(x,y) (%f:%f)\n", data->player_x, data->player_y);
+	printf("x,y (%f:%f)\n", data->player_x, data->player_y);
 	paint_minimap(data);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_valid_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/04/25 13:09:18 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 14:32:49 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ int	valid_surrounded_wall(t_data *data, int i, int j)
 	return (SUCCESS);
 }
 
-bool	access_denied(char point)
+bool	can_move(char point)
 {
 	if (point == WALL || point == '2')
-		return (true);
-	else
 		return (false);
+	else
+		return (true);
 }

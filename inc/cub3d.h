@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 13:09:13 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 14:19:58 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int				free_n_string_array_and_return(char **str_array, int n,
 // Utils
 
 char			*ft_strjoin_free(char *s1, char *s2);
-bool			access_denied(char point);
+bool			can_move(char point);
 
 
 // Map utils
