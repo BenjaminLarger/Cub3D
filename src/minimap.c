@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 15:46:51 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 16:44:56 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static double	get_line_length(t_data *data, double ray_angle)
 		ray_x += ray_dx;
 		ray_y += ray_dy;
 		if (can_move(data->map[(int)ray_y][(int)ray_x]) == false)
-			break;
+			break ;
 	}
 	return (distance_to_wall);
 }
