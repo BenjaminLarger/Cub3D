@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 19:17:08 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 12:52:30 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	paint_sky_floor(t_data *data)
 {
 	int	x;
 	int	y;
-/* 	int	i;
-	int	j; */
 
 	x = 0;
 	while (x < WIDTH)
@@ -64,18 +62,6 @@ void	paint_sky_floor(t_data *data)
 			mlx_put_pixel(data->window, x, y++, data->floor_color);
 		x++;
 	}
-	/* i = data->player_x - 2;
-	j = data->player_y - 2;
-	while (i < data->player_x + 2)
-	{
-		j = 0;
-		while (j < data->player_y + 2)
-		{
-			mlx_put_pixel(data->window, i, j, 0xffffff);
-			j++;
-		}
-		i++; */
-	//}
 }
 
 void	get_map_size(t_data *data)
@@ -109,5 +95,8 @@ void	initialise(char *filename, t_data *data)
 	initialise_mlx(data);
 	initialise_texture(data);
 	paint_sky_floor(data);
+	data->minimap = mlx_new_image(data->mlx,
+		data->col * data->minimap_tile_px, data->row * data->minimap_tile_px);
+	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
 	paint_minimap(data);
 }
