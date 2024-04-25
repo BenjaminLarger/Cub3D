@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 12:17:32 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 12:56:51 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static double	get_line_length(t_data *data, double ray_angle)
 		distance_to_wall += 0.01;
 		ray_x += ray_dx;
 		ray_y += ray_dy;
-		if (data->map[(int)ray_y][(int)ray_x] == WALL)//SEGV here
+		if (!data->map[(int)ray_y][(int)ray_x] || data->map[(int)ray_y][(int)ray_x] == WALL)//SEGV here
 			break ;
 	}
 	return (distance_to_wall);
@@ -116,9 +116,6 @@ void	paint_minimap(t_data *data)
 	unsigned int	row;
 
 	row = 0;
-	data->minimap = mlx_new_image(data->mlx,
-		data->col * data->minimap_tile_px, data->row * data->minimap_tile_px);
-	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
 	while (data->map[row])
 	{
 		paint_line(data->map[row], data, row);
