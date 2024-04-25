@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 13:09:36 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 14:15:22 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	paint_player(t_data *data)
 }
 
 
-static double	get_line_length(t_data *data, double ray_angle)
+static double	get_line_length(t_data *data, double ray_angle, int ray_index)
 {
 	double	distance_to_wall;
 	double	ray_x;
@@ -73,44 +73,38 @@ static double	get_line_length(t_data *data, double ray_angle)
 		ray_x += ray_dx;
 		ray_y += ray_dy;
 		if (access_denied(data->map[(int)ray_y][(int)ray_x]) == true)
-			break;
-		/* if ( data->map[(int)ray_y][(int)ray_x] == WALL)//SEGV here
-			break ; */
+			break ;
 	}
+	draw_ground(data, ray_index, distance_to_wall);
 	return (distance_to_wall);
 }
 
 static void	paint_field_of_view(t_data *data)
 {
-	double	ray_length;
-	double	endX;
-	double 	endY;
-	int		n_pixels_to_draw;
-	int 	total_pixels_to_draw;
-	double 	pixelX;
-	double 	pixelY;
-	double 	view_angle = PLAYER_FOV * (M_PI / 180);
-	double 	angle_step = view_angle / NUM_OF_RAYS; //200 = nmumber of rays
-	double 	ray_angle;
+	t_pfv 	pfv;
 
-	for (int i = 0; i < NUM_OF_RAYS; i++)
+	pfv.i = 0;
+	pfv.view_angle = PLAYER_FOV * (M_PI / 180);
+	pfv.angle_step = pfv.view_angle / NUM_OF_RAYS; //200 = nmumber of rays
+	while (pfv.i < NUM_OF_RAYS)
 	{
-		ray_angle = data->player_angle - (view_angle / 2) + i * angle_step;
-		ray_length = get_line_length(data, ray_angle);
-		endX = ray_length * cos(ray_angle);
-		endY = ray_length * sin(ray_angle);
-		n_pixels_to_draw = sqrt((endX * endX) + (endY * endY))
-			* data->minimap_tile_px;
-		total_pixels_to_draw = n_pixels_to_draw;
-		pixelX = (data->player_x * data->minimap_tile_px);
-		pixelY = (data->player_y * data->minimap_tile_px);
-		while (n_pixels_to_draw)
+		pfv.ray_angle = data->player_angle
+			- (pfv.view_angle / 2) + pfv.i * pfv.angle_step;
+		pfv.ray_length = get_line_length(data, pfv.ray_angle, pfv.i);
+		pfv.endX = pfv.ray_length * cos(pfv.ray_angle);
+		pfv.endY = pfv.ray_length * sin(pfv.ray_angle);
+		pfv.n_pixels_to_draw = sqrt((pfv.endX * pfv.endX) + (pfv.endY * pfv.endY)) * data->minimap_tile_px;
+		pfv.total_pixels_to_draw = pfv.n_pixels_to_draw;
+		pfv.pixelX = (data->player_x * data->minimap_tile_px);
+		pfv.pixelY = (data->player_y * data->minimap_tile_px);
+		while (pfv.n_pixels_to_draw)
 		{
-			mlx_put_pixel(data->minimap, pixelX, pixelY, 0xffaa00AA);
-			pixelX += endX * data->minimap_tile_px / total_pixels_to_draw;
-			pixelY += endY * data->minimap_tile_px / total_pixels_to_draw;
-			--n_pixels_to_draw;
+			mlx_put_pixel(data->minimap, pfv.pixelX, pfv.pixelY, 0xffaa00AA);
+			pfv.pixelX += pfv.endX * data->minimap_tile_px / pfv.total_pixels_to_draw;
+			pfv.pixelY += pfv.endY * data->minimap_tile_px / pfv.total_pixels_to_draw;
+			--pfv.n_pixels_to_draw;
 		}
+		pfv.i++;
 	}
 }
 

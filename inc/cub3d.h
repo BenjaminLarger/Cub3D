@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 13:09:13 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 14:14:45 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ void			paint_minimap(t_data *data);
 // User input
 
 void			player_input(mlx_key_data_t keydata, void *param);
+
+// Draw
+void			draw_ground(t_data *data, int ray_index, int distance_to_wall);
 
 // Exit
 

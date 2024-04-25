@@ -1,5 +1,5 @@
 To implement:
-1) Remplir de 2 les "espaces pieges"
+
 
 Bug:
 

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 13:20:35 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 13:24:02 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	rotate_player(int key, t_data *data)
 	}
 	paint_minimap(data);
 }
-
 
 void	move_player(int key, t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 08:56:32 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 13:43:07 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,21 @@ typedef struct s_rgb
 	int				index;
 	unsigned int	num;
 }			t_rgb;
+
+// ----------- paint_field_of_view
+typedef struct s_pfv
+{
+	double	ray_length;
+	double	endX;
+	double 	endY;
+	int		n_pixels_to_draw;
+	int 	total_pixels_to_draw;
+	double 	pixelX;
+	double 	pixelY;
+	double 	view_angle;
+	double 	angle_step;
+	double 	ray_angle;
+	int		i;
+}			t_pfv;
 
 #endif
