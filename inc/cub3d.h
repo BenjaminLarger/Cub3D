@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 09:34:36 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 10:19:35 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 
 # define WIDTH 1920
 # define HEIGHT 1280
-
-# define STEPSIZE 0.01
+# define PLAYER_FOV 60
+# define NUM_OF_RAYS 200
 
 // Initialisation
 
