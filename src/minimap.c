@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 12:56:51 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 13:09:36 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	paint_player(t_data *data)
 	paint_one_tile(data, 0xff0000AA, data->player_x, data->player_y);
 }
 
+
 static double	get_line_length(t_data *data, double ray_angle)
 {
 	double	distance_to_wall;
@@ -71,8 +72,10 @@ static double	get_line_length(t_data *data, double ray_angle)
 		distance_to_wall += 0.01;
 		ray_x += ray_dx;
 		ray_y += ray_dy;
-		if (!data->map[(int)ray_y][(int)ray_x] || data->map[(int)ray_y][(int)ray_x] == WALL)//SEGV here
-			break ;
+		if (access_denied(data->map[(int)ray_y][(int)ray_x]) == true)
+			break;
+		/* if ( data->map[(int)ray_y][(int)ray_x] == WALL)//SEGV here
+			break ; */
 	}
 	return (distance_to_wall);
 }

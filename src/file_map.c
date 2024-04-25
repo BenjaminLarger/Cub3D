@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   file_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 12:57:54 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 13:11:28 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	fill_map_empty_space(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->map_line)
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == OUT)
+				data->map[i][j] = '2';
+			j++;
+		}
+		i++;
+	}
+	return (SUCCESS);
+}
 
 static int	check_map(t_data *data)
 {
@@ -38,7 +58,7 @@ static int	check_map(t_data *data)
 	}
 	if (check_horizontal_wall(data->map[i - 1]) == FAILURE)
 		return (FAILURE);
-	return (SUCCESS);
+	return (fill_map_empty_space(data));
 }
 
 static bool	splitted_map(char *map)

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 12:59:37 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 13:20:35 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,28 @@ void	rotate_player(int key, t_data *data)
 
 void	move_player(int key, t_data *data)
 {
-	if (key == MLX_KEY_W)
+	double	x;
+	double	y;
+
+	x = data->player_x;
+	y = data->player_y;
+	if (key == MLX_KEY_W
+		&& access_denied(data->map[(int)(y * (1 - 0.01))][(int)x]) == false)
 	{
 		data->player_y = data->player_y * (1 - 0.01);
 	}
-	else if (key == MLX_KEY_S)
+	else if (key == MLX_KEY_S
+		&& access_denied(data->map[(int)(y * (1 + 0.01))][(int)x]) == false)
 	{
 		data->player_y = data->player_y * (1 + 0.01);
 	}
-	else if (key == MLX_KEY_A)
+	else if (key == MLX_KEY_A
+		&& access_denied(data->map[(int)y][(int)(x * (1 - 0.01))]) == false)
 	{
 		data->player_x = data->player_x * (1 - 0.01);
 	}
-	else if (key == MLX_KEY_D)
+	else if (key == MLX_KEY_D
+		&& access_denied(data->map[(int)y][(int)(x * (1 + 0.01))]) == false)
 	{
 		data->player_x = data->player_x * (1 + 0.01);
 	}

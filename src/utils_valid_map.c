@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/04/25 08:56:48 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 13:09:18 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,12 @@ int	valid_surrounded_wall(t_data *data, int i, int j)
 			return (FAILURE);
 	}
 	return (SUCCESS);
+}
+
+bool	access_denied(char point)
+{
+	if (point == WALL || point == '2')
+		return (true);
+	else
+		return (false);
 }
