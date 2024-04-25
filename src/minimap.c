@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 14:15:22 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 15:41:12 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	paint_player(t_data *data)
 }
 
 
-static double	get_line_length(t_data *data, double ray_angle, int ray_index)
+static double	get_line_length(t_data *data, double ray_angle)
 {
 	double	distance_to_wall;
 	double	ray_x;
@@ -75,7 +75,6 @@ static double	get_line_length(t_data *data, double ray_angle, int ray_index)
 		if (access_denied(data->map[(int)ray_y][(int)ray_x]) == true)
 			break ;
 	}
-	draw_ground(data, ray_index, distance_to_wall);
 	return (distance_to_wall);
 }
 
@@ -90,7 +89,7 @@ static void	paint_field_of_view(t_data *data)
 	{
 		pfv.ray_angle = data->player_angle
 			- (pfv.view_angle / 2) + pfv.i * pfv.angle_step;
-		pfv.ray_length = get_line_length(data, pfv.ray_angle, pfv.i);
+		pfv.ray_length = get_line_length(data, pfv.ray_angle);
 		pfv.endX = pfv.ray_length * cos(pfv.ray_angle);
 		pfv.endY = pfv.ray_length * sin(pfv.ray_angle);
 		pfv.n_pixels_to_draw = sqrt((pfv.endX * pfv.endX) + (pfv.endY * pfv.endY)) * data->minimap_tile_px;

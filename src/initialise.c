@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 14:16:29 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 15:44:29 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	paint_sky_floor(t_data *data)
 		y = 0;
 		while (y < HEIGHT / 2)
 			mlx_put_pixel(data->window, x, y++, data->sky_color);
-		/* while (y < HEIGHT)
-			mlx_put_pixel(data->window, x, y++, data->floor_color); */
+		while (y < HEIGHT)
+			mlx_put_pixel(data->window, x, y++, data->floor_color);
 		x++;
 	}
 }
