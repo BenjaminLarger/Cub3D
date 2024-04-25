@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 12:16:54 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 12:25:11 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,13 @@ void	move_player(int key, t_data *data)
 	}
 	else if (key == MLX_KEY_A)
 	{
-		data->player_y = data->player_x * (1 - 0.01);
-		printf("x = %f\n", data->player_y);
+		data->player_x = data->player_x * (1 - 0.01);
+		printf("x = %f\n", data->player_x);
+	}
+	else if (key == MLX_KEY_D)
+	{
+		data->player_x = data->player_x * (1 + 0.01);
+		printf("x = %f\n", data->player_x);
 	}
 	paint_minimap(data);
 }
@@ -122,20 +127,28 @@ void	player_input(mlx_key_data_t keydata, void *param)
 	data = (t_data *)param;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
 		key_pressed(MLX_KEY_LEFT, data);
-	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		key_pressed(MLX_KEY_RIGHT, data);
-	if ((keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_A)
-		&& keydata.action == MLX_REPEAT)
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_REPEAT)
 		key_pressed(MLX_KEY_LEFT, data);
-	if ((keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_D)
-		&& keydata.action == MLX_REPEAT)
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_REPEAT)
 		key_pressed(MLX_KEY_RIGHT, data);
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
+	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 		move_player(MLX_KEY_W, data);
-	if (keydata.key == MLX_KEY_S && keydata.action == MLX_REPEAT)
+	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
+		move_player(MLX_KEY_W, data);
+	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
 		move_player(MLX_KEY_S, data);
-	if (keydata.key == MLX_KEY_A && keydata.action == MLX_REPEAT)
+	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_REPEAT)
+		move_player(MLX_KEY_S, data);
+	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
 		move_player(MLX_KEY_A, data);
+	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_REPEAT)
+		move_player(MLX_KEY_A, data);
+	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+		move_player(MLX_KEY_D, data);
+	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_REPEAT)
+		move_player(MLX_KEY_D, data);
 }
