@@ -3,6 +3,7 @@
 **/*.gch
 a.out
 build/
+test.c
 
 .vscode
 .DS_Store

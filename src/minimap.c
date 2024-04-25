@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 10:16:23 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 12:17:32 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	paint_line(char *line, t_data *data, unsigned int row)
 
 static void	paint_player(t_data *data)
 {
-	printf("data->player_x: %f, data->player_y: %f\n", data->player_x, data->player_y);
+	//printf("data->player_x: %f, data->player_y: %f\n", data->player_x, data->player_y);
 	paint_one_tile(data, 0xff0000AA, data->player_x, data->player_y);
 }
 
@@ -71,7 +71,7 @@ static double	get_line_length(t_data *data, double ray_angle)
 		distance_to_wall += 0.01;
 		ray_x += ray_dx;
 		ray_y += ray_dy;
-		if (data->map[(int)ray_y][(int)ray_x] == WALL)
+		if (data->map[(int)ray_y][(int)ray_x] == WALL)//SEGV here
 			break ;
 	}
 	return (distance_to_wall);

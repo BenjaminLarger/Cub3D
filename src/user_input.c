@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 17:47:06 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 12:16:54 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,79 @@ void	key_pressed(int key, t_data *data)
 	paint_minimap(data);
 }
 
-void	player_input(mlx_key_data_t keydata, void *param)
+
+void	move_player(int key, t_data *data)
+{
+	(void)data;
+	(void)key;
+	if (key == MLX_KEY_W)
+	{
+		data->player_y = data->player_y * (1 - 0.01);
+		printf("x = %f\n", data->player_y);
+	}
+	else if (key == MLX_KEY_S)
+	{
+		data->player_y = data->player_y * (1 + 0.01);
+		printf("x = %f\n", data->player_y);
+	}
+	else if (key == MLX_KEY_A)
+	{
+		data->player_y = data->player_x * (1 - 0.01);
+		printf("x = %f\n", data->player_y);
+	}
+	paint_minimap(data);
+}
+
+/* void	player_input(mlx_key_data_t keydata, void *param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
+		move_player(MLX_KEY_W, data);
 	if (keydata.action == MLX_PRESS)
 	{
 		if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 			mlx_close_window(data->mlx);
-		if (keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W)
+		if (keydata.key == MLX_KEY_UP)
 				key_pressed(MLX_KEY_UP, data);
 //			if (data->map[data->player_y - 1][data->player_x] != '1')
 		if (keydata.key == MLX_KEY_DOWN || keydata.key == MLX_KEY_S)
 				key_pressed(MLX_KEY_DOWN, data);
 //			if (data->map[data->player_y + 1][data->player_x] != '1')
-		if (keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_A)
+		if ((keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_A))
+		{
+			//while (keydata.action != MLX_RELEASE)
 				key_pressed(MLX_KEY_LEFT, data);
-//			if (data->map[data->player_y][data->player_x - 1] != '1')
+		}
+//				if (data->map[data->player_y][data->player_x - 1] != '1')
 		if (keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_D)
 				key_pressed(MLX_KEY_RIGHT, data);
 //			if (data->map[data->player_y][data->player_x + 1] != '1')
 	}
+} */
+
+void	player_input(mlx_key_data_t keydata, void *param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(data->mlx);
+	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+		key_pressed(MLX_KEY_LEFT, data);
+	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+		key_pressed(MLX_KEY_RIGHT, data);
+	if ((keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_A)
+		&& keydata.action == MLX_REPEAT)
+		key_pressed(MLX_KEY_LEFT, data);
+	if ((keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_D)
+		&& keydata.action == MLX_REPEAT)
+		key_pressed(MLX_KEY_RIGHT, data);
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
+		move_player(MLX_KEY_W, data);
+	if (keydata.key == MLX_KEY_S && keydata.action == MLX_REPEAT)
+		move_player(MLX_KEY_S, data);
+	if (keydata.key == MLX_KEY_A && keydata.action == MLX_REPEAT)
+		move_player(MLX_KEY_A, data);
 }

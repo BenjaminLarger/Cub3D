@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/24 17:46:58 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 12:16:38 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//We cna sue this function to redraw the field, update windows
 static void hook(void* param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
+//	paint_minimap(data);
 }
 
 int	main(int argc, char **argv)
