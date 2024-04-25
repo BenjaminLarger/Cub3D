@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 15:44:29 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 15:49:33 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void	initialise(char *filename, t_data *data)
 	initialise_texture(data);
 	paint_sky_floor(data);
 	data->minimap = mlx_new_image(data->mlx,
-		data->col * data->minimap_tile_px, data->row * data->minimap_tile_px);
+			data->col * data->minimap_tile_px,
+			data->row * data->minimap_tile_px);
 	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
 	paint_minimap(data);
 }

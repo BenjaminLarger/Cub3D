@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 15:46:18 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 16:38:34 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ bool			can_move(char point);
 int				check_horizontal_wall(char *line);
 int				line_has_valid_char(t_data *data, char *line, int y);
 int				valid_surrounded_wall(t_data *data, int i, int j);
+int				get_max_column(t_data *data);
+char			*line_filled_with_2(char *line, int max_column);
+
 
 // Dev utils
 

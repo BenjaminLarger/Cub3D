@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 13:11:28 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 16:38:01 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,27 @@
 
 static int	fill_map_empty_space(t_data *data)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	int		max_column;
 
+	max_column = get_max_column(data);
 	i = 0;
+	printf("max col = %d\n", max_column);
 	while (i < data->map_line)
 	{
 		j = 0;
-		while (data->map[i][j])
+		data->map[i] = line_filled_with_2(data->map[i], max_column);
+		while (j < max_column)
 		{
+			printf(" j crashed at %d = %c\n", j, data->map[i][j]);
 			if (data->map[i][j] == OUT)
 				data->map[i][j] = '2';
 			j++;
 		}
 		i++;
 	}
+	print_map(data->map);
 	return (SUCCESS);
 }
 
@@ -129,6 +135,5 @@ int	load_map(t_data *data, int fd)
 	free(map);
 	if (!data->map)
 		print_and_exit(MALLOC_FAIL, 2, EXIT_FAILURE);
-	print_map(data->map);
 	return (check_map(data));
 }
