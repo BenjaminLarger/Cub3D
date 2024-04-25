@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 17:43:49 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 19:47:18 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int				get_data_from_file(char *filename, t_data *data);
 void			load_elements(int *n_elements, t_data *data, int fd);
 unsigned int	rgb_to_hex(char *rgb_str);
 int				load_map(t_data *data, int fd);
+void			paint_sky_floor(t_data *data);
 
 // Minimap
 

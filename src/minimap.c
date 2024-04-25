@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 18:03:02 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 20:21:47 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static double	get_line_length(t_data *data, double ray_angle)
 
 static void	paint_field_of_view(t_data *data)
 {
-	t_pfv 	pfv;
+	t_pfv	pfv;
 
 	pfv.i = 0;
 	pfv.view_angle = PLAYER_FOV * (M_PI / 180);
@@ -122,6 +122,39 @@ static void	paint_field_of_view(t_data *data)
 	}
 }
 
+/* static void	paint_ruler(t_data *data)
+{
+	unsigned int	row;
+	unsigned int	col;
+	char			*temp_str;
+
+	printf("paint_ruler\n");
+	row = 0;
+	col = 0;
+	while (data->map[row][col])
+	{
+		temp_str = ft_itoa(col);
+		mlx_put_string(data->mlx,
+			temp_str,
+			col + 32 + col * data->minimap_tile_px,
+			row + 32);
+		free(temp_str);
+		col++;
+	}
+	col = 0;
+	row = 1;
+	while (data->map[row])
+	{
+		temp_str = ft_itoa(row);
+		mlx_put_string(data->mlx,
+			temp_str,
+			col + 32,
+			row + 32 + row * data->minimap_tile_px);
+		free(temp_str);
+		row++;
+	}
+} */
+
 void	paint_minimap(t_data *data)
 {
 	unsigned int	row;
@@ -134,4 +167,5 @@ void	paint_minimap(t_data *data)
 	}
 	paint_field_of_view(data);
 	paint_player(data);
+//	paint_ruler(data); // to delete
 }
