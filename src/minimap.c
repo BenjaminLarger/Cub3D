@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 17:45:55 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/25 18:03:02 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ static void	paint_player(t_data *data)
 	unsigned int	pos_x;
 	unsigned int	pos_y;
 
-	x = 8;
-	while (x < data->minimap_tile_px - 8)
+	x = data->minimap_tile_px / 4;
+	while (x < data->minimap_tile_px - data->minimap_tile_px / 4)
 	{
-		y = 8;
-		while (y < data->minimap_tile_px - 8)
+		y = data->minimap_tile_px / 4;
+		while (y < data->minimap_tile_px - data->minimap_tile_px / 4)
 		{
 			pos_x = (data->player_x - 0.5) * data->minimap_tile_px + x;
 			pos_y = (data->player_y - 0.5) * data->minimap_tile_px + y;

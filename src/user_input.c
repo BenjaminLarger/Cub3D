@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 15:47:07 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 18:30:16 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,24 @@ void	move_player(int key, t_data *data)
 	paint_minimap(data);
 }
 
+static void	resize_minimap(int key, t_data *data)
+{
+	if (key == MLX_KEY_KP_SUBTRACT)
+		data->minimap_tile_px /= 2;
+	else if (key == MLX_KEY_KP_ADD)
+		data->minimap_tile_px *= 2;
+	if (data->minimap_tile_px < 2)
+		data->minimap_tile_px = 2;
+	else if (data->minimap_tile_px > 32)
+		data->minimap_tile_px = 32;
+	mlx_delete_image(data->mlx, data->minimap);
+	data->minimap = mlx_new_image(data->mlx,
+			data->col * data->minimap_tile_px,
+			data->row * data->minimap_tile_px);
+	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
+	paint_minimap(data);
+}
+
 void	player_input(mlx_key_data_t keydata, void *param)
 {
 	t_data	*data;
@@ -84,22 +102,22 @@ void	player_input(mlx_key_data_t keydata, void *param)
 	data = (t_data *)param;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-	else if (keydata.key == MLX_KEY_LEFT
-		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		rotate_player(MLX_KEY_LEFT, data);
-	else if (keydata.key == MLX_KEY_RIGHT
-		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		rotate_player(MLX_KEY_RIGHT, data);
-	else if (keydata.key == MLX_KEY_W
-		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		move_player(MLX_KEY_W, data);
-	else if (keydata.key == MLX_KEY_S
-		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		move_player(MLX_KEY_S, data);
-	else if (keydata.key == MLX_KEY_A
-		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		move_player(MLX_KEY_A, data);
-	else if (keydata.key == MLX_KEY_D
-		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		move_player(MLX_KEY_D, data);
+	else if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
+	{
+		if (keydata.key == MLX_KEY_LEFT)
+			rotate_player(MLX_KEY_LEFT, data);
+		else if (keydata.key == MLX_KEY_RIGHT)
+			rotate_player(MLX_KEY_RIGHT, data);
+		else if (keydata.key == MLX_KEY_W)
+			move_player(MLX_KEY_W, data);
+		else if (keydata.key == MLX_KEY_S)
+			move_player(MLX_KEY_S, data);
+		else if (keydata.key == MLX_KEY_A)
+			move_player(MLX_KEY_A, data);
+		else if (keydata.key == MLX_KEY_D)
+			move_player(MLX_KEY_D, data);
+		else if (keydata.key == MLX_KEY_KP_SUBTRACT
+			|| keydata.key == MLX_KEY_KP_ADD)
+			resize_minimap(keydata.key, data);
+	}
 }
