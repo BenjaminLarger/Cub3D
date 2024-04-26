@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 16:38:34 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 21:19:35 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@
 // Map input
 
 # define OUT ' '
-# define WEST 'W'
 # define WALL '1'
 # define NORTH 'N'
 # define SOUTH 'S'
 # define EST 'E'
-# define EMPTY '0'
+# define WEST 'W'
+# define FLOOR '0'
 
 # define WIDTH 1920
 # define HEIGHT 1280
@@ -55,6 +55,7 @@ int				get_data_from_file(char *filename, t_data *data);
 void			load_elements(int *n_elements, t_data *data, int fd);
 unsigned int	rgb_to_hex(char *rgb_str);
 int				load_map(t_data *data, int fd);
+void			paint_sky_floor(t_data *data);
 
 // Minimap
 
@@ -63,7 +64,10 @@ void			paint_minimap(t_data *data);
 // User input
 
 void			player_input(mlx_key_data_t keydata, void *param);
-
+void			move_forward(t_data *data);
+void			move_backward(t_data *data);
+void			move_right(t_data *data);
+void			move_left(t_data *data);
 
 // Exit
 

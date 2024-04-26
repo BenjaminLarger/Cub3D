@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 16:44:56 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/25 20:21:47 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	paint_line(char *line, t_data *data, unsigned int row)
 	{
 		if (line[col] == WALL)
 			paint_one_tile(data, 0xaaaaaa99, col, row);
-		else if (line[col] != OUT)
+		else if (line[col] != OUT && line[col] != '2')
 			paint_one_tile(data, 0x11111199, col, row);
 		col++;
 	}
@@ -54,11 +54,11 @@ static void	paint_player(t_data *data)
 	unsigned int	pos_x;
 	unsigned int	pos_y;
 
-	x = 8;
-	while (x < data->minimap_tile_px - 8)
+	x = data->minimap_tile_px / 4;
+	while (x < data->minimap_tile_px - data->minimap_tile_px / 4)
 	{
-		y = 8;
-		while (y < data->minimap_tile_px - 8)
+		y = data->minimap_tile_px / 4;
+		while (y < data->minimap_tile_px - data->minimap_tile_px / 4)
 		{
 			pos_x = (data->player_x - 0.5) * data->minimap_tile_px + x;
 			pos_y = (data->player_y - 0.5) * data->minimap_tile_px + y;
@@ -95,7 +95,7 @@ static double	get_line_length(t_data *data, double ray_angle)
 
 static void	paint_field_of_view(t_data *data)
 {
-	t_pfv 	pfv;
+	t_pfv	pfv;
 
 	pfv.i = 0;
 	pfv.view_angle = PLAYER_FOV * (M_PI / 180);
@@ -122,6 +122,39 @@ static void	paint_field_of_view(t_data *data)
 	}
 }
 
+/* static void	paint_ruler(t_data *data)
+{
+	unsigned int	row;
+	unsigned int	col;
+	char			*temp_str;
+
+	printf("paint_ruler\n");
+	row = 0;
+	col = 0;
+	while (data->map[row][col])
+	{
+		temp_str = ft_itoa(col);
+		mlx_put_string(data->mlx,
+			temp_str,
+			col + 32 + col * data->minimap_tile_px,
+			row + 32);
+		free(temp_str);
+		col++;
+	}
+	col = 0;
+	row = 1;
+	while (data->map[row])
+	{
+		temp_str = ft_itoa(row);
+		mlx_put_string(data->mlx,
+			temp_str,
+			col + 32,
+			row + 32 + row * data->minimap_tile_px);
+		free(temp_str);
+		row++;
+	}
+} */
+
 void	paint_minimap(t_data *data)
 {
 	unsigned int	row;
@@ -134,4 +167,5 @@ void	paint_minimap(t_data *data)
 	}
 	paint_field_of_view(data);
 	paint_player(data);
+//	paint_ruler(data); // to delete
 }
