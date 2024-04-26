@@ -8,5 +8,5 @@ test.c
 .vscode
 .DS_Store
 *.dSYM
-
+*/draw.c
 cub3D
