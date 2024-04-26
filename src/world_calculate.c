@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   world_calculate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 14:55:53 by demre             #+#    #+#             */
-/*   Updated: 2024/04/26 17:04:23 by demre            ###   ########.fr       */
+/*   Created: 2024/04/26 16:17:58 by demre             #+#    #+#             */
+/*   Updated: 2024/04/26 16:45:53 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	exit_game(t_data *data)
+double	calculate_col_height(t_data *data, t_pfv pfv)
 {
-	mlx_delete_texture(data->wall_no);
-	mlx_delete_texture(data->wall_so);
-	mlx_delete_texture(data->wall_we);
-	mlx_delete_texture(data->wall_ea);
-//	mlx_delete_image(data->mlx, data->minimap); //
-	mlx_delete_image(data->mlx, data->world);
-	mlx_terminate(data->mlx);
-	free_string_array(data->map);
+	double	calculated_h;
+
+	(void)data;
+	calculated_h = 1000 / pfv.ray_length;
+	return (calculated_h);
 }

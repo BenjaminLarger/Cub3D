@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/26 14:57:16 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/26 17:15:08 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	rotate_player(int key, t_data *data)
 			data->player_angle = angle_rotate - (2 * M_PI - data->player_angle);
 //		printf("data->player_angle: %f : %f\n", data->player_angle, data->player_angle * 180 / M_PI);
 	}
-	paint_sky_floor(data);
 	paint_world(data);
 	paint_minimap(data);
 }
