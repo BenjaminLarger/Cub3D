@@ -1,10 +1,22 @@
 To implement:
 
+1)  
+Adjust col height in calculate_col_height() in world_calculate.c
+
+2)  
+Add info on which side of the wall is visible
+
+
+--------------
+
 
 Bug:
 
 1)  
 undefined-behavior quand premier chiffre de RGB dans le fichier cub est grand
+
+
+--------------
 
 Crash:
 

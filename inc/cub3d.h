@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/26 14:52:12 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/26 17:16:53 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				get_data_from_file(char *filename, t_data *data);
 void			load_elements(int *n_elements, t_data *data, int fd);
 unsigned int	rgb_to_hex(char *rgb_str);
 int				load_map(t_data *data, int fd);
-void			paint_sky_floor(t_data *data);
+void			initialise_world(t_data *data);
 
 // Minimap
 
@@ -64,7 +64,10 @@ void			initialise_minimap(t_data *data);
 
 // World
 
-void	paint_world(t_data *data);
+void			paint_world(t_data *data);
+void			paint_sky_floor(t_data *data);
+void			paint_walls(t_data *data);
+double			calculate_col_height(t_data *data, t_pfv pfv);
 
 // User input
 
