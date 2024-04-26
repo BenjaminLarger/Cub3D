@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/26 17:16:41 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/26 17:35:22 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	paint_player(t_data *data)
 	}
 }
 
-/* double	get_next_y_edge(t_data *data, double cur_axis, double ray_angle)
+double	get_next_y_edge(t_data *data, double cur_axis, double ray_angle)
 {
 	double	next_x_edge;
 
@@ -91,19 +91,6 @@ double	get_next_x_edge(t_data *data, double cur_axis, double ray_angle)
 	return (next_edge);
 }
 
-double	get_next_edge(t_data *data, double x, double y, double ray_angle)
-{
-	double	x_edge;
-	double	y_edge;
-
-	x_edge = get_next_x_edge(data, x, ray_angle);
-	y_edge = get_next_y_edge(data, y, ray_angle);
-	if (x_edge > y_edge)
-		return (y_edge);
-	else
-		return (x_edge);
-} */
-
 static double	get_line_length(t_data *data, double ray_angle)
 {
 	double	distance_to_wall;
@@ -115,12 +102,12 @@ static double	get_line_length(t_data *data, double ray_angle)
 	distance_to_wall = 0;
 	ray_x = data->player_x;
 	ray_y = data->player_y;
-	ray_dx = cos(ray_angle) * data->minimap_tile_px;
-	ray_dy = sin(ray_angle) * data->minimap_tile_px;
+	ray_dx = cos(ray_angle) * 0.01;
+	ray_dy = sin(ray_angle) * 0.01;
 //	printf("ray_x: %f, ray_y: %f\n", ray_x, ray_y);
 	while (1)
 	{
-		distance_to_wall += data->minimap_tile_px;
+		distance_to_wall += 0.01;
 		ray_x += ray_dx;
 		ray_y += ray_dy;
 		if (can_move(data->map[(int)ray_y][(int)ray_x]) == false)
