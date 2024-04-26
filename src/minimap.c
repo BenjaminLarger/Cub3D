@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 20:21:47 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/26 14:38:53 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static double	get_line_length(t_data *data, double ray_angle)
 	ray_y = data->player_y;
 	ray_dx = cos(ray_angle) * 0.01;
 	ray_dy = sin(ray_angle) * 0.01;
+//	printf("ray_x: %f, ray_y: %f\n", ray_x, ray_y);
 	while (1)
 	{
 		distance_to_wall += 0.01;
@@ -90,6 +91,7 @@ static double	get_line_length(t_data *data, double ray_angle)
 		if (can_move(data->map[(int)ray_y][(int)ray_x]) == false)
 			break ;
 	}
+//	printf("wall_x: %f, wall_y: %f, distance_to_wall: %f\n", ray_x, ray_y, distance_to_wall);
 	return (distance_to_wall);
 }
 
@@ -107,6 +109,7 @@ static void	paint_field_of_view(t_data *data)
 		pfv.ray_length = get_line_length(data, pfv.ray_angle);
 		pfv.endX = pfv.ray_length * cos(pfv.ray_angle);
 		pfv.endY = pfv.ray_length * sin(pfv.ray_angle);
+//	printf("pfv.endX: %f, pfv.endY: %f, pfv.ray_length: %f\n", pfv.endX, pfv.endY, pfv.ray_length);
 		pfv.n_pixels_to_draw = sqrt((pfv.endX * pfv.endX) + (pfv.endY * pfv.endY)) * data->minimap_tile_px;
 		pfv.total_pixels_to_draw = pfv.n_pixels_to_draw;
 		pfv.pixelX = (data->player_x * data->minimap_tile_px);
@@ -168,4 +171,12 @@ void	paint_minimap(t_data *data)
 	paint_field_of_view(data);
 	paint_player(data);
 //	paint_ruler(data); // to delete
+}
+
+void	initialise_minimap(t_data *data)
+{
+	data->minimap = mlx_new_image(data->mlx,
+			data->col * data->minimap_tile_px,
+			data->row * data->minimap_tile_px);
+	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
 }

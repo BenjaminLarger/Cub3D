@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 21:46:27 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/26 14:43:20 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ static void	resize_minimap(int key, t_data *data)
 	else if (data->minimap_tile_px > 32)
 		data->minimap_tile_px = 32;
 	mlx_delete_image(data->mlx, data->minimap);
-	data->minimap = mlx_new_image(data->mlx,
-			data->col * data->minimap_tile_px,
-			data->row * data->minimap_tile_px);
-	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
+	initialise_minimap(data);
 	paint_minimap(data);
 }
 
@@ -41,7 +38,7 @@ void	rotate_player(int key, t_data *data)
 			data->player_angle -= angle_rotate;
 		else
 			data->player_angle = (2 * M_PI + data->player_angle) - angle_rotate;
-		printf("data->player_angle: %f : %f\n", data->player_angle, data->player_angle * 180 / M_PI);
+//		printf("data->player_angle: %f : %f\n", data->player_angle, data->player_angle * 180 / M_PI);
 	}
 	else if (key == MLX_KEY_RIGHT)
 	{
@@ -49,8 +46,10 @@ void	rotate_player(int key, t_data *data)
 			data->player_angle += angle_rotate;
 		else
 			data->player_angle = angle_rotate - (2 * M_PI - data->player_angle);
-		printf("data->player_angle: %f : %f\n", data->player_angle, data->player_angle * 180 / M_PI);
+//		printf("data->player_angle: %f : %f\n", data->player_angle, data->player_angle * 180 / M_PI);
 	}
+	paint_sky_floor(data);
+	paint_world(data);
 	paint_minimap(data);
 }
 

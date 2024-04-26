@@ -24,6 +24,7 @@ SRCS		:= main.c free.c print.c exit.c \
 	user_input.c user_input_move.c \
 	file_map.c utils_valid_map.c \
 	minimap.c \
+	world.c \
 	utils_joinfree.c utils_fill_map.c utils_dev.c\
 
 SRC_DIR		:= src

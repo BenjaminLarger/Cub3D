@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 20:34:33 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/26 13:58:29 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	get_map_size(t_data *data)
 
 void	initialise(char *filename, t_data *data)
 {
-	data->minimap_tile_px = 32;
+	data->minimap_tile_px = 16;
 	data->player_speed = 3;
 	if (check_file_extension(filename) != SUCCESS)
 		return (print_and_exit("Wrong file extension", 2, EXIT_FAILURE));
@@ -96,9 +96,7 @@ void	initialise(char *filename, t_data *data)
 	initialise_mlx(data);
 	initialise_texture(data);
 	paint_sky_floor(data);
-	data->minimap = mlx_new_image(data->mlx,
-			data->col * data->minimap_tile_px,
-			data->row * data->minimap_tile_px);
-	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
+	initialise_minimap(data);
 	paint_minimap(data);
+	paint_world(data);
 }

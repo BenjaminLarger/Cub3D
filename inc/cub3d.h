@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 21:19:35 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/26 14:52:12 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define WIDTH 1920
 # define HEIGHT 1280
 # define PLAYER_FOV 60
-# define NUM_OF_RAYS 200
+# define NUM_OF_RAYS 192
 # define SENSIBILITY 0.01
 
 // Initialisation
@@ -60,6 +60,11 @@ void			paint_sky_floor(t_data *data);
 // Minimap
 
 void			paint_minimap(t_data *data);
+void			initialise_minimap(t_data *data);
+
+// World
+
+void	paint_world(t_data *data);
 
 // User input
 
