@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/04/26 17:17:02 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/27 16:06:37 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static double	get_intersection(t_data *data, double ray_angle,
 		if (can_move(data->map[(int)(*wall_y)][(int)(*wall_x)]) == false)
 			break ;
 	}
+	distance_to_wall *= cos(ray_angle - data->player_angle);
+//	distance_to_wall = round(distance_to_wall);
 //	printf("wall_x: %f, wall_y: %f, distance_to_wall: %f\n", *wall_x, *wall_y, distance_to_wall);
 	return (distance_to_wall);
 }
@@ -45,7 +47,10 @@ static void	paint_column(t_data *data, double h, double calculated_h, t_pfv	pfv)
 	while (x < 10)
 	{
 		if ((x + WIDTH * pfv.i / NUM_OF_RAYS) < WIDTH)
-			mlx_put_pixel(data->world, x + WIDTH * pfv.i / NUM_OF_RAYS, (HEIGHT / 2) - (calculated_h / 2) + h, 0xffaa00AA);
+			mlx_put_pixel(data->world,
+				x + WIDTH * pfv.i / NUM_OF_RAYS,
+				(HEIGHT / 2) - (calculated_h / 2) + h,
+				0xffaa00AA);
 		x++;
 	}
 }
@@ -69,10 +74,8 @@ void	paint_walls(t_data *data)
 			&wall_y);
 //		printf("wall at wall_x: %f, wall_y: %f\n", wall_x, wall_y);
 		calculated_h = calculate_col_height(data, pfv);
-		if (calculated_h > HEIGHT)
-			calculated_h = HEIGHT;
-//		printf("WIDTH * pfv.i / NUM_OF_RAYS: %d, calculated_h: %f\n",
-//			WIDTH * pfv.i / NUM_OF_RAYS, calculated_h);
+//		printf("WIDTH * %d / NUM_OF_RAYS: %d, calculated_h: %f\n",
+//			pfv.i, WIDTH * pfv.i / NUM_OF_RAYS, calculated_h);
 //		printf("(HEIGHT / 2) - (calculated_h / 2) - h: %f\n",
 //			(HEIGHT / 2) - (calculated_h / 2) + 0);
 		h = 0;
