@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/27 18:23:52 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/27 19:15:54 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,21 @@ typedef struct s_pfv
 	double	wall_x;
 	double	wall_y;
 }			t_pfv;
+
+// ----------- find next edge
+typedef struct s_edge
+{
+	double	cur_x;
+	double	cur_y;
+	double	new_x1;
+	double	new_y1;
+	double	new_x2;
+	double	new_y2;
+	double	distance_to_wall;
+	double	ray_x;
+	double	ray_y;
+	double	ray_dx;
+	double	ray_dy;
+}			t_edge;
 
 #endif
