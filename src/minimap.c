@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/26 14:38:53 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/26 17:35:22 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,28 @@ static void	paint_player(t_data *data)
 		}
 		x++;
 	}
+}
+
+double	get_next_y_edge(t_data *data, double cur_axis, double ray_angle)
+{
+	double	next_x_edge;
+
+	if (ray_angle > M_PI)//direction to next y
+		next_x_edge = floor(cur_axis / data->minimap_tile_px) * data->minimap_tile_px + data->minimap_tile_px;
+	else//direction to previous y
+		next_x_edge = floor(cur_axis / data->minimap_tile_px) * data->minimap_tile_px;
+	return (next_x_edge);
+}
+
+double	get_next_x_edge(t_data *data, double cur_axis, double ray_angle)
+{
+	double	next_edge;
+
+	if (ray_angle < M_PI_2 || ray_angle > M_PI * 3) //direction to next x
+		next_edge = floor(cur_axis / data->minimap_tile_px) * data->minimap_tile_px + data->minimap_tile_px;
+	else //direction to previous x
+		next_edge = floor(cur_axis / data->minimap_tile_px) * data->minimap_tile_px;
+	return (next_edge);
 }
 
 static double	get_line_length(t_data *data, double ray_angle)
