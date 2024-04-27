@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/04/27 19:10:17 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/27 22:04:16 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,23 @@ static double	get_intersection(t_data *data, double ray_angle,
 	return (distance_to_wall);
 }
 
+static unsigned int	get_colour(t_data *data, t_pfv pfv)
+{
+	unsigned int	colour;
+
+	if (pfv.wall_y > data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
+		colour = 0xf8df81AA;
+	else if (pfv.wall_y < data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
+		colour = 0xf6aa90AA;
+	else if (pfv.wall_x > data->player_x && fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01)
+		colour = 0xd5b6d5AA;
+	else if (pfv.wall_x < data->player_x && fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01)
+		colour = 0x9bd0b7AA;
+	else
+		colour = 0x000000AA;
+	return (colour);
+}
+
 static void	paint_column(t_data *data, double h, double calculated_h, t_pfv	pfv)
 {
 	int				x;
@@ -49,16 +66,7 @@ static void	paint_column(t_data *data, double h, double calculated_h, t_pfv	pfv)
 //	{
 		if ((x + WIDTH * pfv.i / NUM_OF_RAYS) < WIDTH)
 		{
-			if (pfv.wall_y > data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
-				colour = 0xf8df81AA;
-			else if (pfv.wall_y < data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
-				colour = 0xf6aa90AA;
-			else if (pfv.wall_x > data->player_x && fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01)
-				colour = 0xd5b6d5AA;
-			else if (pfv.wall_x < data->player_x && fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01)
-				colour = 0x9bd0b7AA;
-			else
-				colour = 0x000000AA;
+			colour = get_colour(data, pfv);
 			mlx_put_pixel(data->world,
 				x + WIDTH * pfv.i / NUM_OF_RAYS,
 				(HEIGHT / 2) - (calculated_h / 2) + h,
@@ -83,8 +91,9 @@ void	paint_walls(t_data *data)
 			- (pfv.view_angle / 2) + pfv.i * pfv.angle_step;
 		pfv.ray_length = get_intersection(data, pfv.ray_angle, &pfv.wall_x,
 			&pfv.wall_y);
-	printf("%d, wall_x:y: %f:%f, player_x:y: %f:%f, distance_to_wall: %f\n", pfv.i, pfv.wall_x, pfv.wall_y, data->player_x, data->player_y, pfv.ray_length);
-	printf("pfv.wall_x - round(pfv.wall_x): %f, pfv.wall_y, round(pfv.wall_y): %f\n", pfv.wall_x - round(pfv.wall_x), pfv.wall_y - round(pfv.wall_y));
+//	unsigned int colour = get_colour(data, pfv); //
+//	printf("%d, wall_x:y: %f:%f, player_x:y: %f:%f, distance_to_wall: %.2f, colour: %u\n", pfv.i, pfv.wall_x, pfv.wall_y, data->player_x, data->player_y, pfv.ray_length, colour);
+//	printf("pfv.wall_x - round(pfv.wall_x): %.2f, pfv.wall_y, round(pfv.wall_y): %.2f\n", fabs(pfv.wall_x - round(pfv.wall_x)), fabs(pfv.wall_y - round(pfv.wall_y)));
 		calculated_h = calculate_col_height(data, pfv);
 //		printf("WIDTH * %d / NUM_OF_RAYS: %d, calculated_h: %f\n",
 //			pfv.i, WIDTH * pfv.i / NUM_OF_RAYS, calculated_h);

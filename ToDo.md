@@ -4,7 +4,13 @@ To implement:
 Adjust col height in calculate_col_height() in world_calculate.c
 
 2)  
-Add info on which side of the wall is visible
+Fix info on which side of the wall is visible
+
+3)  
+Use buffer image when drawing world
+
+4)  
+Check for memleaks with 'top' cmd in second shell terminal
 
 
 --------------
