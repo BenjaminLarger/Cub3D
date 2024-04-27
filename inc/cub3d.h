@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/26 17:16:53 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/27 18:28:15 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define WIDTH 1920
 # define HEIGHT 1280
 # define PLAYER_FOV 60
-# define NUM_OF_RAYS 192
+# define NUM_OF_RAYS 1920
 # define SENSIBILITY 0.01
 
 // Initialisation

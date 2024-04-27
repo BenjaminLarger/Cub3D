@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/04/27 16:06:37 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/27 19:10:17 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,45 +34,57 @@ static double	get_intersection(t_data *data, double ray_angle,
 			break ;
 	}
 	distance_to_wall *= cos(ray_angle - data->player_angle);
-//	distance_to_wall = round(distance_to_wall);
+	distance_to_wall = round(distance_to_wall * 100 ) / 100;
 //	printf("wall_x: %f, wall_y: %f, distance_to_wall: %f\n", *wall_x, *wall_y, distance_to_wall);
 	return (distance_to_wall);
 }
 
 static void	paint_column(t_data *data, double h, double calculated_h, t_pfv	pfv)
 {
-	int	x;
+	int				x;
+	unsigned int	colour;
 
 	x = 0;
-	while (x < 10)
-	{
+//	while (x < 10)
+//	{
 		if ((x + WIDTH * pfv.i / NUM_OF_RAYS) < WIDTH)
+		{
+			if (pfv.wall_y > data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
+				colour = 0xf8df81AA;
+			else if (pfv.wall_y < data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
+				colour = 0xf6aa90AA;
+			else if (pfv.wall_x > data->player_x && fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01)
+				colour = 0xd5b6d5AA;
+			else if (pfv.wall_x < data->player_x && fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01)
+				colour = 0x9bd0b7AA;
+			else
+				colour = 0x000000AA;
 			mlx_put_pixel(data->world,
 				x + WIDTH * pfv.i / NUM_OF_RAYS,
 				(HEIGHT / 2) - (calculated_h / 2) + h,
-				0xffaa00AA);
-		x++;
-	}
+				colour);
+		}
+//		x++;
+//	}
 }
 
 void	paint_walls(t_data *data)
 {
 	t_pfv	pfv;
-	double	wall_x; // not used
-	double	wall_y; // not used
 	double	calculated_h;
 	double	h;
 
 	pfv.i = 0;
 	pfv.view_angle = PLAYER_FOV * (M_PI / 180);
 	pfv.angle_step = pfv.view_angle / NUM_OF_RAYS;
-	while (pfv.i < NUM_OF_RAYS + 1)
+	while (pfv.i < NUM_OF_RAYS)
 	{
 		pfv.ray_angle = data->player_angle
 			- (pfv.view_angle / 2) + pfv.i * pfv.angle_step;
-		pfv.ray_length = get_intersection(data, pfv.ray_angle, &wall_x,
-			&wall_y);
-//		printf("wall at wall_x: %f, wall_y: %f\n", wall_x, wall_y);
+		pfv.ray_length = get_intersection(data, pfv.ray_angle, &pfv.wall_x,
+			&pfv.wall_y);
+	printf("%d, wall_x:y: %f:%f, player_x:y: %f:%f, distance_to_wall: %f\n", pfv.i, pfv.wall_x, pfv.wall_y, data->player_x, data->player_y, pfv.ray_length);
+	printf("pfv.wall_x - round(pfv.wall_x): %f, pfv.wall_y, round(pfv.wall_y): %f\n", pfv.wall_x - round(pfv.wall_x), pfv.wall_y - round(pfv.wall_y));
 		calculated_h = calculate_col_height(data, pfv);
 //		printf("WIDTH * %d / NUM_OF_RAYS: %d, calculated_h: %f\n",
 //			pfv.i, WIDTH * pfv.i / NUM_OF_RAYS, calculated_h);

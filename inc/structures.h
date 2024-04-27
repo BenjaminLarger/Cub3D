@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/26 17:20:52 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/27 18:23:52 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct s_pfv
 	double	angle_step;
 	double	ray_angle;
 	int		i;
+	double	wall_x;
+	double	wall_y;
 }			t_pfv;
 
 #endif
