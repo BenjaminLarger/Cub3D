@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_dev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:16:07 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 09:41:26 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/28 15:30:26 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,9 @@ void	print_map(char **map)
 		printf("\n");
 		i++;
 	}
+}
+
+void	check_leaks(void)
+{
+	system("leaks cub3D");
 }
