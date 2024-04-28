@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/27 14:37:14 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/28 15:29:03 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void	paint_line(char *line, t_data *data, unsigned int row)
 			paint_one_tile(data, 0xaaaaaa99, col, row);
 		else if (line[col] != OUT && line[col] != '2')
 			paint_one_tile(data, 0x11111199, col, row);
+		else
+			paint_one_tile(data, 0x00000000, col, row);
 		col++;
 	}
 }
@@ -69,7 +71,7 @@ static void	paint_player(t_data *data)
 	}
 }
 
-/* double	get_next_y_edge(t_data *data, t_edge *edge, double ray_angle)
+double	get_next_y_edge(t_data *data, double cur_axis, double ray_angle)
 {
 	double	next_x_edge;
 
@@ -80,61 +82,44 @@ static void	paint_player(t_data *data)
 	return (next_x_edge);
 }
 
-double	get_next_x_edge(t_data *data, t_edge *edge, double ray_angle)
+double	get_next_x_edge(t_data *data, double cur_axis, double ray_angle)
 {
-	edge->new_x1 = (sin(ray_angle) / cos(ray_angle)) * (ceil(edge->ray_y));
-	edge->new_y1 = ceil(edge->ray_y);
-	
-} */
+	double	next_edge;
 
-double	get_next_x_edge(t_data *data, t_edge *edge, double ray_angle)
-{
-	double	ray_slope;
-
-	ray_slope = tan(ray_angle);
-	if (cos(ray_angle) > 0)
-		edge->new_x1 = ceil(edge->ray_x);
-	else
-		edge->new_x1 = floor(edge->ray_x);
-	edge->new_y1 = edge->ray_y + (edge->new_x1 - edge->ray_x) * ray_slope;
-}
-
-double	get_next_y_edge(t_data *data, t_edge *edge, double ray_angle)
-{
-	double	ray_slope;
-	double	next_x_edge;
-	double	next_y_edge;
-
-	if (cos(ray_angle) > 0)
-		next_x_edge = ceil(edge->ray_x);
-	else
-		next_x_edge = floor(edge->ray_x);
-	next_y_edge = edge->ray_y + (next_x_edge - edge->ray_x) * ray_slope;
-	edge->ray_x = next_x_edge;
-	edge->ray_y;
+	if (ray_angle < M_PI_2 || ray_angle > M_PI * 3) //direction to next x
+		next_edge = floor(cur_axis / data->minimap_tile_px) * data->minimap_tile_px + data->minimap_tile_px;
+	else //direction to previous x
+		next_edge = floor(cur_axis / data->minimap_tile_px) * data->minimap_tile_px;
+	return (next_edge);
 }
 
 static double	get_line_length(t_data *data, double ray_angle)
 {
-	t_edge	edge;
+	double	distance_to_wall;
+	double	ray_x;
+	double	ray_y;
+	double	ray_dx;
+	double	ray_dy;
 
-	edge.distance_to_wall = 0;
-	edge.ray_x = data->player_x;
-	edge.ray_y = data->player_y;
-	edge.ray_dx = cos(ray_angle) * 0.001;
-	edge.ray_dy = sin(ray_angle) * 0.001;
+	distance_to_wall = 0;
+	ray_x = data->player_x;
+	ray_y = data->player_y;
+	ray_dx = cos(ray_angle) * 0.01;
+	ray_dy = sin(ray_angle) * 0.01;
+//	printf("ray_x: %f, ray_y: %f\n", ray_x, ray_y);
 	while (1)
 	{
-		edge.distance_to_wall += 0.001;
-		edge.ray_x += edge.ray_dx;
-		edge.ray_y += edge.ray_dy;
-		if (can_move(data->map[(int)edge.ray_y][(int)edge.ray_x]) == false)
+		distance_to_wall += 0.01;
+		ray_x += ray_dx;
+		ray_y += ray_dy;
+		if (can_move(data->map[(int)ray_y][(int)ray_x]) == false)
 			break ;
 	}
-	return (edge.distance_to_wall);
+//	printf("wall_x: %f, wall_y: %f, distance_to_wall: %f\n", ray_x, ray_y, distance_to_wall);
+	return (distance_to_wall);
 }
 
-static void	paint_field_of_view(t_data *data)
+void	paint_field_of_view(t_data *data)
 {
 	t_pfv	pfv;
 
@@ -218,4 +203,4 @@ void	initialise_minimap(t_data *data)
 			data->col * data->minimap_tile_px,
 			data->row * data->minimap_tile_px);
 	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
-}
+}	
