@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/04/28 15:47:24 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/28 17:02:45 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ void	paint_walls(t_data *data)
 			- (pfv.view_angle / 2) + pfv.i * pfv.angle_step;
 		pfv.ray_length = get_intersection(data, pfv.ray_angle, &pfv.wall_x,
 			&pfv.wall_y);
-//	unsigned int colour = get_colour(data, pfv); //
+//	unsigned int colour = get_col_px_colour(data, pfv); //
 //	printf("%d, wall_x:y: %f:%f, player_x:y: %f:%f, distance_to_wall: %.2f, colour: %u\n", pfv.i, pfv.wall_x, pfv.wall_y, data->player_x, data->player_y, pfv.ray_length, colour);
-//	printf("pfv.wall_x - round(pfv.wall_x): %.2f, pfv.wall_y, round(pfv.wall_y): %.2f\n", fabs(pfv.wall_x - round(pfv.wall_x)), fabs(pfv.wall_y - round(pfv.wall_y)));
+//	printf("pfv.wall_x - data->player_x: %.3f, (pfv.wall_x - round(pfv.wall_x): %.3f, pfv.wall_y - data->player_y: %.3f, (pfv.wall_y - round(pfv.wall_y)): %.3f\n", pfv.wall_x - data->player_x, (pfv.wall_x - round(pfv.wall_x)), pfv.wall_y - data->player_y, (pfv.wall_y - round(pfv.wall_y)));
 		calculated_h = calculate_col_height(data, pfv);
-//		printf("WIDTH * %d / NUM_OF_RAYS: %d, calculated_h: %f\n",
-//			pfv.i, WIDTH * pfv.i / NUM_OF_RAYS, calculated_h);
-//		printf("(HEIGHT / 2) - (calculated_h / 2) - h: %f\n",
-//			(HEIGHT / 2) - (calculated_h / 2) + 0);
+	//	printf("WIDTH * %d / NUM_OF_RAYS: %d, calculated_h: %f\n",
+	//		pfv.i, WIDTH * pfv.i / NUM_OF_RAYS, calculated_h);
+	//	printf("(HEIGHT / 2) - (calculated_h / 2) - h: %f\n",
+	//		(HEIGHT / 2) - (calculated_h / 2) + 0);
 
 		paint_column(data, calculated_h, pfv);
 		pfv.i++;
