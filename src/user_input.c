@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/28 15:21:34 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/28 17:05:32 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	player_input(mlx_key_data_t keydata, void *param)
 		else if (keydata.key == MLX_KEY_KP_SUBTRACT
 			|| keydata.key == MLX_KEY_KP_ADD)
 			resize_minimap(keydata.key, data);
-		paint_world(data);
-		paint_minimap(data);
+//		paint_world(data);
+//		paint_minimap(data);
 	}
 }

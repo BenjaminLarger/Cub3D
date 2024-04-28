@@ -6,13 +6,13 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/04/26 17:17:22 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/28 18:36:54 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	paint_sky_floor(t_data *data)
+static void	paint_sky_floor(t_data *data)
 {
 	int	x;
 	int	y;
@@ -41,4 +41,10 @@ void	initialise_world(t_data *data)
 //	if (!data->world)
 		// handle error
 	mlx_image_to_window(data->mlx, data->world, 0, 0);
+	
+//	data->buffer_world = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+//	mlx_image_to_window(data->mlx, data->buffer_world, 0, 0);
+//	data->buffer_world->enabled = false;
+//	if (!data->buffer_world)
+		// handle error
 }

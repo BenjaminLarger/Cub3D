@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/27 19:15:54 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/28 18:36:16 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*world;
+	mlx_image_t		*buffer_world;
 	mlx_image_t		*minimap;
 	mlx_texture_t	*wall_no;
 	mlx_texture_t	*wall_so;

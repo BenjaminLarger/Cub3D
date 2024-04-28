@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/28 15:30:38 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/28 18:37:25 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ static void render(void* param)
 	t_data	*data;
 
 	data = (t_data *)param;
-//	paint_world(data);
-//	paint_minimap(data);
+
+	paint_world(data);
+	paint_minimap(data);
 }
 
 int	main(int argc, char **argv)
