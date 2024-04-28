@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/04/27 22:04:16 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/28 15:47:24 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,48 +39,30 @@ static double	get_intersection(t_data *data, double ray_angle,
 	return (distance_to_wall);
 }
 
-static unsigned int	get_colour(t_data *data, t_pfv pfv)
+static void	paint_column(t_data *data, double calculated_h, t_pfv pfv)
 {
+	double			h;
 	unsigned int	colour;
 
-	if (pfv.wall_y > data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
-		colour = 0xf8df81AA;
-	else if (pfv.wall_y < data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
-		colour = 0xf6aa90AA;
-	else if (pfv.wall_x > data->player_x && fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01)
-		colour = 0xd5b6d5AA;
-	else if (pfv.wall_x < data->player_x && fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01)
-		colour = 0x9bd0b7AA;
-	else
-		colour = 0x000000AA;
-	return (colour);
-}
-
-static void	paint_column(t_data *data, double h, double calculated_h, t_pfv	pfv)
-{
-	int				x;
-	unsigned int	colour;
-
-	x = 0;
-//	while (x < 10)
-//	{
-		if ((x + WIDTH * pfv.i / NUM_OF_RAYS) < WIDTH)
+	h = 0;
+	while (h < calculated_h)
+	{
+		if ((WIDTH * pfv.i / NUM_OF_RAYS) < WIDTH)
 		{
-			colour = get_colour(data, pfv);
+			colour = get_col_px_colour(data, pfv);
 			mlx_put_pixel(data->world,
-				x + WIDTH * pfv.i / NUM_OF_RAYS,
+				WIDTH * pfv.i / NUM_OF_RAYS,
 				(HEIGHT / 2) - (calculated_h / 2) + h,
 				colour);
 		}
-//		x++;
-//	}
+		h++;
+	}
 }
 
 void	paint_walls(t_data *data)
 {
 	t_pfv	pfv;
 	double	calculated_h;
-	double	h;
 
 	pfv.i = 0;
 	pfv.view_angle = PLAYER_FOV * (M_PI / 180);
@@ -99,12 +81,8 @@ void	paint_walls(t_data *data)
 //			pfv.i, WIDTH * pfv.i / NUM_OF_RAYS, calculated_h);
 //		printf("(HEIGHT / 2) - (calculated_h / 2) - h: %f\n",
 //			(HEIGHT / 2) - (calculated_h / 2) + 0);
-		h = 0;
-		while (h < calculated_h)
-		{
-			paint_column(data, h, calculated_h, pfv);
-			h++;
-		}
+
+		paint_column(data, calculated_h, pfv);
 		pfv.i++;
 	}
 }

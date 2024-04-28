@@ -20,12 +20,12 @@ HEADERS		= -I  $(HEADER_DIR) -I ${LIBMLX}/include -I ${LIBFT}
 ## SOURCE ##
 SRCS		:= main.c free.c print.c exit.c \
 	initialise.c \
-	file_load.c file_elements.c file_elements_utils.c\
+	file_load.c file_elements.c file_elements_utils.c \
 	user_input.c user_input_move.c \
 	file_map.c utils_valid_map.c \
 	minimap.c \
-	world.c world_calculate.c world_walls.c\
-	utils_joinfree.c utils_fill_map.c utils_dev.c\
+	world.c world_calculate.c world_walls.c world_walls_colour.c \
+	utils_joinfree.c utils_fill_map.c utils_dev.c \
 
 SRC_DIR		:= src
 BUILD_DIR	:= build
