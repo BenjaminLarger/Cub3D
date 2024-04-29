@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 15:18:24 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 18:44:01 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void render(void* param)
 //	data->world->enabled = true;
 //	data->buffer_world->enabled = false;
 
-	display_fps(); // to delete
+//	display_fps(); // to delete
 }
 
 int	main(int argc, char **argv)

@@ -12,6 +12,8 @@ Use buffer image when drawing world
 4)  
 Check for memleaks with 'top' cmd in second shell terminal
 
+5)  
+Fix aspect ratio 1280 vs 1170
 
 --------------
 

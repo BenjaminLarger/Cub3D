@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 12:58:22 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 18:16:32 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void			exit_game(t_data *data);
 // Print
 
 void			print_map(char **map);
-unsigned int	get_col_px_colour(t_data *data, t_pfv pfv);
+uint32_t		get_col_px_colour(uint32_t y, t_data *data, t_pfv pfv);
 void			print_and_exit(char *message, int fd, int exit_code);
 
 // Free
@@ -99,7 +99,6 @@ int				free_n_string_array_and_return(char **str_array, int n,
 char			*ft_strjoin_free(char *s1, char *s2);
 bool			can_move(char point);
 
-
 // Map utils
 
 int				check_horizontal_wall(char *line);
@@ -107,7 +106,6 @@ int				line_has_valid_char(t_data *data, char *line, int y);
 int				valid_surrounded_wall(t_data *data, int i, int j);
 int				get_max_column(t_data *data);
 char			*line_filled_with_2(char *line, int max_column);
-
 
 // Dev utils
 

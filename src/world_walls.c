@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 15:19:58 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 18:48:03 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,30 @@ static double	get_intersection(t_data *data, double ray_angle,
 	return (distance_to_wall);
 }
 
-static void	paint_column(t_data *data, double calculated_h,
-	double col_start_y, t_pfv pfv)
+static void	paint_column(t_data *data, uint32_t calculated_h,
+	uint32_t col_start_y, t_pfv pfv)
 {
-	double			h;
+	uint32_t		h; // or double?
 	unsigned int	colour;
-	unsigned int	pixel_x;
+	unsigned int	screen_x;
 
-	pixel_x = WIDTH * pfv.i / NUM_OF_RAYS;
+	screen_x = WIDTH * pfv.i / NUM_OF_RAYS;
 	h = 0;
 	while (h < col_start_y)
-		if (pixel_x < WIDTH)
-			mlx_put_pixel(data->world, pixel_x, h++, data->sky_color);
+		if (screen_x < WIDTH)
+			mlx_put_pixel(data->world, screen_x, h++, data->sky_color);
 	while (h < col_start_y + calculated_h)
 	{
-		if (pixel_x < WIDTH)
+		if (screen_x < WIDTH)
 		{
-			colour = get_col_px_colour(data, pfv);
-			mlx_put_pixel(data->world,
-				pixel_x,
-				h,
-				colour);
+			colour = get_col_px_colour(100 * (h - col_start_y) / data->actual_calculated_h, data, pfv);
+			mlx_put_pixel(data->world, screen_x, h, colour);
 		}
 		h++;
 	}
 	while (h < HEIGHT)
-		if (pixel_x < WIDTH)
-			mlx_put_pixel(data->world, pixel_x, h++, data->floor_color);
+		if (screen_x < WIDTH)
+			mlx_put_pixel(data->world, screen_x, h++, data->floor_color);
 }
 
 void	paint_walls(t_data *data)
@@ -80,10 +77,13 @@ void	paint_walls(t_data *data)
 			- (data->view_angle / 2) + pfv.i * data->angle_step;
 		pfv.ray_length = get_intersection(data, pfv.ray_angle, &pfv.wall_x,
 			&pfv.wall_y);
-//	unsigned int colour = get_col_px_colour(data, pfv); //
+		calculated_h = calculate_col_height(data, pfv);
+
+//	unsigned int colour = get_col_px_colour(WIDTH * pfv.i / NUM_OF_RAYS, calculated_h, data, pfv); //
 //	printf("%d, wall_x:y: %f:%f, player_x:y: %f:%f, distance_to_wall: %.2f, colour: %u\n", pfv.i, pfv.wall_x, pfv.wall_y, data->player_x, data->player_y, pfv.ray_length, colour);
 //	printf("pfv.wall_x - data->player_x: %.3f, (pfv.wall_x - round(pfv.wall_x): %.3f, pfv.wall_y - data->player_y: %.3f, (pfv.wall_y - round(pfv.wall_y)): %.3f\n", pfv.wall_x - data->player_x, (pfv.wall_x - round(pfv.wall_x)), pfv.wall_y - data->player_y, (pfv.wall_y - round(pfv.wall_y)));
-		calculated_h = calculate_col_height(data, pfv);
+//	printf("wall_x:y: %f:%f\n", 400 * (pfv.wall_x - (int)pfv.wall_x), 300 * (pfv.wall_y - (int)pfv.wall_y));
+	
 	//	printf("WIDTH * %d / NUM_OF_RAYS: %d, calculated_h: %f\n",
 	//		pfv.i, WIDTH * pfv.i / NUM_OF_RAYS, calculated_h);
 	//	printf("(HEIGHT / 2) - (calculated_h / 2) - h: %f\n",

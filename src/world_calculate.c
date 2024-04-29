@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:17:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/27 15:56:46 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 18:21:43 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ double	calculate_col_height(t_data *data, t_pfv pfv)
 
 	(void)data;
 	calculated_h = WIDTH / pfv.ray_length;
+	data->actual_calculated_h = WIDTH / pfv.ray_length;
 	if (calculated_h > HEIGHT)
 		calculated_h = HEIGHT;
 	return (calculated_h);
