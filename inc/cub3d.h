@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 12:58:22 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 18:03:10 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ double			calculate_col_height(t_data *data, t_pfv pfv);
 
 // User input
 
-void			player_input(mlx_key_data_t keydata, void *param);
 void			move_forward(t_data *data);
 void			move_backward(t_data *data);
 void			move_right(t_data *data);
 void			move_left(t_data *data);
+void			player_input(void *param);
 
 // Exit
 
@@ -114,5 +114,6 @@ char			*line_filled_with_2(char *line, int max_column);
 void			print_array(char **array, char *message);
 void			check_leaks(void);
 void			display_fps(void);
+
 
 #endif
