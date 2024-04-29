@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:16:07 by demre             #+#    #+#             */
-/*   Updated: 2024/04/28 15:30:26 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 12:58:53 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,22 @@ void	print_map(char **map)
 void	check_leaks(void)
 {
 	system("leaks cub3D");
+}
+
+void	display_fps(void)
+{
+	static long long	frameCount = 0;
+	static double		startTime = 0;
+	double				elapsedTime;
+	double				fps;
+
+	frameCount++;
+	elapsedTime = mlx_get_time() - startTime;
+	fps = frameCount / elapsedTime;
+	if (elapsedTime >= 1.0)
+	{
+		printf("FPS:	 %.0f\n", fps);
+		frameCount = 0;
+		startTime = mlx_get_time();
+	}
 }
