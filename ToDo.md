@@ -21,9 +21,6 @@ Bug:
 1)  
 undefined-behavior quand premier chiffre de RGB dans le fichier cub est grand
 
-2)  
-Fix check if map enclosed
-
 
 --------------
 
