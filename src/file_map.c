@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 16:46:05 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/29 15:10:59 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static int	fill_map_empty_space(t_data *data)
 		}
 		i++;
 	}
+	if (data->map_departure_count != 1)
+		return (FAILURE);
 	print_map(data->map);
 	return (SUCCESS);
 }

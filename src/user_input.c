@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/28 17:05:32 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 09:01:12 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,24 @@ void	player_input(mlx_key_data_t keydata, void *param)
 	data = (t_data *)param;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-	else if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
-	{
-		if (keydata.key == MLX_KEY_LEFT)
+/* 	else if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
+	{ */
+		if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 			rotate_player(MLX_KEY_LEFT, data);
-		else if (keydata.key == MLX_KEY_RIGHT)
+		if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 			rotate_player(MLX_KEY_RIGHT, data);
-		else if (keydata.key == MLX_KEY_W)
+		if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 			move_forward(data);
-		else if (keydata.key == MLX_KEY_S)
+		if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 			move_backward(data);
-		else if (keydata.key == MLX_KEY_A)
+		if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 			move_left(data);
-		else if (keydata.key == MLX_KEY_D)
+		if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 			move_right(data);
-		else if (keydata.key == MLX_KEY_KP_SUBTRACT
-			|| keydata.key == MLX_KEY_KP_ADD)
+		if (mlx_is_key_down(data->mlx, MLX_KEY_KP_SUBTRACT)
+			|| mlx_is_key_down(data->mlx, MLX_KEY_KP_ADD))
 			resize_minimap(keydata.key, data);
 //		paint_world(data);
 //		paint_minimap(data);
-	}
+	//}
 }

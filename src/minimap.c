@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/28 15:29:03 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 15:07:04 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,53 +71,50 @@ static void	paint_player(t_data *data)
 	}
 }
 
-double	get_next_y_edge(t_data *data, double cur_axis, double ray_angle)
-{
-	double	next_x_edge;
-
-	if (ray_angle > M_PI)//direction to next y
-		next_x_edge = floor(cur_axis / data->minimap_tile_px) * data->minimap_tile_px + data->minimap_tile_px;
-	else//direction to previous y
-		next_x_edge = floor(cur_axis / data->minimap_tile_px) * data->minimap_tile_px;
-	return (next_x_edge);
-}
-
-double	get_next_x_edge(t_data *data, double cur_axis, double ray_angle)
-{
-	double	next_edge;
-
-	if (ray_angle < M_PI_2 || ray_angle > M_PI * 3) //direction to next x
-		next_edge = floor(cur_axis / data->minimap_tile_px) * data->minimap_tile_px + data->minimap_tile_px;
-	else //direction to previous x
-		next_edge = floor(cur_axis / data->minimap_tile_px) * data->minimap_tile_px;
-	return (next_edge);
-}
-
 static double	get_line_length(t_data *data, double ray_angle)
 {
-	double	distance_to_wall;
-	double	ray_x;
-	double	ray_y;
-	double	ray_dx;
-	double	ray_dy;
+	t_edge edge;
 
-	distance_to_wall = 0;
-	ray_x = data->player_x;
-	ray_y = data->player_y;
-	ray_dx = cos(ray_angle) * 0.01;
-	ray_dy = sin(ray_angle) * 0.01;
+	edge.distance_to_wall = 0;
+	edge.ray_x = data->player_x;
+	edge.ray_y = data->player_y;
+	edge.ray_dx = cos(ray_angle) * 0.01;
+	edge.ray_dy = sin(ray_angle) * 0.01;
 //	printf("ray_x: %f, ray_y: %f\n", ray_x, ray_y);
 	while (1)
 	{
-		distance_to_wall += 0.01;
-		ray_x += ray_dx;
-		ray_y += ray_dy;
-		if (can_move(data->map[(int)ray_y][(int)ray_x]) == false)
+		edge.distance_to_wall += 0.01;
+		edge.ray_x += edge.ray_dx;
+		edge.ray_y += edge.ray_dy;
+		if (can_move(data->map[(int)edge.ray_y][(int)edge.ray_x]) == false)
 			break ;
 	}
-//	printf("wall_x: %f, wall_y: %f, distance_to_wall: %f\n", ray_x, ray_y, distance_to_wall);
-	return (distance_to_wall);
+	/* edge.ray_dx = cos(ray_angle) * 0.01;
+	edge.ray_dy = sin(ray_angle) * 0.01;
+	while (edge.ray_x != (double)edge.ray_x)
+	{
+		printf("HERE\n");
+		edge.distance_to_wall -= 0.01;
+		edge.ray_x += edge.ray_dx;
+		edge.ray_y += edge.ray_dy;
+	} */
+	//edge.distance_to_wall = get_accurate_edge(data, &edge, ray_angle);
+	//printf("wall_x: %f, wall_y: %f, distance_to_wall: %f\n", ray_x, ray_y, distance_to_wall);
+	return (edge.distance_to_wall);
 }
+
+/* static double	get_line_length(t_data *data, double ray_angle)
+{
+	t_edge edge;
+
+	get_next_x_edge(data, &edge, ray_angle);
+	get_next_y_edge(data, &edge, ray_angle);
+	//printf("x dist = %f, y dist = %f\n", edge.distance_to_next_x_edge, edge.distance_to_next_y_edge);
+	if (edge.distance_to_next_x_edge < edge.distance_to_next_y_edge)
+		return (edge.distance_to_next_x_edge);
+	else
+		return (edge.distance_to_next_y_edge);
+} */
 
 void	paint_field_of_view(t_data *data)
 {
