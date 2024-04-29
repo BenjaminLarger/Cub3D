@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 16:32:01 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/29 17:00:16 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int	check_map(t_data *data)
 	int	j;
 
 	i = 0;
+	print_map(data->map);
 	if (check_horizontal_wall(data->map[0]) == FAILURE)
 		return (FAILURE);
 	while (data->map[i])
@@ -27,16 +28,15 @@ static int	check_map(t_data *data)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (data->map[i][j] == OUT
+			if ((data->map[i][j] == OUT || data->map[i][j] == '2')
 				&& valid_surrounded_wall(data, i, j) == FAILURE)
 				return (FAILURE);
 			j++;
 		}
 		i++;
 	}
-	if (check_horizontal_wall(data->map[i - 1]) == FAILURE)
-		return (FAILURE);
-	if (data->map_departure_count != 1)
+	if (check_horizontal_wall(data->map[i - 1]) == FAILURE
+		|| data->map_departure_count != 1)
 		return (FAILURE);
 	return (SUCCESS);
 }

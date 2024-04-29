@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/04/29 16:30:32 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/29 17:00:48 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int	check_horizontal_wall(char *line)
 		if (line[i] != OUT && line[i] != WALL && line[i] != '2'
 			&& line[i] != 'S' && line[i] != 'W' && line[i] != 'E'
 			&& line[i] != 'N')
+		{
 			return (FAILURE);
+		}
 		i++;
 	}
 	return (SUCCESS);
