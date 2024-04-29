@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/28 19:15:39 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 12:58:22 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ char			*line_filled_with_2(char *line, int max_column);
 
 void			print_array(char **array, char *message);
 void			check_leaks(void);
+void			display_fps(void);
 
 #endif
