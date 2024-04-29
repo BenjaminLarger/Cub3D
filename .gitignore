@@ -10,3 +10,4 @@ test.c
 *.dSYM
 */draw.c
 cub3D
+draft.c

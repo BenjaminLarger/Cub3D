@@ -6,11 +6,40 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/04/25 16:46:05 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/29 17:00:16 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	check_map(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	print_map(data->map);
+	if (check_horizontal_wall(data->map[0]) == FAILURE)
+		return (FAILURE);
+	while (data->map[i])
+	{
+		if (line_has_valid_char(data, data->map[i], i) == FAILURE)
+			return (FAILURE);
+		j = 0;
+		while (data->map[i][j])
+		{
+			if ((data->map[i][j] == OUT || data->map[i][j] == '2')
+				&& valid_surrounded_wall(data, i, j) == FAILURE)
+				return (FAILURE);
+			j++;
+		}
+		i++;
+	}
+	if (check_horizontal_wall(data->map[i - 1]) == FAILURE
+		|| data->map_departure_count != 1)
+		return (FAILURE);
+	return (SUCCESS);
+}
 
 static int	fill_map_empty_space(t_data *data)
 {
@@ -32,37 +61,7 @@ static int	fill_map_empty_space(t_data *data)
 		}
 		i++;
 	}
-	print_map(data->map);
-	return (SUCCESS);
-}
-
-static int	check_map(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	if (check_horizontal_wall(data->map[0]) == FAILURE)
-		return (FAILURE);
-	while (data->map[i])
-	{
-		if (line_has_valid_char(data, data->map[i], i) == FAILURE)
-			return (FAILURE);
-		j = 0;
-		while (data->map[i][j])
-		{
-			if (data->map[i][j] == OUT)
-			{
-				if (valid_surrounded_wall(data, i, j) == FAILURE)
-					return (FAILURE);
-			}
-			j++;
-		}
-		i++;
-	}
-	if (check_horizontal_wall(data->map[i - 1]) == FAILURE)
-		return (FAILURE);
-	return (fill_map_empty_space(data));
+	return (check_map(data));
 }
 
 static bool	splitted_map(char *map)
@@ -133,5 +132,5 @@ int	load_map(t_data *data, int fd)
 	free(map);
 	if (!data->map)
 		print_and_exit(MALLOC_FAIL, 2, EXIT_FAILURE);
-	return (check_map(data));
+	return (fill_map_empty_space(data));
 }

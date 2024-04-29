@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 18:44:01 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 18:50:12 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void copy_mlx_image_pixels(const mlx_image_t *src, mlx_image_t *dest)
 	dest->count = src->count;
 	dest->context = src->context;
 }
-
 static void render(void* param)
 {
 	t_data	*data;
@@ -33,6 +32,7 @@ static void render(void* param)
 //	copy_mlx_image_pixels(data->world, data->buffer_world);
 //	data->buffer_world->enabled = true;
 //	data->world->enabled = false;
+	player_input(data);
 	paint_world(data);
 	paint_minimap(data);
 //	data->world->enabled = true;
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 		print_and_exit("Wrong arg number", 2, EXIT_FAILURE);
 	initialise(argv[1], &data);
 	mlx_loop_hook(data.mlx, render, &data);
-	mlx_key_hook(data.mlx, &player_input, &data);
+	//mlx_key_hook(data.mlx, &player_input, &data);
 	mlx_loop(data.mlx);
 	exit_game(&data);
 //	atexit(check_leaks);
