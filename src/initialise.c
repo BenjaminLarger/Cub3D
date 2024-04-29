@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/26 17:12:53 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 15:22:49 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ void	initialise(char *filename, t_data *data)
 {
 	data->minimap_tile_px = 16;
 	data->player_speed = 3;
+
+	data->view_angle = PLAYER_FOV * (M_PI / 180);
+	data->angle_step = PLAYER_FOV * (M_PI / 180) / NUM_OF_RAYS;
+
 	if (check_file_extension(filename) != SUCCESS)
 		return (print_and_exit("Wrong file extension", 2, EXIT_FAILURE));
 	if (get_data_from_file(filename, data) != SUCCESS)

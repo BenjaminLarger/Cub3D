@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/04/28 17:02:45 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 15:19:58 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,33 @@ static double	get_intersection(t_data *data, double ray_angle,
 	return (distance_to_wall);
 }
 
-static void	paint_column(t_data *data, double calculated_h, t_pfv pfv)
+static void	paint_column(t_data *data, double calculated_h,
+	double col_start_y, t_pfv pfv)
 {
 	double			h;
 	unsigned int	colour;
+	unsigned int	pixel_x;
 
+	pixel_x = WIDTH * pfv.i / NUM_OF_RAYS;
 	h = 0;
-	while (h < calculated_h)
+	while (h < col_start_y)
+		if (pixel_x < WIDTH)
+			mlx_put_pixel(data->world, pixel_x, h++, data->sky_color);
+	while (h < col_start_y + calculated_h)
 	{
-		if ((WIDTH * pfv.i / NUM_OF_RAYS) < WIDTH)
+		if (pixel_x < WIDTH)
 		{
 			colour = get_col_px_colour(data, pfv);
 			mlx_put_pixel(data->world,
-				WIDTH * pfv.i / NUM_OF_RAYS,
-				(HEIGHT / 2) - (calculated_h / 2) + h,
+				pixel_x,
+				h,
 				colour);
 		}
 		h++;
 	}
+	while (h < HEIGHT)
+		if (pixel_x < WIDTH)
+			mlx_put_pixel(data->world, pixel_x, h++, data->floor_color);
 }
 
 void	paint_walls(t_data *data)
@@ -65,12 +74,10 @@ void	paint_walls(t_data *data)
 	double	calculated_h;
 
 	pfv.i = 0;
-	pfv.view_angle = PLAYER_FOV * (M_PI / 180);
-	pfv.angle_step = pfv.view_angle / NUM_OF_RAYS;
 	while (pfv.i < NUM_OF_RAYS)
 	{
 		pfv.ray_angle = data->player_angle
-			- (pfv.view_angle / 2) + pfv.i * pfv.angle_step;
+			- (data->view_angle / 2) + pfv.i * data->angle_step;
 		pfv.ray_length = get_intersection(data, pfv.ray_angle, &pfv.wall_x,
 			&pfv.wall_y);
 //	unsigned int colour = get_col_px_colour(data, pfv); //
@@ -82,7 +89,8 @@ void	paint_walls(t_data *data)
 	//	printf("(HEIGHT / 2) - (calculated_h / 2) - h: %f\n",
 	//		(HEIGHT / 2) - (calculated_h / 2) + 0);
 
-		paint_column(data, calculated_h, pfv);
+		paint_column(data, calculated_h,
+			(HEIGHT / 2) - (calculated_h / 2), pfv);
 		pfv.i++;
 	}
 }

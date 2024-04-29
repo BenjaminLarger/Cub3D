@@ -6,21 +6,39 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 13:00:41 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/29 15:18:24 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void copy_mlx_image_pixels(const mlx_image_t *src, mlx_image_t *dest)
+{
+	if (!src || !dest || !src->pixels || !dest->pixels)
+		return ;
+
+	ft_memcpy(dest->pixels, src->pixels,
+		src->width * src->height * sizeof(uint8_t));
+	dest->instances = src->instances;
+	dest->count = src->count;
+	dest->context = src->context;
+}
 
 static void render(void* param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
+
+//	copy_mlx_image_pixels(data->world, data->buffer_world);
+//	data->buffer_world->enabled = true;
+//	data->world->enabled = false;
 	paint_world(data);
 	paint_minimap(data);
+//	data->world->enabled = true;
+//	data->buffer_world->enabled = false;
 
-//	display_fps(); // to delete
+	display_fps(); // to delete
 }
 
 int	main(int argc, char **argv)
