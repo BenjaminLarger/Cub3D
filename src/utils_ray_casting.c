@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:07:48 by blarger           #+#    #+#             */
-/*   Updated: 2024/04/30 17:34:53 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/30 17:47:12 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ double	get_line_length(t_data *data, double ray_angle)
 	return (edge.distance_to_wall);
 }
 
-t_edge	world_to_grid(double x, double y)
+/* t_edge	world_to_grid(double x, double y)
 {
 	t_edge	grid;
 
@@ -98,3 +98,4 @@ static double	get_line_length(t_data *data, double ray_angle)
 	a = find_intersection(&edge);
 	c = find_point_c(a);
 }
+ */
