@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 18:49:56 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/30 14:39:52 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			initialise_minimap(t_data *data);
 
 void			paint_world(t_data *data);
 void			paint_walls(t_data *data);
-double			calculate_col_height(t_data *data, t_pfv pfv);
+void			calculate_col_height(t_data *data, t_pfv pfv);
 
 // User input
 
@@ -75,6 +75,7 @@ void			move_backward(t_data *data);
 void			move_right(t_data *data);
 void			move_left(t_data *data);
 void			player_input(void *param);
+void			minimap_control(mlx_key_data_t keydata, void *param);
 
 // Exit
 

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 11:49:24 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/30 15:12:31 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ typedef struct s_data
 	double			player_speed;
 	double	angle_step;
 	double	view_angle;
-	double			actual_calculated_h;
+	double			calculated_h;
+	double			display_h;
 }			t_data;
 
 // ----------- Identifier flags
