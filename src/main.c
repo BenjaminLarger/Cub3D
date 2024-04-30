@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 12:22:30 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/30 16:16:15 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ static void render(void* param)
 //	data->buffer_world->enabled = true;
 //	data->world->enabled = false;
 	player_input(data);
-	paint_world(data);
-	paint_minimap(data);
+	if (data->paint_in_render == TRUE)
+	{
+		paint_world(data);
+		paint_minimap(data);
+	}
 //	data->world->enabled = true;
 //	data->buffer_world->enabled = false;
 
@@ -48,6 +51,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		print_and_exit("Wrong arg number", 2, EXIT_FAILURE);
 	initialise(argv[1], &data);
+	data.paint_in_render = FALSE;
 	mlx_loop_hook(data.mlx, render, &data);
 	//mlx_key_hook(data.mlx, &player_input, &data);
 	mlx_key_hook(data.mlx, &minimap_control, &data);

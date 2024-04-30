@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 14:39:52 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/30 16:09:16 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void			initialise_minimap(t_data *data);
 void			paint_world(t_data *data);
 void			paint_walls(t_data *data);
 void			calculate_col_height(t_data *data, t_pfv pfv);
+double			get_intersection(t_data *data, double ray_angle,
+					double *wall_x, double *wall_y);
 
 // User input
 
@@ -113,6 +115,5 @@ char			*line_filled_with_2(char *line, int max_column);
 void			print_array(char **array, char *message);
 void			check_leaks(void);
 void			display_fps(void);
-
 
 #endif
