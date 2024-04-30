@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 18:50:12 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/30 12:22:30 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(int argc, char **argv)
 	initialise(argv[1], &data);
 	mlx_loop_hook(data.mlx, render, &data);
 	//mlx_key_hook(data.mlx, &player_input, &data);
+	mlx_key_hook(data.mlx, &minimap_control, &data);
 	mlx_loop(data.mlx);
 	exit_game(&data);
 //	atexit(check_leaks);
