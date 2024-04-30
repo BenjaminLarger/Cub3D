@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/28 15:20:07 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/30 15:45:44 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void	move_forward(t_data *data)
 //	}
 
 //	printf("x,y (%f:%f)\n", data->player_x, data->player_y);
+	if (data->paint_in_render == FALSE)
+	{
+		paint_world(data);
+		paint_minimap(data);
+	}
 }
 
 void	move_backward(t_data *data)
@@ -64,6 +69,11 @@ void	move_backward(t_data *data)
 //	}
 
 //	printf("x,y (%f:%f)\n", data->player_x, data->player_y);
+	if (data->paint_in_render == FALSE)
+	{
+		paint_world(data);
+		paint_minimap(data);
+	}
 }
 
 void	move_right(t_data *data)
@@ -91,6 +101,11 @@ void	move_right(t_data *data)
 //	}
 
 //	printf("x,y (%f:%f)\n", data->player_x, data->player_y);
+	if (data->paint_in_render == FALSE)
+	{
+		paint_world(data);
+		paint_minimap(data);
+	}
 }
 
 void	move_left(t_data *data)
@@ -118,4 +133,9 @@ void	move_left(t_data *data)
 //	}
 
 //	printf("x,y (%f:%f)\n", data->player_x, data->player_y);
+	if (data->paint_in_render == FALSE)
+	{
+		paint_world(data);
+		paint_minimap(data);
+	}
 }

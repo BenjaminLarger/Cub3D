@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 16:23:18 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/30 17:48:48 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ void			print_array(char **array, char *message);
 void			check_leaks(void);
 void			display_fps(void);
 double			get_accurate_edge(t_data *data, t_edge *edge, double ray_angle);
-
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 12:27:38 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/30 15:45:30 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,12 @@ static void	rotate_player(int key, t_data *data)
 			data->player_angle = angle_rotate - (2 * M_PI - data->player_angle);
 //		printf("data->player_angle: %f : %f\n", data->player_angle, data->player_angle * 180 / M_PI);
 	}
-	/* if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-		move_forward(data); */
+	
+	if (data->paint_in_render == FALSE)
+	{
+		paint_world(data);
+		paint_minimap(data);
+	}
 }
 
 void	player_input(void *param)
