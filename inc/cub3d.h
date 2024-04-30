@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 12:23:11 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/30 14:39:52 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			initialise_minimap(t_data *data);
 
 void			paint_world(t_data *data);
 void			paint_walls(t_data *data);
-double			calculate_col_height(t_data *data, t_pfv pfv);
+void			calculate_col_height(t_data *data, t_pfv pfv);
 
 // User input
 
