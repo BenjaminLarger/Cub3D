@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 18:22:32 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/30 11:49:24 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,10 @@ typedef struct s_edge
 	double	ray_y;
 	double	ray_dx;
 	double	ray_dy;
+	double	distance_to_next_x_edge;
+	double	distance_to_next_y_edge;
+	double	m;
+	double	b;
 }			t_edge;
 
 #endif
