@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 18:47:02 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/30 11:04:03 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ uint32_t	get_col_px_colour(uint32_t y, t_data *data, t_pfv pfv)
 {
 	unsigned int	colour;
 
-	if (fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01
+	/* if (fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01
 		&& fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01) // corners
 	{
 		if (pfv.wall_y > data->player_y)
@@ -64,14 +64,14 @@ uint32_t	get_col_px_colour(uint32_t y, t_data *data, t_pfv pfv)
 		else
 			colour = 0x000000FF;
 	}
-	else if (pfv.wall_y > data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
+	else  */if (pfv.wall_y > data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
 		colour = get_colour_from_texture(1 - pfv.wall_x + (int)pfv.wall_x, y, data->wall_no);
 	else if (pfv.wall_y < data->player_y && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.01)
 		colour = get_colour_from_texture(pfv.wall_x - (int)pfv.wall_x, y, data->wall_so);
 	else if (pfv.wall_x > data->player_x && fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01)
-		colour = 0xd5b6d5FF; // Facing east face
+		colour = get_colour_from_texture(pfv.wall_y - (int)pfv.wall_y, y, data->wall_ea);
 	else if (pfv.wall_x < data->player_x && fabs(pfv.wall_x - round(pfv.wall_x)) < 0.01)
-		colour = 0x9bd0b7FF; // Facing west face
+		colour = get_colour_from_texture(1 - pfv.wall_y + (int)pfv.wall_y, y, data->wall_no);
 	else
 		colour = 0x000000FF;
 	return (colour);
