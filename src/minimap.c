@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 15:09:52 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/30 16:08:07 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,15 @@ static void	paint_player(t_data *data)
 	}
 }
 
-
-static double	get_line_length(t_data *data, double ray_angle)
+/* static double	get_line_length(t_data *data, double ray_angle)
 {
 	t_edge edge;
-	int		x;
-	int		y;
 
 	edge.distance_to_wall = 0;
 	edge.ray_x = data->player_x;
 	edge.ray_y = data->player_y;
-	edge.ray_dx = cos(ray_angle) * 1;
-	edge.ray_dy = sin(ray_angle) * 1;
+	edge.ray_dx = cos(ray_angle) * 0.01;
+	edge.ray_dy = sin(ray_angle) * 0.01;
 	while (1)
 	{
 		edge.distance_to_wall += 0.01;
@@ -90,42 +87,11 @@ static double	get_line_length(t_data *data, double ray_angle)
 		edge.ray_y += edge.ray_dy;
 		if (can_move(data->map[(int)edge.ray_y][(int)edge.ray_x]) == false)
 		{
-			x = (int)edge.ray_x;
-			y = (int)edge.ray_y;
+			break;
 		}
 	}
-	edge.ray_dx = cos(ray_angle) * 0.1;
-	edge.ray_dy = sin(ray_angle) * 0.1;
-	while (abs(edge.ray_x + edge.ray_y) > abs(x + y))
-	{
-		edge.distance_to_wall -= 0.1;
-		edge.ray_x -= edge.ray_dx;
-		edge.ray_y -= edge.ray_dy;
-	}
-	edge.ray_dx = cos(ray_angle) * 0.01;
-	edge.ray_dy = sin(ray_angle) * 0.01;
-	while (abs(edge.ray_x + edge.ray_y) < abs(x + y))
-	{
-		edge.distance_to_wall -= 0.01;
-		edge.ray_x -= edge.ray_dx;
-		edge.ray_y -= edge.ray_dy;
-	}
-	//edge.distance_to_wall = get_accurate_edge(data, &edge, ray_angle);
-	//printf("wall_x: %f, wall_y: %f, distance_to_wall: %f\n", ray_x, ray_y, distance_to_wall);
+	edge.distance_to_wall = get_accurate_edge(data, &edge, ray_angle);
 	return (edge.distance_to_wall);
-}
-
-/* static double	get_line_length(t_data *data, double ray_angle)
-{
-	t_edge edge;
-
-	get_next_x_edge(data, &edge, ray_angle);
-	get_next_y_edge(data, &edge, ray_angle);
-	//printf("x dist = %f, y dist = %f\n", edge.distance_to_next_x_edge, edge.distance_to_next_y_edge);
-	if (edge.distance_to_next_x_edge < edge.distance_to_next_y_edge)
-		return (edge.distance_to_next_x_edge);
-	else
-		return (edge.distance_to_next_y_edge);
 } */
 
 void	paint_field_of_view(t_data *data)
@@ -140,7 +106,6 @@ void	paint_field_of_view(t_data *data)
 		pfv.ray_angle = data->player_angle
 			- (pfv.view_angle / 2) + pfv.i * pfv.angle_step;
 		pfv.ray_length = get_line_length(data, pfv.ray_angle);
-		printf("ray len = %f\n", pfv.ray_length);
 		pfv.endX = pfv.ray_length * cos(pfv.ray_angle);
 		pfv.endY = pfv.ray_length * sin(pfv.ray_angle);
 //	printf("pfv.endX: %f, pfv.endY: %f, pfv.ray_length: %f\n", pfv.endX, pfv.endY, pfv.ray_length);

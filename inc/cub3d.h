@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 14:39:52 by demre            ###   ########.fr       */
+/*   Updated: 2024/04/30 16:23:18 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void			initialise_minimap(t_data *data);
 void			paint_world(t_data *data);
 void			paint_walls(t_data *data);
 void			calculate_col_height(t_data *data, t_pfv pfv);
+double			get_intersection(t_data *data, double ray_angle,
+					t_pfv *pfv);
+double			get_line_length(t_data *data, double ray_angle);
 
 // User input
 
@@ -76,6 +79,8 @@ void			move_right(t_data *data);
 void			move_left(t_data *data);
 void			player_input(void *param);
 void			minimap_control(mlx_key_data_t keydata, void *param);
+
+
 
 // Exit
 
@@ -113,6 +118,8 @@ char			*line_filled_with_2(char *line, int max_column);
 void			print_array(char **array, char *message);
 void			check_leaks(void);
 void			display_fps(void);
+double			get_accurate_edge(t_data *data, t_edge *edge, double ray_angle);
+
 
 
 #endif

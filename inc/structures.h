@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 15:12:31 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/30 17:17:52 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,9 @@ typedef struct s_edge
 	double	distance_to_next_y_edge;
 	double	m;
 	double	b;
+	double	ray_angle;
+	double	x;
+	double	y;
 }			t_edge;
 
 #endif
