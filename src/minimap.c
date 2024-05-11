@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 12:24:58 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 13:15:58 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	paint_field_of_view(t_data *data)
 	{
 		pfv.ray_angle = data->player_angle
 			- (pfv.view_angle / 2) + pfv.i * pfv.angle_step;
-		pfv.ray_length = get_line_length_draft(data, pfv.ray_angle);
+		pfv.ray_length = get_wall_distance(data, pfv.ray_angle);
 		pfv.endX = pfv.ray_length * cos(pfv.ray_angle);
 		pfv.endY = pfv.ray_length * sin(pfv.ray_angle);
 //	printf("pfv.endX: %f, pfv.endY: %f, pfv.ray_length: %f\n", pfv.endX, pfv.endY, pfv.ray_length);

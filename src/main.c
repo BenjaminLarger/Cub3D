@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 16:16:15 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/11 13:25:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		print_and_exit("Wrong arg number", 2, EXIT_FAILURE);
 	initialise(argv[1], &data);
-	data.paint_in_render = FALSE;
+	data.paint_in_render = TRUE;
 	mlx_loop_hook(data.mlx, render, &data);
 	//mlx_key_hook(data.mlx, &player_input, &data);
 	mlx_key_hook(data.mlx, &minimap_control, &data);

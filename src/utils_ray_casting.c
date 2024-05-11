@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:07:48 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/11 12:37:38 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 12:41:05 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,38 +96,28 @@ double	find_horizontal_wall_loop(t_data *data, t_map *map, double ray_angle)
 	//printf("new_x: %f, new_y: %f\n", map->new_x, map->new_y);
 	while (must_exit_loop(map, data, ray_angle) == false)
 	{
-		/* if (must_exit_loop(map, data, ray_angle) == true)
-			break ; */
+
 		map->new_y = map->new_y + map->ya;
-		//map->new_x = data->player_x + map->new_y * cos(ray_angle);
 		map->new_x = (map->new_y - map->b) / map->m;
 		adjust_extrem_value(map, data);
-		//printf("--> new_x: %f, new_y: %f, xa = %f, ya = %f\n", map->new_x, map->new_y, map->xa, map->ya);
-		//printf("\t(int)x = %d, (int)y = %d\n", (int)map->new_x, (int)map->new_y);
-		map->len = sqrt(pow(map->new_x - data->player_x, 2) + pow(map->new_y - data->player_y, 2));
-		//map->len = sqrt(pow(data->player_x - map->new_x, 2) + pow(data->player_y - map->new_y , 2));
+		map->len = sqrt(pow(map->new_x - data->player_x, 2)
+				+ pow(map->new_y - data->player_y, 2));
+
 	}
-	//printf("\033[1;33mlen = %f\n\033[0m", map->len);
 	return (map->len);
 }
 
 double	find_vertical_wall_loop(t_data *data, t_map *map, double ray_angle)
 {
-	(void)ray_angle;
 	map->new_x = map->old_x;
 	map->new_y = map->old_y;
-	//printf("can_move: %d\n", can_move(data->map[(int)map->new_y][(int)map->new_x]));
-	//printf("map value: %d\n", data->map[(int)map->new_y][(int)map->new_x]);
-	//printf("new_x: %f, new_y: %f\n", map->new_x, map->new_y);
 	while (must_exit_loop(map, data, ray_angle) == false)
 	{
 		map->new_x = map->new_x + map->xa;
 		map->new_y = map->new_x * map->m + map->b;
 		adjust_extrem_value(map, data);
-		//printf("--> new_x: %f, new_y: %f, xa = %f, ya = %f\n", map->new_x, map->new_y, map->xa, map->ya);
-		//printf("\t(int)x = %d, (int)y = %d\n", (int)map->new_x, (int)map->new_y);
-		map->len = sqrt(pow(map->new_x - data->player_x, 2) + pow(map->new_y - data->player_y, 2));
+		map->len = sqrt(pow(map->new_x - data->player_x, 2)
+				+ pow(map->new_y - data->player_y, 2));
 	}
-	//printf("\033[1;33mlen = %f\n\033[0m", map->len);
 	return (map->len);
 }

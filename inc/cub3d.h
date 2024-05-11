@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 12:24:41 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 13:17:08 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 // Ray-Casting
 
 # define INC 0.000000001
+# define INC2 0.000000000000001
 # define DESINC 0.999999999999999
 
 // Initialisation
@@ -88,10 +89,12 @@ void			minimap_control(mlx_key_data_t keydata, void *param);
 
 // Ray casting
 void			get_slope_info(t_data *data, t_map *map, double ray_angle);
-double			find_vertical_wall_loop(t_data *data, t_map *map, double ray_angle);
-double			find_horizontal_wall_loop(t_data *data, t_map *map, double ray_angle);
+double			find_vertical_wall_loop(t_data *data, t_map *map,
+					double ray_angle);
+double			find_horizontal_wall_loop(t_data *data, t_map *map,
+					double ray_angle);
 void			adjust_extrem_value(t_map *map, t_data *data);
-double			get_line_length_draft(t_data *data, double ray_angle);
+double			get_wall_distance(t_data *data, double ray_angle);
 
 
 
