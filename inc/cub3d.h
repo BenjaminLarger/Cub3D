@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 13:38:44 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 16:06:30 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void			initialise_minimap(t_data *data);
 
 void			paint_world(t_data *data);
 void			paint_walls(t_data *data);
-void			calculate_col_height(t_data *data, t_pfv pfv);
 
 // User input
 
@@ -105,7 +104,7 @@ void			exit_game(t_data *data);
 // Print
 
 void			print_map(char **map);
-uint32_t		get_col_px_colour(uint32_t y, t_data *data, t_pfv pfv);
+uint32_t		get_col_px_colour(double calc_h, t_data *data, t_pfv pfv);
 void			print_and_exit(char *message, int fd, int exit_code);
 
 // Free
