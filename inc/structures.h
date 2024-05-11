@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/10 12:49:59 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 17:14:22 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ typedef struct s_id_flags
 
 typedef struct s_rgb
 {
-	int				r;
-	int				g;
-	int				b;
+	uint32_t		r;
+	uint32_t		g;
+	uint32_t		b;
 	int				index;
 	unsigned int	num;
 }			t_rgb;

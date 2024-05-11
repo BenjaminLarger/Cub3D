@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 15:48:12 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/11 17:10:01 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ uint32_t	pack_rgba(uint8_t pixels[4])
 	uint32_t	color;
 
 	color = 0;
-	color |= (pixels[0] << 24);
-	color |= (pixels[1] << 16);
-	color |= (pixels[2] << 8);
+	color |= ((uint32_t)pixels[0] << 24);
+	color |= ((uint32_t)pixels[1] << 16);
+	color |= ((uint32_t)pixels[2] << 8);
 	color |= pixels[3];
 	return (color);
 }
