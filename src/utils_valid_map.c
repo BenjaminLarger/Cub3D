@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/11 14:28:03 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 21:48:44 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int	valid_surrounded_wall(t_data *data, int i, int j)
 	return (SUCCESS);
 }
 
+
+
 bool	player_can_move(t_data *data, double end_x, double end_y)
 {
 	double	x;
@@ -107,14 +109,17 @@ bool	player_can_move(t_data *data, double end_x, double end_y)
 
 	x = data->player_x + end_x;
 	y = data->player_y + end_y;
-	if (sin(data->player_angle) > 0)
-		y += INC2;
+	/* if (sin(data->player_angle) > 0)
+		y += 0.02;
 	else if (sin(data->player_angle) < 0)
-		y -= INC2;
+		y -= 0.02;
 	if (cos(data->player_angle) > 0)
-		x += INC2;
+		x += 0.02;
 	else if (cos(data->player_angle) < 0)
-		x -= INC2;
+		x -= 0.02; */
+	//printf("x = %f, (int)x = %f, y = %f (int)y = %f\n", x, round(x), y, round(y));
+	if (move_in_corner(data, x, y))
+		return (false);
 	return (can_move(data->map[(int)y][(int)x]));
 }
 

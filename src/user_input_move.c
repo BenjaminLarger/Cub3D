@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 14:21:04 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 20:53:27 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	move_forward(t_data *data)
 //	printf("(int)(player_x + end_x) : (int)(player_y + end_y) (%d:%d)\n", (int)(data->player_x + end_x), (int)(data->player_y + end_y));
 //	printf("(int)round(player_x + end_x) : (int)round(player_y + end_y) (%d:%d)\n", (int)round(data->player_x + end_x), (int)round(data->player_y + end_y));
 
-	if (player_can_move(data, end_x, end_y))
+	if (player_can_move(data, end_x, end_y) == true)
 	{
 		data->player_x += end_x;
 		data->player_y += end_y;
@@ -55,11 +55,13 @@ void	move_backward(t_data *data)
 //	printf("(player_x - end_x) : (player_y - end_y)		(%f:%f)\n", (data->player_x - end_x), (data->player_y - end_y));
 //	printf("(int)(player_x - end_x) : (int)(player_y - end_y) (%d:%d)\n", (int)(data->player_x - end_x), (int)(data->player_y - end_y));
 //	printf("(int)round(player_x - end_x) : (int)round(player_y - end_y) (%d:%d)\n", (int)round(data->player_x - end_x), (int)round(data->player_y - end_y));
-	if (player_can_move(data, -end_x, -end_y))
+	/* if (player_can_move(data, -end_x, -end_y))
 	{
 		data->player_x -= end_x;
 		data->player_y -= end_y;
-	}
+	} */
+	data->player_x -= end_x;
+		data->player_y -= end_y;
 //	else
 //	{
 //		data->player_x = (int)round(data->player_x - end_x) - 0.1;
@@ -86,11 +88,13 @@ void	move_right(t_data *data)
 //	printf("(player_x - end_x) : (player_y - end_y)		(%f:%f)\n", (data->player_x - end_x), (data->player_y - end_y));
 //	printf("(int)(player_x - end_x) : (int)(player_y - end_y) (%d:%d)\n", (int)(data->player_x - end_x), (int)(data->player_y - end_y));
 //	printf("(int)round(player_x - end_x) : (int)round(player_y - end_y) (%d:%d)\n", (int)round(data->player_x - end_x), (int)round(data->player_y - end_y));
-	if (player_can_move(data, -end_x, -end_y))
+	/* if (player_can_move(data, -end_x, -end_y))
 	{
 		data->player_x -= end_x;
 		data->player_y -= end_y;
-	}
+	} */
+	data->player_x -= end_x;
+	data->player_y -= end_y;
 	/* if (can_move(data->map[(int)(data->player_y - end_y)][(int)(data->player_x - end_x)]))
 	{
 		data->player_x -= end_x;
@@ -122,11 +126,13 @@ void	move_left(t_data *data)
 //	printf("(player_x - end_x) : (player_y - end_y)		(%f:%f)\n", (data->player_x - end_x), (data->player_y - end_y));
 //	printf("(int)(player_x - end_x) : (int)(player_y - end_y) (%d:%d)\n", (int)(data->player_x - end_x), (int)(data->player_y - end_y));
 //	printf("(int)round(player_x - end_x) : (int)round(player_y - end_y) (%d:%d)\n", (int)round(data->player_x - end_x), (int)round(data->player_y - end_y));
-	if (player_can_move(data, -end_x, -end_y))
+	/* if (player_can_move(data, -end_x, -end_y))
 	{
 		data->player_x -= end_x;
 		data->player_y -= end_y;
-	}
+	} */
+	data->player_x -= end_x;
+	data->player_y -= end_y;
 	/* if (can_move(data->map[(int)(data->player_y - end_y)][(int)(data->player_x - end_x)]))
 	{
 		data->player_x -= end_x;

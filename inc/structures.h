@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 17:14:22 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/11 21:15:50 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,31 +93,7 @@ typedef struct s_pfv
 	double	wall_y;
 }			t_pfv;
 
-// ----------- find next edge
-typedef struct s_edge
-{
-	double	cur_x;
-	double	cur_y;
-	double	new_x1;
-	double	new_y1;
-	double	dist_to_x1;
-	double	new_x2;
-	double	new_y2;
-	double	distance_to_wall1;
-	double	distance_to_wall2;
-	double	distance_to_wall;
-	double	ray_x;
-	double	ray_y;
-	double	ray_dx;
-	double	ray_dy;
-	double	m;
-	double	b;
-	double	ray_angle;
-	double	x;
-	double	y;
-	double	distance_to_next_x_edge;
-	double	distance_to_next_y_edge;
-}			t_edge;
+// ----------- Ray-Casting
 
 typedef struct s_map
 {
@@ -131,5 +107,13 @@ typedef struct s_map
 	double	m;
 	double	b;
 }			t_map;
+
+typedef struct s_corner
+{
+	bool	south_west_blocked;
+	bool	south_est_blocked;
+	bool	north_west_blocked;
+	bool	north_est_blocked;
+}			t_corner;
 
 #endif

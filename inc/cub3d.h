@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 20:06:09 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 21:47:34 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void			move_left(t_data *data);
 void			player_input(void *param);
 void			minimap_control(mlx_key_data_t keydata, void *param);
 bool			player_can_move(t_data *data, double end_x, double end_y);
+bool			move_in_corner(t_data *data, double x, double y);
+
 
 
 // Ray casting
@@ -135,7 +137,6 @@ char			*line_filled_with_2(char *line, int max_column);
 void			print_array(char **array, char *message);
 void			check_leaks(void);
 void			display_fps(void);
-double			get_accurate_edge(t_data *data, t_edge *edge, double ray_angle);
 
 
 
