@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:20:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 18:03:40 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/11 17:12:34 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ unsigned int	rgb_to_hex(char *rgb_str)
 		else
 			rgb_str++;
 	}
-	return ((rgb.r << 24) | (rgb.g << 16) | (rgb.b << 8) | 0xFF);
+	return ((uint32_t)(rgb.r << 24) | (uint32_t)(rgb.g << 16)
+		| (uint32_t)(rgb.b << 8) | 0xFF);
 }

@@ -25,7 +25,7 @@ SRCS		:= main.c free.c print.c exit.c \
 	file_map.c utils_valid_map.c utils_ray_casting.c\
 	minimap.c user_input_minimap.c \
 	ray_casting.c \
-	world.c world_calculate.c world_walls.c world_walls_colour.c \
+	world.c world_walls.c world_walls_colour.c \
 	utils_joinfree.c utils_fill_map.c utils_dev.c \
 
 SRC_DIR		:= src

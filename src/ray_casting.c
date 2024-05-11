@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 12:25:29 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/11 13:44:10 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 14:32:53 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ double	find_vertical_intersection(t_data *data, double ray_angle)
 	if (cos(ray_angle) <= 0)
 	{
 		map.old_x = floor(data->player_x);
-		map.xa = -1 - 0.0001;
+		map.xa = -1 - INC2;
 	}
 	else
 	{
