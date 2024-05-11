@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 13:17:08 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 13:38:44 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ void			initialise_minimap(t_data *data);
 void			paint_world(t_data *data);
 void			paint_walls(t_data *data);
 void			calculate_col_height(t_data *data, t_pfv pfv);
-double			get_intersection(t_data *data, double ray_angle,
-					double *wall_x, double *wall_y);
 
 // User input
 
