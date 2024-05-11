@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 13:25:20 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 14:23:47 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		print_and_exit("Wrong arg number", 2, EXIT_FAILURE);
 	initialise(argv[1], &data);
-	data.paint_in_render = TRUE;
+	data.paint_in_render = FALSE;
 	mlx_loop_hook(data.mlx, render, &data);
 	//mlx_key_hook(data.mlx, &player_input, &data);
 	mlx_key_hook(data.mlx, &minimap_control, &data);

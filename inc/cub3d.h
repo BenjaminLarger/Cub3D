@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 13:38:44 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 14:08:44 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void			move_right(t_data *data);
 void			move_left(t_data *data);
 void			player_input(void *param);
 void			minimap_control(mlx_key_data_t keydata, void *param);
+bool			player_can_move(t_data *data, double end_x, double end_y);
+
 
 // Ray casting
 void			get_slope_info(t_data *data, t_map *map, double ray_angle);
