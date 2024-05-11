@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:07:48 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/11 12:41:05 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 13:56:18 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,30 @@ void	get_slope_info(t_data *data, t_map *map, double ray_angle)
 	double	x1;
 	double	y1;
 
-	x1 = data->player_x + cos(ray_angle) * 0.1 + 0.000000001;
-	y1 = data->player_y + sin(ray_angle) * 0.1 + 0.000000001;
-	/* if (x1 - data->player_x != 0)
-		 */map->m = (y1 - data->player_y) / (x1 - data->player_x);
-	/* else if (data->map[map])
-	else
-		map->m = 1E10; */
+	x1 = data->player_x + cos(ray_angle) * 0.1 + INC;
+	y1 = data->player_y + sin(ray_angle) * 0.1 + INC;
+	map->m = (y1 - data->player_y) / (x1 - data->player_x);
 	map->b = data->player_y - map->m * data->player_x;
 }
 
 void	adjust_extrem_value(t_map *map, t_data *data)
 {
 	if (map->old_x <= 1)
-		map->old_x = 0.999999999999999;
-	if (map->old_x > data->col - 0.999999999999999)
-		map->old_x = data->col - 0.999999999999999;
+		map->old_x = DESINC;
+	if (map->old_x > data->col - DESINC)
+		map->old_x = data->col - DESINC;
 	if (map->old_y <= 1)
-		map->old_y = 0.999999999999999;
-	if (map->old_y > data->map_line - 0.999999999999999)
-		map->old_y = data->map_line - 0.999999999999999;
+		map->old_y = DESINC;
+	if (map->old_y > data->map_line - DESINC)
+		map->old_y = data->map_line - DESINC;
 	if (map->new_x <= 1)
-		map->new_x = 0.999999999999999;
+		map->new_x = DESINC;
 	if (map->new_x > data->col - 1)
 		map->new_x = data->col - 1;
 	if (map->new_y <= 1)
-		map->new_y = 0.999999999999999;
-	if (map->new_y >= data->map_line - 0.999999999999999)
-		map->new_y = data->map_line - 0.999999999999999;
+		map->new_y = DESINC;
+	if (map->new_y >= data->map_line - DESINC)
+		map->new_y = data->map_line - DESINC;
 }
 static bool	is_wall(t_map *map, t_data *data, double ray_angle)
 {
@@ -80,9 +76,6 @@ static bool	must_exit_loop(t_map *map, t_data *data, double ray_angle)
 		|| (map->xa < 0 && map->new_x <= 1)
 		|| (map->xa > 0 && map->new_x >= data->col - 1))
 		return (true);
-	/* else if (data->map[(int)y][(int)x] == WALL
-		|| data->map[(int)y][(int)x] == '2')
-		return (true); */
 	else
 		return (is_wall(map, data, ray_angle));
 }
