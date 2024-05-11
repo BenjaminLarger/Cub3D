@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 11:37:13 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 12:24:41 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,18 @@
 # define WEST 'W'
 # define FLOOR '0'
 
+// Windows param
+
 # define WIDTH 1920
 # define HEIGHT 1280
 # define PLAYER_FOV 60
 # define NUM_OF_RAYS 1920 //1920
 # define SENSIBILITY 0.01
+
+// Ray-Casting
+
+# define INC 0.000000001
+# define DESINC 0.999999999999999
 
 // Initialisation
 
@@ -67,9 +74,8 @@ void			initialise_minimap(t_data *data);
 void			paint_world(t_data *data);
 void			paint_walls(t_data *data);
 void			calculate_col_height(t_data *data, t_pfv pfv);
-double	get_intersection(t_data *data, double ray_angle,
-	double *wall_x, double *wall_y);
-double			get_line_length(t_data *data, double ray_angle);
+double			get_intersection(t_data *data, double ray_angle,
+					double *wall_x, double *wall_y);
 
 // User input
 
@@ -79,6 +85,15 @@ void			move_right(t_data *data);
 void			move_left(t_data *data);
 void			player_input(void *param);
 void			minimap_control(mlx_key_data_t keydata, void *param);
+
+// Ray casting
+void			get_slope_info(t_data *data, t_map *map, double ray_angle);
+double			find_vertical_wall_loop(t_data *data, t_map *map, double ray_angle);
+double			find_horizontal_wall_loop(t_data *data, t_map *map, double ray_angle);
+void			adjust_extrem_value(t_map *map, t_data *data);
+double			get_line_length_draft(t_data *data, double ray_angle);
+
+
 
 
 
@@ -119,7 +134,6 @@ void			print_array(char **array, char *message);
 void			check_leaks(void);
 void			display_fps(void);
 double			get_accurate_edge(t_data *data, t_edge *edge, double ray_angle);
-double			get_line_length_draft(t_data *data, double ray_angle);
 
 
 

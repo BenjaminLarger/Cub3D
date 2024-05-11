@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/05/10 12:52:49 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 12:24:58 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,6 @@ static void	paint_player(t_data *data)
 		}
 		x++;
 	}
-}
-
-double	get_line_length(t_data *data, double ray_angle)
-{
-	t_edge edge;
-
-	edge.distance_to_wall = 0;
-	edge.ray_x = data->player_x;
-	edge.ray_y = data->player_y;
-	edge.ray_dx = cos(ray_angle) * 0.01;
-	edge.ray_dy = sin(ray_angle) * 0.01;
-	while (1)
-	{
-		edge.distance_to_wall += 0.01;
-		edge.ray_x += edge.ray_dx;
-		edge.ray_y += edge.ray_dy;
-		if (can_move(data->map[(int)edge.ray_y][(int)edge.ray_x]) == false)
-		{
-			break;
-		}
-	}
-	edge.distance_to_wall = get_accurate_edge(data, &edge, ray_angle);
-	return (edge.distance_to_wall);
 }
 
 void	paint_field_of_view(t_data *data)
