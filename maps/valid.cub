@@ -1,16 +1,10 @@
-NO ./texture/cyan.png
-
-
-SO ./texture/green.png
-WE ./texture/purple.png
-
-EA ./texture/yellow.png
+NO ./texture/red_brick_wall.png
+SO ./texture/pink_wall_and_door.png
+WE ./texture/man_pavement_good.png
+EA ./texture/43183_door_on_tree.png
 
 C 0,51,102
 F 123,63,0
-
-
-
 
 1111111111111111111111111111111
 10000000000110111000000001111
