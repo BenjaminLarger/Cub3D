@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:17:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 17:52:04 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/11 11:40:27 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ double	get_intersection(t_data *data, double ray_angle,
 			break ;
 	}
 	distance_to_wall *= cos(ray_angle - data->player_angle);
-	distance_to_wall = round(distance_to_wall * 100) / 100; //
+	distance_to_wall = round(distance_to_wall * 100) / 100;
 	return (distance_to_wall);
 }
