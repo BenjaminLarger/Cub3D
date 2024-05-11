@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 16:24:34 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/30 17:53:16 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	paint_walls(t_data *data)
 	{
 		pfv.ray_angle = data->player_angle
 			- (data->view_angle / 2) + pfv.i * data->angle_step;
-		pfv.ray_length = get_intersection(data, pfv.ray_angle, &pfv);
+		pfv.ray_length = get_intersection(data, pfv.ray_angle, &pfv.wall_x, &pfv.wall_y);
 		calculate_col_height(data, pfv);
 
 //	unsigned int colour = get_col_px_colour(WIDTH * pfv.i / NUM_OF_RAYS, display_h, data, pfv); //

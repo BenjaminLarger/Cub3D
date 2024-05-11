@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 17:48:55 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/10 12:49:59 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,20 +100,36 @@ typedef struct s_edge
 	double	cur_y;
 	double	new_x1;
 	double	new_y1;
+	double	dist_to_x1;
 	double	new_x2;
 	double	new_y2;
+	double	distance_to_wall1;
+	double	distance_to_wall2;
 	double	distance_to_wall;
 	double	ray_x;
 	double	ray_y;
 	double	ray_dx;
 	double	ray_dy;
-	double	distance_to_next_x_edge;
-	double	distance_to_next_y_edge;
 	double	m;
 	double	b;
 	double	ray_angle;
 	double	x;
 	double	y;
+	double	distance_to_next_x_edge;
+	double	distance_to_next_y_edge;
 }			t_edge;
+
+typedef struct s_map
+{
+	double	xa;
+	double	ya;
+	double	new_x;
+	double	new_y;
+	double	old_x;
+	double	old_y;
+	double	len;
+	double	m;
+	double	b;
+}			t_map;
 
 #endif

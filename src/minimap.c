@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 16:08:07 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/10 12:52:49 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	paint_player(t_data *data)
 	}
 }
 
-/* static double	get_line_length(t_data *data, double ray_angle)
+double	get_line_length(t_data *data, double ray_angle)
 {
 	t_edge edge;
 
@@ -92,7 +92,7 @@ static void	paint_player(t_data *data)
 	}
 	edge.distance_to_wall = get_accurate_edge(data, &edge, ray_angle);
 	return (edge.distance_to_wall);
-} */
+}
 
 void	paint_field_of_view(t_data *data)
 {
@@ -105,7 +105,7 @@ void	paint_field_of_view(t_data *data)
 	{
 		pfv.ray_angle = data->player_angle
 			- (pfv.view_angle / 2) + pfv.i * pfv.angle_step;
-		pfv.ray_length = get_line_length(data, pfv.ray_angle);
+		pfv.ray_length = get_line_length_draft(data, pfv.ray_angle);
 		pfv.endX = pfv.ray_length * cos(pfv.ray_angle);
 		pfv.endY = pfv.ray_length * sin(pfv.ray_angle);
 //	printf("pfv.endX: %f, pfv.endY: %f, pfv.ray_length: %f\n", pfv.endX, pfv.endY, pfv.ray_length);
@@ -178,4 +178,4 @@ void	initialise_minimap(t_data *data)
 			data->col * data->minimap_tile_px,
 			data->row * data->minimap_tile_px);
 	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
-}	
+}

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:17:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 16:54:59 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/30 17:52:04 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	calculate_col_height(t_data *data, t_pfv pfv)
 		data->display_h = data->calculated_h;
 }
 
-static double	get_intersection_length_loop(t_data *data, t_edge *edge,
+/* static double	get_intersection_length_loop(t_data *data, t_edge *edge,
 	t_pfv *pfv, double accuracy)
 {
 	bool	can_continue;
@@ -55,7 +55,7 @@ double	get_intersection(t_data *data, double ray_angle,
 	pfv->wall_y = data->player_y;
 	accuracy = -1;
 	i = 0;
-	while (i < 10)
+	while (i < 2)
 	{
 		accuracy /= -10;
 		edge.distance_to_wall = get_intersection_length_loop(data, &edge, pfv, accuracy);
@@ -64,9 +64,9 @@ double	get_intersection(t_data *data, double ray_angle,
 	edge.distance_to_wall *= cos(ray_angle - data->player_angle);
 //	edge.distance_to_wall = round(edge.distance_to_wall * 100) / 100;
 	return (edge.distance_to_wall);
-}
+} */
 
-/* double	get_intersection(t_data *data, double ray_angle,
+double	get_intersection(t_data *data, double ray_angle,
 	double *wall_x, double *wall_y)
 {
 	double	distance_to_wall;
@@ -89,4 +89,4 @@ double	get_intersection(t_data *data, double ray_angle,
 	distance_to_wall *= cos(ray_angle - data->player_angle);
 	distance_to_wall = round(distance_to_wall * 100) / 100; //
 	return (distance_to_wall);
-} */
+}

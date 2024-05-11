@@ -1,13 +1,20 @@
-
-EA ./path_to_the_east_texture
-
-F 0,0,0
-C 55,55,255
-
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
+NO ./texture/cyan.png
 
 
+SO ./texture/green.png
+WE ./texture/purple.png
+
+EA ./texture/yellow.png
+
+C 0,51,102
+F 123,63,0
 
 
+
+
+11111
+10001
+10101
+100N1
+11111
+                1

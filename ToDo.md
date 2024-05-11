@@ -23,6 +23,15 @@ Bug:
 1)  
 undefined-behavior quand premier chiffre de RGB dans le fichier cub est grand
 
+2) 
+1111111111
+1110000001
+110000W001
+1100000001
+1111111111
+                1
+=> map should be invalid
+
 
 --------------
 
