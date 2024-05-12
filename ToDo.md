@@ -20,10 +20,11 @@ Bug:
 => map should be invalid
 
 2)  
-Fix wrong color pixel color on wall corners (1 px colummn)
-
-3)  
-1px vertical line sometimes, see map small.cub
+Sometimes wrong distance_to_wall for pfv.i == 384 or 960 or 1536, see map small.cub --> 1px vertical line with wrong colour.
+384, wall_x:y: 1.500000:2.207107, player_x:y: 1.500000:1.500000, distance_to_wall: 0.67, colour: 858993544
+1536, wall_x:y: 2.207107:1.500000, player_x:y: 1.500000:1.500000, distance_to_wall: 0.67, colour: 858993544
+1536, wall_x:y: 2.207107:1.500000, player_x:y: 1.500000:1.500000, distance_to_wall: 0.67, colour: 858993544
+960, wall_x:y: 2.207107:1.500000, player_x:y: 1.500000:1.500000, distance_to_wall: 0.71, colour: 858993544
 
 --------------
 
