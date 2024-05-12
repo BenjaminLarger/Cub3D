@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/11 21:48:44 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/12 21:29:59 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,24 +109,26 @@ bool	player_can_move(t_data *data, double end_x, double end_y)
 
 	x = data->player_x + end_x;
 	y = data->player_y + end_y;
-	/* if (sin(data->player_angle) > 0)
-		y += 0.02;
-	else if (sin(data->player_angle) < 0)
-		y -= 0.02;
-	if (cos(data->player_angle) > 0)
-		x += 0.02;
-	else if (cos(data->player_angle) < 0)
-		x -= 0.02; */
 	//printf("x = %f, (int)x = %f, y = %f (int)y = %f\n", x, round(x), y, round(y));
-	if (move_in_corner(data, x, y))
+	if (move_in_corner(data, x, y) == true)
 		return (false);
-	return (can_move(data->map[(int)y][(int)x]));
+	printf("x = %f, y = %f\n", x, y);
+	if (data->map[(int)y][(int)x] == WALL || data->map[(int)y][(int)x] == '2')
+	{
+		printf("Move in wall\n");
+		return (false);
+	}
+	else
+		return (true);
 }
 
 bool	can_move(char point)
 {
 	if (point == WALL || point == '2')
+	{
+		//printf("Move in wall\n");
 		return (false);
+	}
 	else
 		return (true);
 }

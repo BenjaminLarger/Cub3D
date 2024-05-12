@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:01:40 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/11 21:58:04 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/12 21:53:53 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,31 @@ static double	player_move_into_corner(t_data *data, t_corner *corner,
 	if ((corner->north_est_blocked == true
 			|| corner->north_west_blocked == true)
 		&& ((int)y < (int)data->player_y))
+	{
+		//printf("block player in north\n");
 		return (true);
+	}
 	else if ((corner->south_est_blocked == true
 			|| corner->south_west_blocked == true)
 		&& ((int)y > (int)data->player_y))
+	{
+		//printf("block player in south\n");
 		return (true);
+	}
 	else if ((corner->north_est_blocked == true
-			|| corner->north_est_blocked == true)
+			&& corner->north_west_blocked == true)
 		&& ((int)x > (int)data->player_x))
+	{
+		//printf("block player in est\n");
 		return (true);
+	}
 	else if ((corner->north_west_blocked == true
-			|| corner->north_west_blocked == true)
+			|| corner->north_est_blocked == true)
 		&& ((int)x < (int)data->player_x))
+	{
+		//printf("block player in west\n");
 		return (true);
+	}
 	else
 		return (false);
 }
@@ -59,16 +71,28 @@ static double	check_deadlock_corner(t_data *data, t_corner *corner)
 	y = (int)data->player_y;
 	if (can_move(data->map[y + 1][x]) == false
 		&& can_move(data->map[y][x + 1] == false))
+	{
+		printf("south est corner is blockde\n");
 		corner->south_est_blocked = true;
+	}
 	if (can_move(data->map[y + 1][x] == false)
 		&& can_move(data->map[y][x - 1]) == false)
+	{
 		corner->south_west_blocked = true;
+		printf("south west corner is blocked\n");
+	}
 	if (can_move(data->map[y - 1][x] == false)
 		&& can_move(data->map[y][x + 1] == false))
+	{
+		printf("north est corner is blocked\n");
 		corner->north_est_blocked = true;
+	}
 	if (can_move(data->map[y - 1] == false
 			&& can_move(data->map[y][x - 1])) == false)
+	{
+		printf("north west corner is blocked\n");
 		corner->north_west_blocked = true;
+	}
 	if (corner->north_est_blocked == true
 		|| corner->north_west_blocked == true
 		|| corner->south_est_blocked == true
@@ -86,10 +110,10 @@ bool	move_in_corner(t_data *data, double x, double y)
 	corner.north_west_blocked = false;
 	corner.south_est_blocked = false;
 	corner.south_west_blocked = false;
-	printf("diffx = %f, diffy = %f\n", fabs(x - trunc(x)), fabs(y - trunc(y)));
-	if (fabs(x - trunc(x)) > 0.1 || fabs(y - trunc(y)) > 0.1)
+	//printf("diffx = %f, diffy = %f\n", fabs(x - round(x)), fabs(y - round(y)));
+	if (fabs(x - round(x)) > 0.1 || fabs(y - round(y)) > 0.1)
 		return (false);
-	printf("close to a corner");
+	//printf("close to a corner\n");
 	if (check_deadlock_corner(data, &corner) == false)
 		return (false);
 	if (player_move_into_corner(data, &corner, x, y) == true)
