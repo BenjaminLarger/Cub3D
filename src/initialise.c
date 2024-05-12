@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 17:58:08 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/12 14:59:36 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	get_map_size(t_data *data)
 void	initialise(char *filename, t_data *data)
 {
 	data->minimap_tile_px = 16;
+	data->display_minimap = TRUE;
 	data->player_speed = 1;
 	data->view_angle = PLAYER_FOV * (M_PI / 180);
 	data->angle_step = PLAYER_FOV * (M_PI / 180) / NUM_OF_RAYS;
@@ -75,7 +76,7 @@ void	initialise(char *filename, t_data *data)
 		return (print_and_exit("Wrong map", 2, EXIT_FAILURE));
 	get_map_size(data);
 	printf("data->col: %u, data->row: %u\n", data->col, data->row);
-	printf("player_x: %f, player_y: %f\n", data->player_x, data->player_y);
+	printf("player_x: %.2f, player_y: %.2f\n", data->player_x, data->player_y);
 	initialise_mlx(data);
 	initialise_texture(data);
 	initialise_world(data);

@@ -6,11 +6,22 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 12:29:59 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/12 15:00:36 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	toggle_display_minimap(t_data *data)
+{
+	if (data->display_minimap == TRUE)
+		data->display_minimap = FALSE;
+	else
+		data->display_minimap = TRUE;
+	mlx_delete_image(data->mlx, data->minimap);
+	initialise_minimap(data);
+	paint_minimap(data);
+}
 
 static void	resize_minimap(int key, t_data *data)
 {
@@ -18,8 +29,8 @@ static void	resize_minimap(int key, t_data *data)
 		data->minimap_tile_px /= 2;
 	else if (key == MLX_KEY_KP_ADD)
 		data->minimap_tile_px *= 2;
-	if (data->minimap_tile_px < 2)
-		data->minimap_tile_px = 2;
+	if (data->minimap_tile_px < 4)
+		data->minimap_tile_px = 4;
 	else if (data->minimap_tile_px > 32)
 		data->minimap_tile_px = 32;
 	mlx_delete_image(data->mlx, data->minimap);
@@ -36,4 +47,6 @@ void	minimap_control(mlx_key_data_t keydata, void *param)
 		resize_minimap(MLX_KEY_KP_SUBTRACT, data);
 	else if (keydata.key == MLX_KEY_KP_ADD && keydata.action == MLX_PRESS)
 		resize_minimap(MLX_KEY_KP_ADD, data);
+	else if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
+		toggle_display_minimap(data);
 }
