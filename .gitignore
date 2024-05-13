@@ -10,4 +10,6 @@ test.c
 *.dSYM
 */draw.c
 cub3D
+cub3D_bonus
 draft.c
+cub3D_bonus
