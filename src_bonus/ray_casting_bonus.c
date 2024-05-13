@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_casting.c                                      :+:      :+:    :+:   */
+/*   ray_casting_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 12:25:29 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 12:26:35 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 15:47:37 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 double	find_horizontal_intersection(t_data *data, double ray_angle)
 {

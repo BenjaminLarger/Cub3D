@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   file_load_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 14:55:53 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 13:17:48 by demre            ###   ########.fr       */
+/*   Created: 2024/04/22 15:20:02 by demre             #+#    #+#             */
+/*   Updated: 2024/05/13 15:46:44 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
-void	exit_game(t_data *data)
+int	get_data_from_file(char *filename, t_data *data)
 {
-	mlx_delete_texture(data->wall_no);
-	mlx_delete_texture(data->wall_so);
-	mlx_delete_texture(data->wall_we);
-	mlx_delete_texture(data->wall_ea);
-//	mlx_delete_image(data->mlx, data->minimap);
-//	mlx_delete_image(data->mlx, data->world);
-//	mlx_delete_image(data->mlx, data->buffer_world);
-	mlx_terminate(data->mlx);
-	free_string_array(data->map);
+	int		n_elements;
+	int		fd;
+
+	n_elements = 0;
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (FAILURE);
+	load_elements(&n_elements, data, fd);
+	if (n_elements != 6)
+		return (FAILURE);
+	if (load_map(data, fd) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
 }

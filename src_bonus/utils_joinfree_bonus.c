@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_joinfree.c                                   :+:      :+:    :+:   */
+/*   utils_joinfree_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 09:30:08 by blarger           #+#    #+#             */
-/*   Updated: 2024/04/23 09:13:05 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 15:48:28 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static char	*jointure_free(char *str, const char *s2, int i, int length)
 {

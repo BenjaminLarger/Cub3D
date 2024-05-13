@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_player.c                                   :+:      :+:    :+:   */
+/*   minimap_player_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 14:41:22 by demre             #+#    #+#             */
-/*   Updated: 2024/05/12 15:52:02 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 15:47:26 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 /* 
 void	paint_mm_player(t_data *data) // draw square player
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialise.c                                       :+:      :+:    :+:   */
+/*   initialise_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 12:26:26 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 15:47:01 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static int	check_file_extension(char *filename)
 {
@@ -41,7 +41,9 @@ static void	initialise_texture(t_data *data)
 	free(data->south_path);
 	free(data->west_path);
 	free(data->east_path);
-	if (!data->wall_no || !data->wall_so || !data->wall_we || !data->wall_ea)
+	data->sprite_texture = mlx_load_png("./texture/flames_x500_y413.png");
+	if (!data->wall_no || !data->wall_so || !data->wall_we || !data->wall_ea
+		|| !data->sprite_texture)
 		print_and_exit("Failed to initialise textures", 2, EXIT_FAILURE);
 }
 
@@ -79,6 +81,8 @@ void	initialise(char *filename, t_data *data)
 	initialise_texture(data);
 	initialise_world(data);
 	initialise_minimap(data);
+	initialise_sprite(data);
 	paint_world(data);
 	paint_minimap(data);
+	paint_sprite(data);
 }
