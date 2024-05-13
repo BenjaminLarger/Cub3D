@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:07:48 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 12:27:19 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 10:44:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	adjust_extrem_value(t_map *map, t_data *data)
 		map->new_x = data->col - 1;
 	if (map->new_y <= 1)
 		map->new_y = DESINC;
-	if (map->new_y > data->map_line - DESINC)
+	if (map->new_y >= data->map_line - DESINC)
 		map->new_y = data->map_line - DESINC;
 }
 

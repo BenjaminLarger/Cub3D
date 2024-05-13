@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 12:36:41 by blarger          ###   ########.fr       */
+/*   Updated: 2024/04/29 15:23:45 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@ void	paint_world(t_data *data)
 void	initialise_world(t_data *data)
 {
 	data->world = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (!data->world
-		|| mlx_image_to_window(data->mlx, data->world, 0, 0) < 0)
-		print_and_exit("Failed to initialise image", 2, EXIT_FAILURE);
+//	if (!data->world)
+		// handle error
+	mlx_image_to_window(data->mlx, data->world, 0, 0);
+	
+	//	data->buffer_world = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	//	mlx_image_to_window(data->mlx, data->buffer_world, 0, 0);
+//	data->buffer_world->enabled = false;
+//	if (!data->buffer_world)
+		// handle error
 }

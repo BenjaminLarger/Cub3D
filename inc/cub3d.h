@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 10:45:14 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 12:53:23 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WIDTH 1920
 # define HEIGHT 1280
 # define PLAYER_FOV 60
-# define NUM_OF_RAYS 1920 //1920
+# define NUM_OF_RAYS 1920
 # define SENSIBILITY 0.01
 
 // Ray-Casting
@@ -109,10 +109,7 @@ void			print_and_exit(char *message, int fd, int exit_code);
 // Free
 
 void			free_string_array(char **str_array);
-void			free_n_string_array(char **str_array, int n);
 int				free_string_array_and_return(char **str_array, int to_return);
-int				free_n_string_array_and_return(char **str_array, int n,
-					int to_return);
 
 // Utils
 
@@ -128,6 +125,7 @@ int				line_has_valid_char(t_data *data, char *line, int y);
 int				valid_surrounded_wall(t_data *data, int i, int j);
 int				get_max_column(t_data *data);
 char			*line_filled_with_2(char *line, int max_column);
+bool			invalid_char(char *map);
 
 // Dev utils
 
