@@ -1,25 +1,13 @@
 To implement:
 
-1)  
-Empecher le joueur d'etre trop proche du mur. Ca cree des visuels bizarres si t'es sur le mur du bas et que tu regardes plein est ou ouest.
-
-2) Refactor minimap_player.c or delete it and keep square player on minimap
+1) Refactor minimap_player.c or delete it and keep square player on minimap
 
 --------------
 
 
 Bug:
 
-1) 
-1111111111
-1110000001
-110000W001
-1100000001
-1111111111
-                1
-=> map should be invalid
-
-2)  
+1)  
 Sometimes wrong distance_to_wall for pfv.i == 384 or 960 or 1536, see map small.cub --> 1px vertical line with wrong colour.
 384, wall_x:y: 1.500000:2.207107, player_x:y: 1.500000:1.500000, distance_to_wall: 0.67, colour: 858993544
 1536, wall_x:y: 2.207107:1.500000, player_x:y: 1.500000:1.500000, distance_to_wall: 0.67, colour: 858993544
