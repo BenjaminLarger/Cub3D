@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 15:48:51 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 20:54:18 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,50 @@ static void	paint_column(t_data *data, double display_h,
 		mlx_put_pixel(data->world, pfv.i, h++, data->floor_color);
 }
 
+static void	get_obstacle_type_on_right_side(t_data *data, t_pfv *pfv)
+{
+	if (sin(pfv->ray_angle) > 0)
+	{	// Bottom-right
+		if (fabs(pfv->wall_y - round(pfv->wall_y)) < 0.00001)
+			pfv->obstacle
+				= data->map[(int)(pfv->wall_y + 0.2)][(int)(pfv->wall_x)];
+		else
+			pfv->obstacle
+				= data->map[(int)(pfv->wall_y)][(int)(pfv->wall_x + 0.2)];
+	}
+	else
+	{	// Top-right
+		if (fabs(pfv->wall_y - round(pfv->wall_y)) < 0.00001)
+			pfv->obstacle
+				= data->map[(int)(pfv->wall_y - 0.2)][(int)(pfv->wall_x)];
+		else
+			pfv->obstacle
+				= data->map[(int)(pfv->wall_y)][(int)(pfv->wall_x + 0.2)];
+	}
+}
+
+static void	get_obstacle_type_on_left_side(t_data *data, t_pfv *pfv)
+{
+	if (sin(pfv->ray_angle) > 0)
+	{	// Bottom-left
+		if (fabs(pfv->wall_y - round(pfv->wall_y)) < 0.00001)
+			pfv->obstacle
+				= data->map[(int)(pfv->wall_y + 0.2)][(int)(pfv->wall_x)];
+		else
+			pfv->obstacle
+				= data->map[(int)(pfv->wall_y)][(int)(pfv->wall_x - 0.2)];
+	}
+	else
+	{	// Top-left
+		if (fabs(pfv->wall_y - round(pfv->wall_y)) < 0.00001)
+			pfv->obstacle
+				= data->map[(int)(pfv->wall_y - 0.2)][(int)(pfv->wall_x)];
+		else
+			pfv->obstacle
+				= data->map[(int)((pfv->wall_y))][(int)(pfv->wall_x - 0.2)];
+	}
+}
+
 void	paint_walls(t_data *data)
 {
 	t_pfv	pfv;
@@ -60,14 +104,15 @@ void	paint_walls(t_data *data)
 		pfv.prev_wall_y = pfv.wall_y;
 		pfv.wall_x = data->player_x + cos(pfv.ray_angle) * pfv.ray_length;
 		pfv.wall_y = data->player_y + sin(pfv.ray_angle) * pfv.ray_length;
+		if (cos(pfv.ray_angle) > 0)
+			get_obstacle_type_on_right_side(data, &pfv);
+		else
+			get_obstacle_type_on_left_side(data, &pfv);
 		pfv.ray_length *= cos(pfv.ray_angle - data->player_angle);
 		calculate_col_height(data, pfv);
 
-//	unsigned int colour = get_col_px_colour(0, data, pfv); //
-//	if (colour == 0 || colour == 0x33333388)
-//		printf("%d, wall_x:y: %lf:%lf, player_x:y: %f:%f, distance_to_wall: %.2f, colour: %u\n", pfv.i, pfv.wall_x, pfv.wall_y, data->player_x, data->player_y, pfv.ray_length, colour);
-//	printf("pfv.wall_x - data->player_x: %.3f, (pfv.wall_x - round(pfv.wall_x): %f, pfv.wall_y - data->player_y: %.3f, (pfv.wall_y - round(pfv.wall_y)): %f\n", pfv.wall_x - data->player_x, (pfv.wall_x - round(pfv.wall_x)), pfv.wall_y - data->player_y, (pfv.wall_y - round(pfv.wall_y)));
-//	printf("wall_x:y: %f:%f\n", 400 * (pfv.wall_x - (int)pfv.wall_x), 300 * (pfv.wall_y - (int)pfv.wall_y));
+//	if (pfv.i % 16 == 0)
+//		printf("%d, wall_x,y: %f:%f, obstacle: %c\n", pfv.i, pfv.wall_x, pfv.wall_y, pfv.obstacle);
 
 		if (pfv.i < WIDTH)
 			paint_column(data, data->display_h,

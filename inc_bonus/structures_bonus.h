@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 17:00:20 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 19:22:30 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_pfv
 	double	wall_y;
 	double	prev_wall_x;
 	double	prev_wall_y;
+	char	obstacle;
 }			t_pfv;
 
 // ----------- Ray-Casting
