@@ -6,12 +6,11 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:07:48 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/11 13:56:18 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 10:44:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	get_slope_info(t_data *data, t_map *map, double ray_angle)
 {
@@ -43,26 +42,6 @@ void	adjust_extrem_value(t_map *map, t_data *data)
 	if (map->new_y >= data->map_line - DESINC)
 		map->new_y = data->map_line - DESINC;
 }
-static bool	is_wall(t_map *map, t_data *data, double ray_angle)
-{
-	double	x;
-	double	y;
-
-	x = map->new_x;
-	y = map->new_y;
-	if (sin(ray_angle) > 0)
-		y += INC;
-	else if (sin(ray_angle) < 0)
-		y -= INC;
-	if (cos(ray_angle) > 0)
-		x += INC;
-	else if (cos(ray_angle) < 0)
-		x -= INC;
-	if (can_move(data->map[(int)y][(int)x]) == false)
-		return (true);
-	else
-		return (false);
-}
 
 static bool	must_exit_loop(t_map *map, t_data *data, double ray_angle)
 {
@@ -84,18 +63,13 @@ double	find_horizontal_wall_loop(t_data *data, t_map *map, double ray_angle)
 {
 	map->new_x = map->old_x;
 	map->new_y = map->old_y;
-	////printf("can_move: %d\n", can_move(data->map[(int)map->new_y][(int)map->new_x]));
-	//printf("map value: %d\n", data->map[(int)map->new_y][(int)map->new_x]);
-	//printf("new_x: %f, new_y: %f\n", map->new_x, map->new_y);
 	while (must_exit_loop(map, data, ray_angle) == false)
 	{
-
 		map->new_y = map->new_y + map->ya;
 		map->new_x = (map->new_y - map->b) / map->m;
 		adjust_extrem_value(map, data);
 		map->len = sqrt(pow(map->new_x - data->player_x, 2)
 				+ pow(map->new_y - data->player_y, 2));
-
 	}
 	return (map->len);
 }

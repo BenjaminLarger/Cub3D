@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 09:57:34 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 10:45:14 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ void			minimap_control(mlx_key_data_t keydata, void *param);
 bool			player_can_move(t_data *data, double end_x, double end_y);
 bool			move_in_corner(t_data *data, double x, double y);
 
-
-
 // Ray casting
 void			get_slope_info(t_data *data, t_map *map, double ray_angle);
 double			find_vertical_wall_loop(t_data *data, t_map *map,
@@ -97,10 +95,6 @@ double			find_horizontal_wall_loop(t_data *data, t_map *map,
 					double ray_angle);
 void			adjust_extrem_value(t_map *map, t_data *data);
 double			get_wall_distance(t_data *data, double ray_angle);
-
-
-
-
 
 // Exit
 
@@ -124,10 +118,12 @@ int				free_n_string_array_and_return(char **str_array, int n,
 
 char			*ft_strjoin_free(char *s1, char *s2);
 bool			can_move(char point);
+bool			is_wall(t_map *map, t_data *data, double ray_angle);
 
 // Map utils
 
-int				check_horizontal_wall(char *line);
+int				check_first_line(char *line, char *scd_line);
+int				check_last_line(char *line, char *last_line);
 int				line_has_valid_char(t_data *data, char *line, int y);
 int				valid_surrounded_wall(t_data *data, int i, int j);
 int				get_max_column(t_data *data);
@@ -138,7 +134,5 @@ char			*line_filled_with_2(char *line, int max_column);
 void			print_array(char **array, char *message);
 void			check_leaks(void);
 void			display_fps(void);
-
-
 
 #endif

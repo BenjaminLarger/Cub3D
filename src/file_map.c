@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/04/29 17:00:16 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 11:03:37 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	check_map(t_data *data)
 
 	i = 0;
 	print_map(data->map);
-	if (check_horizontal_wall(data->map[0]) == FAILURE)
+	if (check_first_line(data->map[0], data->map[1]) == FAILURE)
 		return (FAILURE);
 	while (data->map[i])
 	{
@@ -35,7 +35,7 @@ static int	check_map(t_data *data)
 		}
 		i++;
 	}
-	if (check_horizontal_wall(data->map[i - 1]) == FAILURE
+	if (check_last_line(data->map[i - 1], data->map[i - 2]) == FAILURE
 		|| data->map_departure_count != 1)
 		return (FAILURE);
 	return (SUCCESS);
@@ -88,6 +88,19 @@ static bool	splitted_map(char *map)
 	return (false);
 }
 
+static bool	invalid_char(char *map)
+{
+	int	i;
+
+	i = -1;
+	while (map[++i])
+	{
+		if (map[i] == '2')
+			return (true);
+	}
+	return (false);
+}
+
 static int	get_rid_of_empty_line(t_data *data, int fd, char **line, char **map)
 {
 	data->map_departure_count = 0;
@@ -126,8 +139,8 @@ int	load_map(t_data *data, int fd)
 			print_and_exit(MALLOC_FAIL, 2, EXIT_FAILURE);
 		free(line);
 	}
-	if (splitted_map(map) == true)
-		return (FAILURE);
+	if (splitted_map(map) == true || invalid_char(map) == true)
+		return (free(map), FAILURE);
 	data->map = ft_split(map, '\n');
 	free(map);
 	if (!data->map)

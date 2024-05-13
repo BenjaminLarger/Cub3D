@@ -6,28 +6,19 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 09:50:50 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 10:44:31 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	can_move(char point)
-{
-	if (point == WALL || point == '2')
-	{
-		//printf("Move in wall\n");
-		return (false);
-	}
-	else
-		return (true);
-}
-
-int	check_horizontal_wall(char *line)
+int	check_first_line(char *line, char *scd_line)
 {
 	int	i;
 
 	i = 0;
+	if (line[0] == WALL && line[1] == '2' && scd_line[0] == '2')
+		return (FAILURE);
 	while (line[i])
 	{
 		if (line[i] != OUT && line[i] != WALL && line[i] != '2'
@@ -36,6 +27,38 @@ int	check_horizontal_wall(char *line)
 		{
 			return (FAILURE);
 		}
+		if (i != 0 && line[i + 1] != '\0' && line[i - 1] == '2'
+			&& line[i] == WALL && line[i + 1] == '2' && scd_line[i] == '2')
+			return (FAILURE);
+		if (line[i + 1] == '\0' && line[i] == WALL && line[i - 1] == '2'
+			&& scd_line[i] == '2')
+			return (FAILURE);
+		i++;
+	}
+	return (SUCCESS);
+}
+
+int	check_last_line(char *line, char *last_line)
+{
+	int	i;
+
+	i = 0;
+	if (line[0] == WALL && line[1] == '2' && last_line[0] == '2')
+		return (FAILURE);
+	while (line[i])
+	{
+		if (line[i] != OUT && line[i] != WALL && line[i] != '2'
+			&& line[i] != 'S' && line[i] != 'W' && line[i] != 'E'
+			&& line[i] != 'N')
+		{
+			return (FAILURE);
+		}
+		if (i != 0 && line[i + 1] != '\0' && line[i - 1] == '2'
+			&& line[i] == WALL && line[i + 1] == '2' && last_line[i] == '2')
+			return (FAILURE);
+		if (line[i + 1] == '\0' && line[i] == WALL && line[i - 1] == '2'
+			&& last_line[i] == '2')
+			return (FAILURE);
 		i++;
 	}
 	return (SUCCESS);
@@ -111,17 +134,3 @@ int	valid_surrounded_wall(t_data *data, int i, int j)
 	return (SUCCESS);
 }
 
-bool	player_can_move(t_data *data, double end_x, double end_y)
-{
-	double	x;
-	double	y;
-
-	x = data->player_x + end_x;
-	y = data->player_y + end_y;
-	if (move_in_corner(data, x, y) == true)
-		return (false);
-	if (data->map[(int)y][(int)x] == WALL || data->map[(int)y][(int)x] == '2')
-		return (false);
-	else
-		return (true);
-}

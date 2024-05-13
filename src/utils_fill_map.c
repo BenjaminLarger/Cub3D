@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:37:30 by blarger           #+#    #+#             */
-/*   Updated: 2024/04/25 16:42:47 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 10:32:26 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ char	*line_filled_with_2(char *line, int max_column)
 		return (print_and_exit(MALLOC_FAIL, 2, EXIT_FAILURE), NULL);
 	while (line[i])
 	{
+		if (line[i] == '2')
+			return (print_and_exit("Error", 2, EXIT_SUCCESS), NULL);
 		newline[i] = line[i];
 		i++;
 	}
