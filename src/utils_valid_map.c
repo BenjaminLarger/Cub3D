@@ -6,11 +6,22 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/12 21:29:59 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 09:50:50 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+bool	can_move(char point)
+{
+	if (point == WALL || point == '2')
+	{
+		//printf("Move in wall\n");
+		return (false);
+	}
+	else
+		return (true);
+}
 
 int	check_horizontal_wall(char *line)
 {
@@ -100,8 +111,6 @@ int	valid_surrounded_wall(t_data *data, int i, int j)
 	return (SUCCESS);
 }
 
-
-
 bool	player_can_move(t_data *data, double end_x, double end_y)
 {
 	double	x;
@@ -109,27 +118,10 @@ bool	player_can_move(t_data *data, double end_x, double end_y)
 
 	x = data->player_x + end_x;
 	y = data->player_y + end_y;
-	//printf("x = %f, (int)x = %f, y = %f (int)y = %f\n", x, round(x), y, round(y));
 	if (move_in_corner(data, x, y) == true)
 		return (false);
-	printf("x = %f, y = %f\n", x, y);
 	if (data->map[(int)y][(int)x] == WALL || data->map[(int)y][(int)x] == '2')
-	{
-		printf("Move in wall\n");
 		return (false);
-	}
 	else
 		return (true);
 }
-
-bool	can_move(char point)
-{
-	if (point == WALL || point == '2')
-	{
-		//printf("Move in wall\n");
-		return (false);
-	}
-	else
-		return (true);
-}
-
