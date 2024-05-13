@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 15:48:42 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 21:24:18 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	line_has_valid_char(t_data *data, char *line, int y)
 		if (line[i] != OUT && line[i] != WALL
 			&& line[i] != WEST && line[i] != EST
 			&& line[i] != NORTH && line[i] != SOUTH
-			&& line[i] != FLOOR && line[i] != '2')
+			&& line[i] != FLOOR && line[i] != '2' && line[i] != 'C')
 			return (FAILURE);
 		if (line[i] == WEST || line[i] == EST
 			|| line[i] == NORTH || line[i] == SOUTH)

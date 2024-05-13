@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 20:54:18 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 21:44:00 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ static void	paint_column(t_data *data, double display_h,
 		mlx_put_pixel(data->world, pfv.i, h++, data->sky_color);
 	while (h < adjusted_col_start_y + display_h)
 	{
-		wall_color = get_col_px_colour((h - col_start_y) / data->calculated_h,
-				data, pfv);
+		if (pfv.obstacle == 'C')
+			wall_color = get_col_px_colour_door((h - col_start_y)
+						/ data->calculated_h, data, pfv);
+		else
+			wall_color = get_col_px_colour((h - col_start_y)
+						/ data->calculated_h, data, pfv);
 		mlx_put_pixel(data->world, pfv.i, h, wall_color);
 		h++;
 	}
@@ -111,8 +115,8 @@ void	paint_walls(t_data *data)
 		pfv.ray_length *= cos(pfv.ray_angle - data->player_angle);
 		calculate_col_height(data, pfv);
 
-//	if (pfv.i % 16 == 0)
-//		printf("%d, wall_x,y: %f:%f, obstacle: %c\n", pfv.i, pfv.wall_x, pfv.wall_y, pfv.obstacle);
+	//	if (pfv.i % 16 == 0)
+		//		printf("%d, wall_x,y: %f:%f, obstacle: %c\n", pfv.i, pfv.wall_x, pfv.wall_y, pfv.obstacle);
 
 		if (pfv.i < WIDTH)
 			paint_column(data, data->display_h,

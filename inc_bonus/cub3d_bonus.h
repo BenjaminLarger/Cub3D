@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 16:44:51 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 21:35:12 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,12 @@ double			get_wall_distance(t_data *data, double ray_angle);
 
 // Sprite
 
-void	initialise_sprite(t_data *data);
-void	paint_sprite(t_data *data);
+void			initialise_sprite(t_data *data);
+void			paint_sprite(t_data *data);
 
+// Door
+
+uint32_t		get_col_px_colour_door(double calc_h, t_data *data, t_pfv pfv);
 
 // Exit
 

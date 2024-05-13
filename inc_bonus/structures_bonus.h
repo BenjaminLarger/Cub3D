@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 19:22:30 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 20:58:05 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_data
 	mlx_texture_t	*wall_so;
 	mlx_texture_t	*wall_we;
 	mlx_texture_t	*wall_ea;
+	mlx_texture_t	*door_close;
+	mlx_texture_t	*door_open;
 	mlx_texture_t	*sprite_texture1;
 	mlx_texture_t	*sprite_texture2;
 	mlx_texture_t	*sprite_texture3;

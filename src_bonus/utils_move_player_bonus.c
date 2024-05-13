@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:42:18 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 15:48:32 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 21:29:20 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	can_move(char point)
 {
-	if (point == WALL || point == '2')
+	if (point == WALL || point == '2' || point == 'C')
 	{
 		return (false);
 	}
