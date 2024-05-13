@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 16:01:49 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:23:02 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ double			find_vertical_wall_loop(t_data *data, t_map *map,
 double			find_horizontal_wall_loop(t_data *data, t_map *map,
 					double ray_angle);
 void			adjust_extrem_value(t_map *map, t_data *data);
-double			get_wall_distance(t_data *data, double ray_angle, t_pfv pfv);
+double			get_wall_distance(t_data *data, double ray_angle);
 
 // Exit
 

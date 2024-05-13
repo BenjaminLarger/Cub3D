@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 12:25:29 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 16:21:19 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:23:23 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ double	find_horizontal_intersection(t_data *data, double ray_angle)
 	return (find_horizontal_wall_loop(data, &map, ray_angle));
 }
 
-double	find_vertical_intersection(t_data *data, double ray_angle, t_pfv pfv)
+double	find_vertical_intersection(t_data *data, double ray_angle)
 {
 	t_map	map;
 
@@ -60,14 +60,14 @@ double	find_vertical_intersection(t_data *data, double ray_angle, t_pfv pfv)
 	return (find_vertical_wall_loop(data, &map, ray_angle));
 }
 
-double	get_wall_distance(t_data *data, double ray_angle, t_pfv pfv)
+double	get_wall_distance(t_data *data, double ray_angle)
 {
 	double	vertical_distance;
 	double	horizontal_distance;
 	double	distance_to_wall;
 
 	horizontal_distance = find_horizontal_intersection(data, ray_angle);
-	vertical_distance = find_vertical_intersection(data, ray_angle, pfv);
+	vertical_distance = find_vertical_intersection(data, ray_angle);
 	if (fabs(horizontal_distance) > fabs(vertical_distance))
 		distance_to_wall = vertical_distance;
 	else
