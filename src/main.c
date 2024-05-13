@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 15:37:15 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:25:40 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void render(void* param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	//printf("sin(ray_angle) = %f, cos(ray_angle) = %f\n", sin(data->player_angle), cos(data->player_angle));
 	player_input(data);
 	if (data->paint_in_render == TRUE)
 	{
