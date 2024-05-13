@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 16:39:49 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 16:44:51 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void			initialise_minimap(t_data *data);
 
 void			paint_world(t_data *data);
 void			paint_walls(t_data *data);
+uint32_t		pack_rgba(uint8_t pixels[4]);
 
 // User input
 

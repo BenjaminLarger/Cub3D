@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 15:47:01 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 17:00:52 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@ static void	initialise_texture(t_data *data)
 	free(data->south_path);
 	free(data->west_path);
 	free(data->east_path);
-	data->sprite_texture = mlx_load_png("./texture/flames_x500_y413.png");
+	data->sprite_texture1 = mlx_load_png("./texture/flame1.png");
+	data->sprite_texture2 = mlx_load_png("./texture/flame2.png");
+	data->sprite_texture3 = mlx_load_png("./texture/flame3.png");
+	data->sprite_texture4 = mlx_load_png("./texture/flame4.png");
 	if (!data->wall_no || !data->wall_so || !data->wall_we || !data->wall_ea
-		|| !data->sprite_texture)
+		|| !data->sprite_texture1 || !data->sprite_texture2
+		|| !data->sprite_texture3 || !data->sprite_texture4)
 		print_and_exit("Failed to initialise textures", 2, EXIT_FAILURE);
 }
 
@@ -70,6 +74,7 @@ void	initialise(char *filename, t_data *data)
 	data->minimap_tile_px = 16;
 	data->display_minimap = TRUE;
 	data->player_speed = 1;
+	data->loop = 0;
 	data->view_angle = PLAYER_FOV * (M_PI / 180);
 	data->angle_step = PLAYER_FOV * (M_PI / 180) / NUM_OF_RAYS;
 	if (check_file_extension(filename) != SUCCESS)

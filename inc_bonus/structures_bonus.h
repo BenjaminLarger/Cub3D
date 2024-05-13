@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 16:07:16 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 17:00:20 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ typedef struct s_data
 	mlx_texture_t	*wall_so;
 	mlx_texture_t	*wall_we;
 	mlx_texture_t	*wall_ea;
-	mlx_texture_t	*sprite_texture;
+	mlx_texture_t	*sprite_texture1;
+	mlx_texture_t	*sprite_texture2;
+	mlx_texture_t	*sprite_texture3;
+	mlx_texture_t	*sprite_texture4;
 	int				map_line;
 	int				map_departure_count;
 	char			depart_position;
@@ -60,6 +63,7 @@ typedef struct s_data
 	double			calculated_h;
 	double			display_h;
 	int paint_in_render; // to delete
+	int				loop;
 }			t_data;
 
 // ----------- Identifier flags
