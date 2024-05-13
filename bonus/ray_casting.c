@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 12:25:29 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 12:25:35 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 12:26:35 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ double	find_horizontal_intersection(t_data *data, double ray_angle)
 	adjust_extrem_value(&map, data);
 	map.len = sqrt(pow(map.old_x - data->player_x, 2)
 			+ pow(map.old_y - data->player_y, 2));
-	if (can_move(data->map[(int)map.old_y][(int)map.old_x]) == false)
-		return (map.len);
-	else
-		return (find_horizontal_wall_loop(data, &map, ray_angle));
+	return (find_horizontal_wall_loop(data, &map, ray_angle));
 }
 
 double	find_vertical_intersection(t_data *data, double ray_angle)
@@ -44,11 +41,13 @@ double	find_vertical_intersection(t_data *data, double ray_angle)
 	t_map	map;
 
 	get_slope_info(data, &map, ray_angle);
-	if (cos(ray_angle) <= 0)
+	if (cos(ray_angle) < 0)
 	{
 		map.old_x = floor(data->player_x);
 		map.xa = -1 - INC2;
 	}
+	else if (cos(ray_angle) == 0)
+		return (2147483647);
 	else
 	{
 		map.old_x = floor(data->player_x) + 1;
@@ -61,7 +60,7 @@ double	find_vertical_intersection(t_data *data, double ray_angle)
 	return (find_vertical_wall_loop(data, &map, ray_angle));
 }
 
-double	get_wall_distance(t_data *data, double ray_angle/* , bool fix_fish_eye */)
+double	get_wall_distance(t_data *data, double ray_angle)
 {
 	double	vertical_distance;
 	double	horizontal_distance;
@@ -73,9 +72,5 @@ double	get_wall_distance(t_data *data, double ray_angle/* , bool fix_fish_eye */
 		distance_to_wall = vertical_distance;
 	else
 		distance_to_wall = horizontal_distance;
-	/* if (fix_fish_eye == true)
-		distance_to_wall *= cos(ray_angle - data->player_angle); */
 	return (distance_to_wall);
 }
-	//distance_to_wall *= cos(ray_angle - data->player_angle);
-	//distance_to_wall = round(distance_to_wall * 100) / 100;

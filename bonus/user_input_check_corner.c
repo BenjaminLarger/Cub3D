@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:01:40 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 09:57:04 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 12:30:26 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,19 @@ static double	player_move_into_corner(t_data *data, t_corner *corner,
 	if ((corner->north_est_blocked == true
 			|| corner->north_west_blocked == true)
 		&& ((int)y < (int)data->player_y))
-	{
-		//printf("\033[1;31mblock player in north\n\033[0m");
 		return (true);
-	}
 	else if ((corner->south_est_blocked == true
 			|| corner->south_west_blocked == true)
 		&& ((int)y > (int)data->player_y))
-	{
-		//printf("\033[1;31mblock player in south\n\033[0m");
 		return (true);
-	}
 	else if ((corner->north_est_blocked == true
 			|| corner->north_west_blocked == true)
 		&& ((int)x > (int)data->player_x))
-	{
-		//printf("\033[1;31mblock player in est\n\033[0m");
 		return (true);
-	}
 	else if ((corner->north_west_blocked == true
 			|| corner->north_est_blocked == true)
 		&& ((int)x < (int)data->player_x))
-	{
-		//printf("\033[1;31mblock player in west\n\033[0m");
 		return (true);
-	}
 	else
 		return (false);
 }
@@ -66,28 +54,16 @@ static double	check_deadlock_corner(t_data *data, t_corner *corner)
 	y = (int)data->player_y;
 	if (data->map[y + 1][x] == '1'
 		&& data->map[y][x + 1] == '1')
-	{
-		//printf("south est corner is blockde\n");
 		corner->south_est_blocked = true;
-	}
 	if (data->map[y + 1][x]
 		&& data->map[y][x - 1] == '1')
-	{
 		corner->south_west_blocked = true;
-		//printf("south west corner is blocked\n");
-	}
 	if (data->map[y - 1][x] == '1'
 		&& data->map[y][x + 1] == '1')
-	{
-		//printf("x = %d, y - 1 = %d, point = %c north est corner is blocked\n", x, y - 1, data->map[y - 1][x]);
 		corner->north_est_blocked = true;
-	}
 	if (data->map[y - 1][x] == '1'
 			&& data->map[y][x - 1] == '1')
-	{
-		//printf("north west corner is blocked\n");
 		corner->north_west_blocked = true;
-	}
 	if (corner->north_est_blocked == true
 		|| corner->north_west_blocked == true
 		|| corner->south_est_blocked == true

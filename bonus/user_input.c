@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/04/30 15:45:30 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 12:30:56 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	rotate_player(int key, t_data *data)
 			data->player_angle -= angle_rotate;
 		else
 			data->player_angle = (2 * M_PI + data->player_angle) - angle_rotate;
-//		printf("data->player_angle: %f : %f\n", data->player_angle, data->player_angle * 180 / M_PI);
 	}
 	else if (key == MLX_KEY_RIGHT)
 	{
@@ -31,9 +30,7 @@ static void	rotate_player(int key, t_data *data)
 			data->player_angle += angle_rotate;
 		else
 			data->player_angle = angle_rotate - (2 * M_PI - data->player_angle);
-//		printf("data->player_angle: %f : %f\n", data->player_angle, data->player_angle * 180 / M_PI);
 	}
-	
 	if (data->paint_in_render == FALSE)
 	{
 		paint_world(data);

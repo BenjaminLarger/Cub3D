@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/12 14:59:36 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 12:26:26 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ void	initialise(char *filename, t_data *data)
 	if (get_data_from_file(filename, data) != SUCCESS)
 		return (print_and_exit("Wrong map", 2, EXIT_FAILURE));
 	get_map_size(data);
-	printf("data->col: %u, data->row: %u\n", data->col, data->row);
-	printf("player_x: %.2f, player_y: %.2f\n", data->player_x, data->player_y);
 	initialise_mlx(data);
 	initialise_texture(data);
 	initialise_world(data);
