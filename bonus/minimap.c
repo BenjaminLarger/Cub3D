@@ -3,44 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/05/12 15:25:31 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 12:35:54 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	paint_field_of_view(t_data *data)
-{
-	t_pfv	pfv;
-
-	pfv.i = 0;
-	pfv.view_angle = PLAYER_FOV * (M_PI / 180);
-	pfv.angle_step = pfv.view_angle / NUM_OF_RAYS; //200 = nmumber of rays
-	while (pfv.i < NUM_OF_RAYS)
-	{
-		pfv.ray_angle = data->player_angle
-			- (pfv.view_angle / 2) + pfv.i * pfv.angle_step;
-		pfv.ray_length = get_wall_distance(data, pfv.ray_angle);
-		pfv.endX = pfv.ray_length * cos(pfv.ray_angle);
-		pfv.endY = pfv.ray_length * sin(pfv.ray_angle);
-//	printf("pfv.endX: %f, pfv.endY: %f, pfv.ray_length: %f\n", pfv.endX, pfv.endY, pfv.ray_length);
-		pfv.n_pixels_to_draw = sqrt((pfv.endX * pfv.endX) + (pfv.endY * pfv.endY)) * data->minimap_tile_px;
-		pfv.total_pixels_to_draw = pfv.n_pixels_to_draw;
-		pfv.pixelX = (data->player_x * data->minimap_tile_px);
-		pfv.pixelY = (data->player_y * data->minimap_tile_px);
-		while (pfv.n_pixels_to_draw)
-		{
-			mlx_put_pixel(data->minimap, pfv.pixelX, pfv.pixelY, 0xffaa00AA);
-			pfv.pixelX += pfv.endX * data->minimap_tile_px / pfv.total_pixels_to_draw;
-			pfv.pixelY += pfv.endY * data->minimap_tile_px / pfv.total_pixels_to_draw;
-			--pfv.n_pixels_to_draw;
-		}
-		pfv.i++;
-	}
-}
 
 static void	get_mm_start_end_row(t_data *data)
 {
@@ -128,19 +98,20 @@ void	paint_minimap(t_data *data)
 			}
 			mm_x++;
 		}
-//		paint_field_of_view(data); //
 		paint_mm_player(data);
 	}
 }
 
 void	initialise_minimap(t_data *data)
 {
-	data->mm_max_width_px = 480; // 16 * 30
-	data->mm_max_height_px = 320; // 16 * 20
-	data->mm_max_col = data->mm_max_width_px / data->minimap_tile_px; // 30
-	data->mm_max_row = data->mm_max_height_px / data->minimap_tile_px; // 20
+	data->mm_max_width_px = 480;
+	data->mm_max_height_px = 320;
+	data->mm_max_col = data->mm_max_width_px / data->minimap_tile_px;
+	data->mm_max_row = data->mm_max_height_px / data->minimap_tile_px;
 	data->minimap = mlx_new_image(data->mlx,
 					data->mm_max_width_px,
 					data->mm_max_height_px);
-	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
+	if (!data->minimap
+		|| mlx_image_to_window(data->mlx, data->minimap, 32, 32) < 0)
+		print_and_exit("Failed to initialise image", 2, EXIT_FAILURE);
 }
