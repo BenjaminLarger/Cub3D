@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_ray_casting.c                                :+:      :+:    :+:   */
+/*   utils_ray_casting_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:07:48 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 12:27:19 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 15:48:37 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	get_slope_info(t_data *data, t_map *map, double ray_angle)
 {

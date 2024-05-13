@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_elements_utils.c                              :+:      :+:    :+:   */
+/*   file_elements_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:20:02 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 17:12:34 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 15:46:40 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	initialise_rgb_variables(t_rgb *rgb)
 {

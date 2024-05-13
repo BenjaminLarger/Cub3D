@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_elements.c                                    :+:      :+:    :+:   */
+/*   file_elements_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:20:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 18:13:23 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 15:46:33 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	init_identifier_flags(t_id_flags *flag)
 {
