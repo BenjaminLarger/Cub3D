@@ -1,0 +1,18 @@
+NO ./texture/Solid_blue.png
+SO ./texture/Solid_green.png
+WE ./texture/Solid_red.png
+EA ./texture/Solid_yellow.png
+
+C 0,51,102
+F 123,63,0
+
+
+1111111
+1S00001
+1001001
+1010101
+1001001
+1010101
+1001001
+1000001
+1111111

@@ -3,73 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 13:15:58 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/12 15:25:31 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	paint_one_tile(t_data *data, int colour, unsigned int col,
-	unsigned int row)
-{
-	unsigned int	x;
-	unsigned int	y;
-
-	x = 0;
-	while (x < data->minimap_tile_px)
-	{
-		y = 0;
-		while (y < data->minimap_tile_px)
-		{
-			mlx_put_pixel(data->minimap, col * data->minimap_tile_px + x,
-				row * data->minimap_tile_px + y, colour);
-			y++;
-		}
-		x++;
-	}
-}
-
-static void	paint_line(char *line, t_data *data, unsigned int row)
-{
-	unsigned int	col;
-
-	col = 0;
-	while (line[col])
-	{
-		if (line[col] == WALL)
-			paint_one_tile(data, 0xaaaaaa99, col, row);
-		else if (line[col] != OUT && line[col] != '2')
-			paint_one_tile(data, 0x11111199, col, row);
-		else
-			paint_one_tile(data, 0x00000000, col, row);
-		col++;
-	}
-}
-
-static void	paint_player(t_data *data)
-{
-	unsigned int	x;
-	unsigned int	y;
-	unsigned int	pos_x;
-	unsigned int	pos_y;
-
-	x = data->minimap_tile_px / 4;
-	while (x < data->minimap_tile_px - data->minimap_tile_px / 4)
-	{
-		y = data->minimap_tile_px / 4;
-		while (y < data->minimap_tile_px - data->minimap_tile_px / 4)
-		{
-			pos_x = (data->player_x - 0.5) * data->minimap_tile_px + x;
-			pos_y = (data->player_y - 0.5) * data->minimap_tile_px + y;
-			mlx_put_pixel(data->minimap, pos_x, pos_y, 0xff0000AA);
-			y++;
-		}
-		x++;
-	}
-}
 
 void	paint_field_of_view(t_data *data)
 {
@@ -101,58 +42,105 @@ void	paint_field_of_view(t_data *data)
 	}
 }
 
-/* static void	paint_ruler(t_data *data)
+static void	get_mm_start_end_row(t_data *data)
 {
-	unsigned int	row;
-	unsigned int	col;
-	char			*temp_str;
+	if (data->player_y - data->mm_max_row / 2 <= 0)
+	{
+		data->mm_row_start_px = 0;
+		data->mm_row_end_px = data->mm_max_row;
+	}
+	else if (data->player_y + data->mm_max_row / 2 > data->row)
+	{
+		data->mm_row_start_px = data->row - data->mm_max_row;
+		data->mm_row_end_px = data->row;
+	}
+	else
+	{
+		data->mm_row_start_px = data->player_y - data->mm_max_row / 2;
+		data->mm_row_end_px = data->player_y + data->mm_max_row / 2;
+	}
+}
 
-	printf("paint_ruler\n");
-	row = 0;
-	col = 0;
-	while (data->map[row][col])
+static void	get_mm_start_end_col(t_data *data)
+{
+	if (data->player_x - data->mm_max_col / 2 <= 0)
 	{
-		temp_str = ft_itoa(col);
-		mlx_put_string(data->mlx,
-			temp_str,
-			col + 32 + col * data->minimap_tile_px,
-			row + 32);
-		free(temp_str);
-		col++;
+		data->mm_col_start_px = 0;
+		data->mm_col_end_px = data->mm_max_col;
 	}
-	col = 0;
-	row = 1;
-	while (data->map[row])
+	else if (data->player_x + data->mm_max_col / 2 > data->col)
 	{
-		temp_str = ft_itoa(row);
-		mlx_put_string(data->mlx,
-			temp_str,
-			col + 32,
-			row + 32 + row * data->minimap_tile_px);
-		free(temp_str);
-		row++;
+		data->mm_col_start_px = data->col - data->mm_max_col;
+		data->mm_col_end_px = data->col;
 	}
-} */
+	else
+	{
+		data->mm_col_start_px = data->player_x - data->mm_max_col / 2;
+		data->mm_col_end_px = data->player_x + data->mm_max_col / 2;
+	}
+}
+
+static uint32_t	get_mm_px_color(t_data *data,
+	unsigned int mm_x, unsigned int mm_y)
+{
+	unsigned int	col;
+	unsigned int	row;
+	uint32_t		color;
+	char			pos;
+
+	col = (mm_x + (data->mm_col_start_px * data->minimap_tile_px))
+		/ data->minimap_tile_px;
+	row = (mm_y + (data->mm_row_start_px * data->minimap_tile_px))
+		/ data->minimap_tile_px;
+	if (col >= data->col || row >= data->row)
+		pos = OUT;
+	else
+		pos = data->map[row][col];
+	if (pos == WALL)
+		color = 0xaaaaaa99;
+	else if (pos != OUT && pos != '2')
+		color = 0x11111199;
+	else
+		color = 0x00000000;
+	return (color);
+}
 
 void	paint_minimap(t_data *data)
 {
-	unsigned int	row;
+	unsigned int	mm_x;
+	unsigned int	mm_y;
 
-	row = 0;
-	while (data->map[row])
+	if (data->display_minimap == TRUE)
 	{
-		paint_line(data->map[row], data, row);
-		row++;
+		mm_x = 0;
+		mm_y = 0;
+		get_mm_start_end_row(data);
+		get_mm_start_end_col(data);
+		while (mm_x < data->mm_max_width_px)
+		{
+			mm_y = 0;
+			while (mm_y < data->mm_max_height_px)
+			{
+				mlx_put_pixel(data->minimap,
+					mm_x, mm_y,
+					get_mm_px_color(data, mm_x, mm_y));
+				mm_y++;
+			}
+			mm_x++;
+		}
+//		paint_field_of_view(data); //
+		paint_mm_player(data);
 	}
-	paint_field_of_view(data);
-	paint_player(data);
-//	paint_ruler(data); // to delete
 }
 
 void	initialise_minimap(t_data *data)
 {
+	data->mm_max_width_px = 480; // 16 * 30
+	data->mm_max_height_px = 320; // 16 * 20
+	data->mm_max_col = data->mm_max_width_px / data->minimap_tile_px; // 30
+	data->mm_max_row = data->mm_max_height_px / data->minimap_tile_px; // 20
 	data->minimap = mlx_new_image(data->mlx,
-			data->col * data->minimap_tile_px,
-			data->row * data->minimap_tile_px);
+					data->mm_max_width_px,
+					data->mm_max_height_px);
 	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
 }

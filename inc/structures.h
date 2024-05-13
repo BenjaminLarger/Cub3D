@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/11 21:15:50 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/13 09:57:39 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,16 @@ typedef struct s_data
 	char			*east_path;
 	unsigned int	floor_color;
 	unsigned int	sky_color;
-	unsigned int	minimap_tile_px;
+	int				display_minimap;
+	unsigned int	minimap_tile_px; // minimap
+	unsigned int	mm_max_width_px; // minimap
+	unsigned int	mm_max_height_px; // minimap
+	double			mm_max_col; // minimap
+	double			mm_max_row; // minimap
+	double			mm_row_start_px; // minimap
+	double			mm_row_end_px; // minimap
+	double			mm_col_start_px; // minimap
+	double			mm_col_end_px; // minimap
 	unsigned int	col;
 	unsigned int	row;
 	double			player_x;
@@ -91,6 +100,8 @@ typedef struct s_pfv
 	int		i;
 	double	wall_x;
 	double	wall_y;
+	double	prev_wall_x;
+	double	prev_wall_y;
 }			t_pfv;
 
 // ----------- Ray-Casting
