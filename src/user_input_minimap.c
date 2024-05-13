@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input_minimap.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/12 15:00:36 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 15:32:58 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	minimap_control(mlx_key_data_t keydata, void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
+	//printf("sin(ray_angle) = %f, cos(ray_angle) = %f\n", sin(data->player_angle), cos(data->player_angle));
 	if (keydata.key == MLX_KEY_KP_SUBTRACT && keydata.action == MLX_PRESS)
 		resize_minimap(MLX_KEY_KP_SUBTRACT, data);
 	else if (keydata.key == MLX_KEY_KP_ADD && keydata.action == MLX_PRESS)
