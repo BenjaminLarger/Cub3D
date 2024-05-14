@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 15:47:10 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 18:30:02 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,15 @@ static void render(void* param)
 	t_data	*data;
 
 	data = (t_data *)param;
+	data->loop++;
+	if (data->loop == 8)
+		data->loop = 0;
 	player_input(data);
 	if (data->paint_in_render == TRUE)
 	{
 		paint_world(data);
 		paint_minimap(data);
+		paint_sprite(data);
 	}
 }
 

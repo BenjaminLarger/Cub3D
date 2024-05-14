@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:55:53 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 15:46:23 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/13 20:58:59 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	exit_game(t_data *data)
 	mlx_delete_texture(data->wall_so);
 	mlx_delete_texture(data->wall_we);
 	mlx_delete_texture(data->wall_ea);
+	mlx_delete_texture(data->door_open);
+	mlx_delete_texture(data->door_close);
+	mlx_delete_texture(data->sprite_texture1);
+	mlx_delete_texture(data->sprite_texture2);
+	mlx_delete_texture(data->sprite_texture3);
+	mlx_delete_texture(data->sprite_texture4);
 //	mlx_delete_image(data->mlx, data->minimap);
 //	mlx_delete_image(data->mlx, data->world);
 //	mlx_delete_image(data->mlx, data->buffer_world);

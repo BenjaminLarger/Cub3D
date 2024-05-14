@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:42:18 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 16:46:43 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 10:08:24 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	can_move(char point)
 {
-	if (point == WALL || point == '2')
+	if (point == WALL || point == '2' || point == 'C')
 	{
 		return (false);
 	}
