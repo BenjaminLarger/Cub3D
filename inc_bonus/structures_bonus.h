@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 14:15:38 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/14 15:44:58 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_data
 	int paint_in_render; // to delete
 	int				loop;
 	double			prev_mouse_x;
-	double			diff_mouse_x;
 }			t_data;
 
 // ----------- Identifier flags
