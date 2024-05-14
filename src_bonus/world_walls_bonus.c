@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_walls_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 11:43:46 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 11:56:17 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ static void	paint_column(t_data *data, double display_h,
 	{
 		if (pfv.obstacle == 'C')
 			wall_color = get_col_px_colour_door((h - col_start_y)
+						/ data->calculated_h, data, pfv, data->door_close);
+		else if (pfv.obstacle == 'O')
+			wall_color = get_col_px_colour_door((h - col_start_y)
 						/ data->calculated_h, data, pfv, data->door_open);
 		else
 			wall_color = get_col_px_colour((h - col_start_y)
@@ -63,7 +66,7 @@ static void	get_obstacle_type_on_right_side(t_data *data, t_pfv *pfv)
 		pfv->obs_x = (int)(pfv->wall_x + 0.2);
 		pfv->obs_y = (int)(pfv->wall_y);
 	}
-	else if (sin(pfv->ray_angle) > 0
+	else if (sin(pfv->ray_angle) <= 0
 		&& fabs(pfv->wall_y - round(pfv->wall_y)) < 0.00001)
 	{
 		pfv->obs_x = (int)(pfv->wall_x);
