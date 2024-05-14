@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 14:29:12 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 10:02:36 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	move_forward(t_data *data)
 
 	end_x = (data->player_speed / 10) * cos(data->player_angle) * 4;
 	end_y = (data->player_speed / 10) * sin(data->player_angle) * 4;
-
 	if (player_can_move(data, end_x, end_y) == true)
 	{
 		data->player_x += (end_x / 4);

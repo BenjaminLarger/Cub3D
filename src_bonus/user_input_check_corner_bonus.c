@@ -3,41 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   user_input_check_corner_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:01:40 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 15:47:54 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/14 10:05:41 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
 /**
  * @brief This function check if the player is moving toward
  *  a corner identified as blocked.
  * @return true if the player is moving toward a blocked corner.
  */
+
 static double	player_move_into_corner(t_data *data, t_corner *corner,
 	double x, double y)
 {
-	if ((corner->north_est_blocked == true
-			|| corner->north_west_blocked == true)
-		&& ((int)y < (int)data->player_y))
+	if (ceil(y) < ceil(data->player_y) && ceil(x) < ceil(data->player_x)
+		&& corner->north_west_blocked == true)
+	{
 		return (true);
-	else if ((corner->south_est_blocked == true
-			|| corner->south_west_blocked == true)
-		&& ((int)y > (int)data->player_y))
+	}
+	if (ceil(y) < ceil(data->player_y) && floor(x) > floor(data->player_x)
+		&& corner->north_est_blocked == true)
+	{
 		return (true);
-	else if ((corner->north_est_blocked == true
-			|| corner->north_west_blocked == true)
-		&& ((int)x > (int)data->player_x))
+	}
+	if (floor(y) > floor(data->player_y) && ceil(x) < ceil(data->player_x)
+		&& corner->south_west_blocked == true)
+	{
 		return (true);
-	else if ((corner->north_west_blocked == true
-			|| corner->north_est_blocked == true)
-		&& ((int)x < (int)data->player_x))
+	}
+	if (floor(y) > floor(data->player_y) && floor(x) > floor(data->player_x)
+		&& corner->south_est_blocked == true)
+	{
 		return (true);
-	else
-		return (false);
+	}
+	return (false);
 }
 
 /**
@@ -55,14 +59,12 @@ static double	check_deadlock_corner(t_data *data, t_corner *corner)
 	if (data->map[y + 1][x] == '1'
 		&& data->map[y][x + 1] == '1')
 		corner->south_est_blocked = true;
-	if (data->map[y + 1][x]
-		&& data->map[y][x - 1] == '1')
+	if (data->map[y + 1][x] == '1' && data->map[y][x - 1] == '1')
 		corner->south_west_blocked = true;
 	if (data->map[y - 1][x] == '1'
 		&& data->map[y][x + 1] == '1')
 		corner->north_est_blocked = true;
-	if (data->map[y - 1][x] == '1'
-			&& data->map[y][x - 1] == '1')
+	if (data->map[y - 1][x] == '1' && data->map[y][x - 1] == '1')
 		corner->north_west_blocked = true;
 	if (corner->north_est_blocked == true
 		|| corner->north_west_blocked == true
@@ -88,8 +90,10 @@ bool	move_in_corner(t_data *data, double x, double y)
 	corner.north_west_blocked = false;
 	corner.south_est_blocked = false;
 	corner.south_west_blocked = false;
-	if (fabs(x - round(x)) > 0.1 || fabs(y - round(y)) > 0.1)
+	if (fabs(x - round(x)) > 0.25 || fabs(y - round(y)) > 0.25)
+	{
 		return (false);
+	}
 	if (check_deadlock_corner(data, &corner) == false)
 		return (false);
 	if (player_move_into_corner(data, &corner, x, y) == true)
