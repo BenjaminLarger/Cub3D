@@ -48,8 +48,9 @@ SRCS_BONUS		:= main_bonus.c free_bonus.c print_bonus.c exit_bonus.c \
 	minimap_bonus.c minimap_player_bonus.c user_input_minimap_bonus.c \
 	ray_casting_bonus.c \
 	world_bonus.c world_walls_bonus.c world_walls_colour_bonus.c \
-	utils_joinfree_bonus.c utils_fill_map_bonus.c utils_move_player_bonus.c \
+	utils_joinfree_bonus.c utils_fill_map_bonus.c utils_move_player_bonus.c\
 	utils_dev_bonus.c \
+	doors_bonus.c \
 	sprite_bonus.c world_door_colour_bonus.c \
 
 SRC_DIR_BONUS	:= src_bonus

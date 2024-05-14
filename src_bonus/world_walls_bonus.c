@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 11:43:46 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 19:43:43 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,9 @@ void	paint_walls(t_data *data)
 			get_obstacle_type_on_left_side(data, &pfv);
 		pfv.ray_length *= cos(pfv.ray_angle - data->player_angle);
 		calculate_col_height(data, pfv);
-		if (pfv.i % 16 == 0)
-				printf("%d, wall_x,y: %f:%f, obstacle: %c, distance: %f\n", pfv.i, pfv.wall_x, pfv.wall_y, pfv.obstacle, pfv.ray_length);
-
+		//if (pfv.i % 16 == 0)
+		//		printf("%d, wall_x,y: %f:%f, obstacle: %c, distance: %f\n", pfv.i, pfv.wall_x, pfv.wall_y, pfv.obstacle, pfv.ray_length);
+		check_player_can_open_door(data, pfv);
 		if (pfv.i < WIDTH)
 			paint_column(data, data->display_h,
 				(HEIGHT / 2) - (data->calculated_h / 2), pfv);

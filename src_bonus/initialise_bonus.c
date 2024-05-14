@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 10:58:00 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:27:06 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	initialise(char *filename, t_data *data)
 	data->display_minimap = TRUE;
 	data->player_speed = 1;
 	data->loop = 0;
+	data->player_can_open_door = false;
 	data->view_angle = PLAYER_FOV * (M_PI / 180);
 	data->angle_step = PLAYER_FOV * (M_PI / 180) / NUM_OF_RAYS;
 	if (check_file_extension(filename) != SUCCESS)

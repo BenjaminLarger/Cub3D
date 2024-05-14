@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:07:48 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 12:27:19 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 16:46:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ static bool	must_exit_loop(t_map *map, t_data *data, double ray_angle)
 		return (is_wall(map, data, ray_angle));
 }
 
-double	find_horizontal_wall_loop(t_data *data, t_map *map, double ray_angle)
+double	find_horizontal_wall_loop(t_data *data, t_map *map, double ray_angle, t_pfv pfv)
 {
 	map->new_x = map->old_x;
 	map->new_y = map->old_y;
+	if (pfv.i == 1824 || pfv.i == 1825 || pfv.i == 1826)
+		printf("---------------\n");
 	while (must_exit_loop(map, data, ray_angle) == false)
 	{
 		map->new_y = map->new_y + map->ya;
@@ -70,7 +72,11 @@ double	find_horizontal_wall_loop(t_data *data, t_map *map, double ray_angle)
 		adjust_extrem_value(map, data);
 		map->len = sqrt(pow(map->new_x - data->player_x, 2)
 				+ pow(map->new_y - data->player_y, 2));
+		if (pfv.i == 1824 || pfv.i == 1825 || pfv.i == 1826)
+			printf("pfv = %d, x = %f, y = %f, dist = %f\n", pfv.i, map->new_x , map->new_y, map->len);
 	}
+	if (pfv.i == 1824 || pfv.i == 1825 || pfv.i == 1826)
+		printf("---------------\n");
 	return (map->len);
 }
 

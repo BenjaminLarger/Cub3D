@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 11:39:43 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 18:59:02 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ typedef struct s_data
 	double			display_h;
 	int paint_in_render; // to delete
 	int				loop;
+	bool	player_can_open_door;
+	bool	player_can_close_door;
+	bool	door_is_open;
+	double	x_door_op;
+	double	y_door_op;
+	double	x_door_cl;
+	double	y_door_cl;
 }			t_data;
 
 // ----------- Identifier flags
@@ -113,6 +120,7 @@ typedef struct s_pfv
 	char	obstacle;
 	int		obs_x;
 	int		obs_y;
+	bool	door_found;
 }			t_pfv;
 
 // ----------- Ray-Casting

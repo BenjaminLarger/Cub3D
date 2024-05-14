@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 10:34:13 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 16:43:52 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ void			get_slope_info(t_data *data, t_map *map, double ray_angle);
 double			find_vertical_wall_loop(t_data *data, t_map *map,
 					double ray_angle);
 double			find_horizontal_wall_loop(t_data *data, t_map *map,
-					double ray_angle);
+					double ray_angle, t_pfv pfv);
 void			adjust_extrem_value(t_map *map, t_data *data);
-double			get_wall_distance(t_data *data, double ray_angle);
+double			get_wall_distance(t_data *data, double ray_angle, t_pfv pfv);
 
 // Exit
 
