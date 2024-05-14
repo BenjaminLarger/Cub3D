@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 14:36:44 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 11:26:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_rgb
 typedef struct s_pfv
 {
 	double	ray_length;
+	double	ray_length_to_door;
 	double	endX;
 	double	endY;
 	int		n_pixels_to_draw;
@@ -119,14 +120,14 @@ typedef struct s_map
 	double	b;
 }			t_map;
 
+// ----------- Corner identifier
+
 typedef struct s_corner
 {
 	bool	south_west_blocked;
 	bool	south_est_blocked;
 	bool	north_west_blocked;
 	bool	north_est_blocked;
-/* 	bool	can_use_vertical_intersection;
-	bool	can_use_horizontal_intersection */
 }			t_corner;
 
 #endif

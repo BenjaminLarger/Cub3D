@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 20:58:05 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/14 11:39:43 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ typedef struct s_pfv
 	double	prev_wall_x;
 	double	prev_wall_y;
 	char	obstacle;
+	int		obs_x;
+	int		obs_y;
 }			t_pfv;
 
 // ----------- Ray-Casting

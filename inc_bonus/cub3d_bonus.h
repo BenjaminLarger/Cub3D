@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 21:35:12 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/14 11:37:21 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define EST 'E'
 # define WEST 'W'
 # define FLOOR '0'
+# define DOOR_CLOSED 'C'
+# define DOOR_OPEN 'O'
 
 // Windows param
 
@@ -104,7 +106,8 @@ void			paint_sprite(t_data *data);
 
 // Door
 
-uint32_t		get_col_px_colour_door(double calc_h, t_data *data, t_pfv pfv);
+uint32_t		get_col_px_colour_door(double calc_h, t_data *data, t_pfv pfv,
+					mlx_texture_t *door_state);
 
 // Exit
 

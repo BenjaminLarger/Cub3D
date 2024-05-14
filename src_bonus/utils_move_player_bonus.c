@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:42:18 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/14 10:08:24 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 10:37:40 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ bool	player_can_move(t_data *data, double end_x, double end_y)
 	if (move_in_corner(data, x, y) == true)
 		return (false);
 	if (data->map[(int)y][(int)x] == WALL || data->map[(int)y][(int)x] == '2')
+//		|| data->map[(int)y][(int)x] == DOOR_CLOSED)
 		return (false);
 	else
 		return (true);
