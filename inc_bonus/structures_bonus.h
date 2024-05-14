@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 15:44:58 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/14 18:01:15 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ typedef struct s_rgb
 typedef struct s_pfv
 {
 	double	ray_length;
+	double	ray_length_n1;
+	double	ray_length_n2;
 	double	endX;
 	double	endY;
 	int		n_pixels_to_draw;
@@ -109,8 +111,8 @@ typedef struct s_pfv
 	int		i;
 	double	wall_x;
 	double	wall_y;
-	double	prev_wall_x;
-	double	prev_wall_y;
+	double	wall_x_n1;
+	double	wall_y_n1;
 	char	obstacle;
 	int		obs_x;
 	int		obs_y;

@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 14:03:41 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/14 18:08:42 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,12 @@ void			initialise_minimap(t_data *data);
 void			paint_world(t_data *data);
 void			paint_walls(t_data *data);
 uint32_t		pack_rgba(uint8_t pixels[4]);
+void			calculate_col_height(t_data *data, t_pfv pfv);
+void			get_obstacle_type_on_right_side(t_data *data, t_pfv *pfv);
+void			get_obstacle_type_on_left_side(t_data *data, t_pfv *pfv);
+void			update_wall_data(t_data *data, t_pfv *pfv);
+void			update_prev_rays_distance_data(t_pfv *pfv);
+
 
 // User input
 

@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 12:09:50 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/14 18:20:26 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,34 @@ static void	paint_column(t_data *data, double display_h,
 		mlx_put_pixel(data->world, pfv.i, h++, data->floor_color);
 }
 
+static void	check_anomalies(t_data *data, t_pfv *pfv)
+{
+	double	diff1;
+	double	diff2;
+	double	threshold1;
+	double	threshold2;
+
+	diff1 = fabs(pfv->ray_length_n2 - pfv->ray_length_n1);
+	diff2 = fabs(pfv->ray_length_n1 - pfv->ray_length);
+	threshold1 = 0.1 * pfv->ray_length_n2;
+	threshold2 = 0.1 * pfv->ray_length_n1;
+	if (pfv->i != 0 && diff1 > threshold1 && diff2 > threshold2)
+	{
+		pfv->i--;
+		paint_column(data, data->display_h,
+			(HEIGHT / 2) - (data->calculated_h / 2), *pfv);
+		pfv->i++;
+	}
+}
+
+static void	update_prev_rays_distance_data(t_pfv *pfv)
+{
+	if (pfv->i == 0)
+		pfv->ray_length_n1 = pfv->ray_length;
+	pfv->ray_length_n2 = pfv->ray_length_n1;
+	pfv->ray_length_n1 = pfv->ray_length;
+}
+
 void	paint_walls(t_data *data)
 {
 	t_pfv	pfv;
@@ -55,9 +83,10 @@ void	paint_walls(t_data *data)
 	{
 		pfv.ray_angle = data->player_angle
 			- (data->view_angle / 2) + pfv.i * data->angle_step;
+		update_prev_rays_distance_data(&pfv);
 		pfv.ray_length = get_wall_distance(data, pfv.ray_angle);
-		pfv.prev_wall_x = pfv.wall_x;
-		pfv.prev_wall_y = pfv.wall_y;
+		pfv.wall_x_n1 = pfv.wall_x;
+		pfv.wall_y_n1 = pfv.wall_y;
 		pfv.wall_x = data->player_x + cos(pfv.ray_angle) * pfv.ray_length;
 		pfv.wall_y = data->player_y + sin(pfv.ray_angle) * pfv.ray_length;
 		pfv.ray_length *= cos(pfv.ray_angle - data->player_angle);
@@ -65,6 +94,7 @@ void	paint_walls(t_data *data)
 		if (pfv.i < WIDTH)
 			paint_column(data, data->display_h,
 				(HEIGHT / 2) - (data->calculated_h / 2), pfv);
+		check_anomalies(data, &pfv);
 		pfv.i++;
 	}
 }
