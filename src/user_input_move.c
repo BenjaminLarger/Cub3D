@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input_move.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 10:02:36 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:08:03 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ void	move_forward(t_data *data)
 		data->player_x += (end_x / 4);
 		data->player_y += (end_y / 4);
 	}
-	if (data->paint_in_render == FALSE)
-	{
-		paint_world(data);
-		paint_minimap(data);
-	}
 }
 
 void	move_backward(t_data *data)
@@ -42,11 +37,6 @@ void	move_backward(t_data *data)
 	{
 		data->player_x -= end_x / 4;
 		data->player_y -= end_y / 4;
-	}
-	if (data->paint_in_render == FALSE)
-	{
-		paint_world(data);
-		paint_minimap(data);
 	}
 }
 
@@ -62,11 +52,6 @@ void	move_right(t_data *data)
 		data->player_x -= end_x / 4;
 		data->player_y -= end_y / 4;
 	}
-	if (data->paint_in_render == FALSE)
-	{
-		paint_world(data);
-		paint_minimap(data);
-	}
 }
 
 void	move_left(t_data *data)
@@ -80,10 +65,5 @@ void	move_left(t_data *data)
 	{
 		data->player_x -= end_x / 4;
 		data->player_y -= end_y / 4;
-	}
-	if (data->paint_in_render == FALSE)
-	{
-		paint_world(data);
-		paint_minimap(data);
 	}
 }

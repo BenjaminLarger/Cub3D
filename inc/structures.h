@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 11:26:20 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:06:15 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,18 @@ typedef struct s_data
 	char			*east_path;
 	unsigned int	floor_color;
 	unsigned int	sky_color;
-	int				display_minimap;
-	unsigned int	minimap_tile_px; // minimap
-	unsigned int	mm_max_width_px; // minimap
-	unsigned int	mm_max_height_px; // minimap
-	double			mm_max_col; // minimap
-	double			mm_max_row; // minimap
-	double			mm_row_start_px; // minimap
-	double			mm_row_end_px; // minimap
-	double			mm_col_start_px; // minimap
-	double			mm_col_end_px; // minimap
 	unsigned int	col;
 	unsigned int	row;
 	double			player_x;
 	double			player_y;
-	double			pdx;//player direction x
-	double			pdy;//player direction y
+	double			pdx;
+	double			pdy;
 	double			player_angle;
 	double			player_speed;
-	double	angle_step;
-	double	view_angle;
+	double			angle_step;
+	double			view_angle;
 	double			calculated_h;
 	double			display_h;
-	int paint_in_render; // to delete
 }			t_data;
 
 // ----------- Identifier flags

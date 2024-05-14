@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:56:10 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 12:27:09 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:11:52 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ int	free_string_array_and_return(char **str_array, int to_return)
 	free(str_array);
 	return (to_return);
 }
-

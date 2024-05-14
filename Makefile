@@ -22,9 +22,8 @@ HEADERS		= -I  $(HEADER_DIR) -I ${LIBMLX}/include -I ${LIBFT}
 SRCS		:= main.c free.c print.c exit.c \
 	initialise.c \
 	file_load.c file_elements.c file_elements_utils.c \
-	user_input.c user_input_move.c user_input_check_corner.c\
-	file_map.c utils_valid_map.c utils_ray_casting.c\
-	minimap.c minimap_player.c user_input_minimap.c \
+	user_input.c user_input_move.c user_input_check_corner.c \
+	file_map.c utils_valid_map.c utils_ray_casting.c \
 	ray_casting.c \
 	world.c world_walls.c world_walls_colour.c \
 	utils_joinfree.c utils_fill_map.c utils_move_player.c utils_dev.c \
