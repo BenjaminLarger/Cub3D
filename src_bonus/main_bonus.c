@@ -6,13 +6,13 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 18:30:02 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/14 14:59:44 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-static void render(void* param)
+static void	render(void *param)
 {
 	t_data	*data;
 
@@ -36,9 +36,10 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		print_and_exit("Wrong arg number", 2, EXIT_FAILURE);
 	initialise(argv[1], &data);
-	data.paint_in_render = FALSE;
+	data.paint_in_render = TRUE;
 	mlx_loop_hook(data.mlx, render, &data);
 	mlx_key_hook(data.mlx, &minimap_control, &data);
+	mlx_cursor_hook(data.mlx, &mouse_control, &data);
 	mlx_loop(data.mlx);
 	exit_game(&data);
 	exit(EXIT_SUCCESS);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 11:37:21 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 14:03:41 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void			player_input(void *param);
 void			minimap_control(mlx_key_data_t keydata, void *param);
 bool			player_can_move(t_data *data, double end_x, double end_y);
 bool			move_in_corner(t_data *data, double x, double y);
+void			mouse_control(double xpos, double ypos, void *param);
 
 // Ray casting
 void			get_slope_info(t_data *data, t_map *map, double ray_angle);
