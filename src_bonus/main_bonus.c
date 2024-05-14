@@ -6,13 +6,13 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 19:11:17 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 19:49:24 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void render(void* param)
+static void	render(void *param)
 {
 	t_data	*data;
 
@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 	data.paint_in_render = TRUE;
 	mlx_loop_hook(data.mlx, render, &data);
 	mlx_key_hook(data.mlx, &minimap_control, &data);
+	mlx_cursor_hook(data.mlx, &mouse_control, &data);
 	mlx_loop(data.mlx);
 	exit_game(&data);
 	exit(EXIT_SUCCESS);

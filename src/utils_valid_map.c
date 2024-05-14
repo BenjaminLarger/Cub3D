@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_valid_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 10:44:31 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:13:07 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,3 @@ int	valid_surrounded_wall(t_data *data, int i, int j)
 	}
 	return (SUCCESS);
 }
-

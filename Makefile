@@ -22,9 +22,8 @@ HEADERS		= -I  $(HEADER_DIR) -I ${LIBMLX}/include -I ${LIBFT}
 SRCS		:= main.c free.c print.c exit.c \
 	initialise.c \
 	file_load.c file_elements.c file_elements_utils.c \
-	user_input.c user_input_move.c user_input_check_corner.c\
-	file_map.c utils_valid_map.c utils_ray_casting.c\
-	minimap.c minimap_player.c user_input_minimap.c \
+	user_input.c user_input_move.c user_input_check_corner.c \
+	file_map.c utils_valid_map.c utils_ray_casting.c \
 	ray_casting.c \
 	world.c world_walls.c world_walls_colour.c \
 	utils_joinfree.c utils_fill_map.c utils_move_player.c utils_dev.c \
@@ -51,7 +50,8 @@ SRCS_BONUS		:= main_bonus.c free_bonus.c print_bonus.c exit_bonus.c \
 	utils_joinfree_bonus.c utils_fill_map_bonus.c utils_move_player_bonus.c\
 	utils_dev_bonus.c \
 	doors_bonus.c \
-	sprite_bonus.c world_door_colour_bonus.c \
+	sprite_bonus.c world_door_colour_bonus.c user_input_mouse_bonus.c \
+	world_walls_utils_bonus.c \
 
 SRC_DIR_BONUS	:= src_bonus
 BUILD_DIR_BONUS	:= build_bonus

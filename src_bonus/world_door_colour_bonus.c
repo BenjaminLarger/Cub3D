@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_door_colour_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 11:26:20 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 17:11:53 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ uint32_t	get_col_px_colour_door(double calc_h, t_data *data, t_pfv pfv,
 	if (pfv.i != 0 && fabs(pfv.wall_y - round(pfv.wall_y)) < 0.00001
 		&& fabs(pfv.wall_x - round(pfv.wall_x)) < 0.00001)
 	{
-		pfv.wall_x = pfv.prev_wall_x;
-		pfv.wall_y = pfv.prev_wall_y;
+		pfv.wall_x = pfv.wall_x_n1;
+		pfv.wall_y = pfv.wall_y_n1;
 	}
 	if (pfv.wall_y > data->player_y
 		&& fabs(pfv.wall_y - round(pfv.wall_y)) < 0.00001)

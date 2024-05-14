@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input_check_corner.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:01:40 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/14 10:01:44 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:12:23 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,5 @@ bool	move_in_corner(t_data *data, double x, double y)
 	if (player_move_into_corner(data, &corner, x, y) == true)
 		return (true);
 	else
-		return (false);	
+		return (false);
 }

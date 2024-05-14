@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 19:20:37 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 19:47:15 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,12 @@ void			initialise_minimap(t_data *data);
 void			paint_world(t_data *data);
 void			paint_walls(t_data *data);
 uint32_t		pack_rgba(uint8_t pixels[4]);
+void			calculate_col_height(t_data *data, t_pfv pfv);
+void			get_obstacle_type_on_right_side(t_data *data, t_pfv *pfv);
+void			get_obstacle_type_on_left_side(t_data *data, t_pfv *pfv);
+void			update_wall_data(t_data *data, t_pfv *pfv);
+void			update_prev_rays_distance_data(t_pfv *pfv);
+
 
 // User input
 
@@ -89,6 +95,7 @@ void			player_input(void *param);
 void			minimap_control(mlx_key_data_t keydata, void *param);
 bool			player_can_move(t_data *data, double end_x, double end_y);
 bool			move_in_corner(t_data *data, double x, double y);
+void			mouse_control(double xpos, double ypos, void *param);
 
 // Ray casting
 void			get_slope_info(t_data *data, t_map *map, double ray_angle);

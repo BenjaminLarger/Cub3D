@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 18:59:02 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 19:47:40 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_data
 	double	y_door_op;
 	double	x_door_cl;
 	double	y_door_cl;
+	double			prev_mouse_x;
 }			t_data;
 
 // ----------- Identifier flags
@@ -103,6 +104,8 @@ typedef struct s_rgb
 typedef struct s_pfv
 {
 	double	ray_length;
+	double	ray_length_n1;
+	double	ray_length_n2;
 	double	endX;
 	double	endY;
 	int		n_pixels_to_draw;
@@ -115,8 +118,8 @@ typedef struct s_pfv
 	int		i;
 	double	wall_x;
 	double	wall_y;
-	double	prev_wall_x;
-	double	prev_wall_y;
+	double	wall_x_n1;
+	double	wall_y_n1;
 	char	obstacle;
 	int		obs_x;
 	int		obs_y;

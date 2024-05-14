@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 12:27:06 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 19:49:08 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ static void	initialise_texture(t_data *data)
 	data->sprite_texture2 = mlx_load_png("./texture/flame2.png");
 	data->sprite_texture3 = mlx_load_png("./texture/flame3.png");
 	data->sprite_texture4 = mlx_load_png("./texture/flame4.png");
-//	data->door_close = mlx_load_png("./texture/enter_sign.png");
-	data->door_close = mlx_load_png("./texture/43183_door_on_tree.png");
-	data->door_open = mlx_load_png("./texture/43183_door_on_tree.png");
+	data->door_close = mlx_load_png("./texture/forest_door_closed.png");
+	data->door_open = mlx_load_png("./texture/forest_door_open.png");
 	if (!data->wall_no || !data->wall_so || !data->wall_we || !data->wall_ea
 		|| !data->sprite_texture1 || !data->sprite_texture2
 		|| !data->sprite_texture3 || !data->sprite_texture4
@@ -75,6 +74,7 @@ void	get_map_size(t_data *data)
 
 void	initialise(char *filename, t_data *data)
 {
+	data->prev_mouse_x = -1;
 	data->minimap_tile_px = 16;
 	data->display_minimap = TRUE;
 	data->player_speed = 1;
@@ -95,4 +95,5 @@ void	initialise(char *filename, t_data *data)
 	paint_world(data);
 	paint_minimap(data);
 	paint_sprite(data);
+	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_DISABLED);
 }

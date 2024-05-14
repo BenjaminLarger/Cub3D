@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 12:26:26 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:07:10 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ void	get_map_size(t_data *data)
 
 void	initialise(char *filename, t_data *data)
 {
-	data->minimap_tile_px = 16;
-	data->display_minimap = TRUE;
 	data->player_speed = 1;
 	data->view_angle = PLAYER_FOV * (M_PI / 180);
 	data->angle_step = PLAYER_FOV * (M_PI / 180) / NUM_OF_RAYS;
@@ -78,7 +76,5 @@ void	initialise(char *filename, t_data *data)
 	initialise_mlx(data);
 	initialise_texture(data);
 	initialise_world(data);
-	initialise_minimap(data);
 	paint_world(data);
-	paint_minimap(data);
 }

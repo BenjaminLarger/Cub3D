@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 15:47:15 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/14 18:38:14 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ static uint32_t	get_mm_px_color(t_data *data,
 		pos = data->map[row][col];
 	if (pos == WALL)
 		color = 0xaaaaaa99;
+	else if (pos == DOOR_CLOSED)
+		color = 0xffffff99;
+	else if (pos == DOOR_OPEN)
+		color = 0x6a4a3a99;
 	else if (pos != OUT && pos != '2')
 		color = 0x11111199;
 	else
@@ -109,8 +113,8 @@ void	initialise_minimap(t_data *data)
 	data->mm_max_col = data->mm_max_width_px / data->minimap_tile_px;
 	data->mm_max_row = data->mm_max_height_px / data->minimap_tile_px;
 	data->minimap = mlx_new_image(data->mlx,
-					data->mm_max_width_px,
-					data->mm_max_height_px);
+			data->mm_max_width_px,
+			data->mm_max_height_px);
 	if (!data->minimap
 		|| mlx_image_to_window(data->mlx, data->minimap, 32, 32) < 0)
 		print_and_exit("Failed to initialise image", 2, EXIT_FAILURE);
