@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:54:02 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 18:38:14 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 15:04:31 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	get_mm_start_end_row(t_data *data)
 {
-	if (data->player_y - data->mm_max_row / 2 <= 0)
+	if (data->row < data->mm_max_row
+		|| data->player_y - data->mm_max_row / 2 <= 0)
 	{
 		data->mm_row_start_px = 0;
 		data->mm_row_end_px = data->mm_max_row;
@@ -33,7 +34,8 @@ static void	get_mm_start_end_row(t_data *data)
 
 static void	get_mm_start_end_col(t_data *data)
 {
-	if (data->player_x - data->mm_max_col / 2 <= 0)
+	if (data->col < data->mm_max_col
+		|| data->player_x - data->mm_max_col / 2 <= 0)
 	{
 		data->mm_col_start_px = 0;
 		data->mm_col_end_px = data->mm_max_col;
