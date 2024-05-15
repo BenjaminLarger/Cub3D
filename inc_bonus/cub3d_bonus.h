@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 19:47:15 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 08:49:58 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void			paint_sprite(t_data *data);
 
 uint32_t		get_col_px_colour_door(double calc_h, t_data *data, t_pfv pfv,
 					mlx_texture_t *door_state);
-void			close_door(t_data *data);
+void			open_door(t_data *data);
 void			check_player_can_open_door(t_data *data,
 					t_pfv pfv);
 void			check_close_door(t_data *data);

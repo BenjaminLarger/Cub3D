@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 19:12:31 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 08:49:36 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,5 @@ void	minimap_control(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
 		toggle_display_minimap(data);
 	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
-		close_door(data);
+		open_door(data);
 }

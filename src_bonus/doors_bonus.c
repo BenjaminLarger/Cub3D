@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:48:23 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/14 19:34:41 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 09:12:35 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,21 @@
 
 void	check_close_door(t_data *data)
 {
-	int	x;
-	int	y;
+	double	door_distance_to_player;
 
-	x = (int)data->player_x;
-	y = (int)data->player_y;
 	if (data->door_is_open == true)
 	{
-		if (data->map[y - 1][x] == DOOR_OPEN)
+		door_distance_to_player = sqrt(pow(data->player_x - data->x_door_op, 2)
+				+ pow(data->player_y - data->y_door_op, 2));
+		if (door_distance_to_player > 2)
 		{
-			data->map[y - 1][x] = DOOR_CLOSED;
 			data->door_is_open = false;
-		}
-		if (data->map[y + 1][x] == DOOR_OPEN)
-		{
-			data->map[y + 1][x] = DOOR_CLOSED;
-			data->door_is_open = false;
-		}
-		if (data->map[y][x - 1] == DOOR_OPEN)
-		{
-			data->map[y][x] = DOOR_CLOSED;
-			data->door_is_open = false;
-		}
-		if (data->map[y][x + 1] == DOOR_OPEN)
-		{
-			data->map[y][x] = DOOR_CLOSED;
-			data->door_is_open = false;
+			data->map[(int)data->y_door_op][(int)data->x_door_op] = DOOR_CLOSED;
 		}
 	}
 }
 
-void	close_door(t_data *data)
+void	open_door(t_data *data)
 {
 	double	x;
 	double	y;

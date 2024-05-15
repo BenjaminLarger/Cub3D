@@ -6,13 +6,13 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 12:25:29 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/14 16:47:34 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 08:19:03 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double	find_horizontal_intersection(t_data *data, double ray_angle, t_pfv pfv)
+double	find_horizontal_intersection(t_data *data, double ray_angle)
 {
 	t_map	map;
 
@@ -33,7 +33,7 @@ double	find_horizontal_intersection(t_data *data, double ray_angle, t_pfv pfv)
 	adjust_extrem_value(&map, data);
 	map.len = sqrt(pow(map.old_x - data->player_x, 2)
 			+ pow(map.old_y - data->player_y, 2));
-	return (find_horizontal_wall_loop(data, &map, ray_angle, pfv));
+	return (find_horizontal_wall_loop(data, &map, ray_angle));
 }
 
 double	find_vertical_intersection(t_data *data, double ray_angle)
@@ -60,26 +60,18 @@ double	find_vertical_intersection(t_data *data, double ray_angle)
 	return (find_vertical_wall_loop(data, &map, ray_angle));
 }
 
-double	get_wall_distance(t_data *data, double ray_angle, t_pfv pfv)
+double	get_wall_distance(t_data *data, double ray_angle)
 {
 	double	vertical_distance;
 	double	horizontal_distance;
 	double	distance_to_wall;
 
-	horizontal_distance = find_horizontal_intersection(data, ray_angle, pfv);
+	horizontal_distance = find_horizontal_intersection(data, ray_angle);
 	vertical_distance = find_vertical_intersection(data, ray_angle);
 	if (fabs(horizontal_distance) > fabs(vertical_distance))
 		distance_to_wall = vertical_distance;
 	else
 		distance_to_wall = horizontal_distance;
-	/* if (pfv.i == 1824 || pfv.i == 1825 || pfv.i == 1826)
-	{
-		printf("pfv = %d, distance to wall = %f\n",pfv.i, distance_to_wall);
-		if (distance_to_wall == horizontal_distance)
-			printf("pfv = %d, horizontal distance\n",pfv.i);
-		else
-			printf("pfv = %d, vertical distance\n",pfv.i);
-	} */
 	return (distance_to_wall);
 }
 
