@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 18:01:15 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 13:46:20 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_data
 	mlx_texture_t	*wall_we;
 	mlx_texture_t	*wall_ea;
 	mlx_texture_t	*door_close;
-	mlx_texture_t	*door_open;
 	mlx_texture_t	*sprite_texture1;
 	mlx_texture_t	*sprite_texture2;
 	mlx_texture_t	*sprite_texture3;
@@ -43,15 +42,15 @@ typedef struct s_data
 	unsigned int	floor_color;
 	unsigned int	sky_color;
 	int				display_minimap;
-	unsigned int	minimap_tile_px; // minimap
-	unsigned int	mm_max_width_px; // minimap
-	unsigned int	mm_max_height_px; // minimap
-	double			mm_max_col; // minimap
-	double			mm_max_row; // minimap
-	double			mm_row_start_px; // minimap
-	double			mm_row_end_px; // minimap
-	double			mm_col_start_px; // minimap
-	double			mm_col_end_px; // minimap
+	unsigned int	minimap_tile_px;
+	unsigned int	mm_max_width_px;
+	unsigned int	mm_max_height_px;
+	double			mm_max_col;
+	double			mm_max_row;
+	double			mm_row_start_px;
+	double			mm_row_end_px;
+	double			mm_col_start_px;
+	double			mm_col_end_px;
 	unsigned int	col;
 	unsigned int	row;
 	double			player_x;

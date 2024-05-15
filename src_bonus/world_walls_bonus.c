@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 18:21:02 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 13:43:46 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ static void	paint_column(t_data *data, double display_h,
 		if (pfv.obstacle == 'C')
 			wall_color = get_col_px_colour_door((h - col_start_y)
 					/ data->calculated_h, data, pfv, data->door_close);
-		else if (pfv.obstacle == 'O')
-			wall_color = get_col_px_colour_door((h - col_start_y)
-					/ data->calculated_h, data, pfv, data->door_open);
 		else
 			wall_color = get_col_px_colour((h - col_start_y)
 					/ data->calculated_h, data, pfv);
