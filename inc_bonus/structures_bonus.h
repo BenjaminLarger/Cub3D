@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 13:50:50 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 17:06:08 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,5 +147,21 @@ typedef struct s_corner
 	bool	north_west_blocked;
 	bool	north_est_blocked;
 }			t_corner;
+
+// ----------- player icon minimap
+
+typedef struct s_mm_plyr
+{
+	unsigned int	center_x;
+	unsigned int	center_y;
+	double			radius;
+	double			dx;
+	double			dy;
+	int				x;
+	int				y;
+	int				steps;
+	double			xIncrement;
+	double			yIncrement;
+}			t_mm_plyr;
 
 #endif

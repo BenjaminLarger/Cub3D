@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 14:32:52 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 17:11:35 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	get_map_size(t_data *data)
 void	initialise(char *filename, t_data *data)
 {
 	data->prev_mouse_x = -1;
-	data->minimap_tile_px = 16;
+	data->minimap_tile_px = 32;
 	data->display_minimap = TRUE;
 	data->player_speed = 1;
 	data->loop = 0;

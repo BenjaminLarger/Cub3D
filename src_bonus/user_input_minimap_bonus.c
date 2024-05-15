@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 15:10:09 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 17:11:28 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	resize_minimap(int key, t_data *data)
 		data->minimap_tile_px /= 2;
 	else if (key == MLX_KEY_KP_ADD)
 		data->minimap_tile_px *= 2;
-	if (data->minimap_tile_px < 4)
-		data->minimap_tile_px = 4;
+	if (data->minimap_tile_px < 8)
+		data->minimap_tile_px = 8;
 	else if (data->minimap_tile_px > 32)
 		data->minimap_tile_px = 32;
 	mlx_delete_image(data->mlx, data->minimap);
