@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:20:02 by demre             #+#    #+#             */
-/*   Updated: 2024/04/23 18:13:23 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 20:25:30 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ static void	get_element(char **name, char **split_line, int *flag,
 	int	len;
 
 	len = ft_strlen(split_line[1]);
-	*name = (char *)malloc(len * sizeof(char));
+	if (split_line[1][len - 1] != '\n')
+		len++;
+	*name = (char *)malloc((len) * sizeof(char));
 	if (!(*name))
 	{
 		free_string_array(split_line);
@@ -64,7 +66,9 @@ static void	get_colour(unsigned int *name, char **split_line, int *flag,
 static void	assign_elements(t_data *data, char **split_line,
 	t_id_flags *flag, int *n_elements)
 {
-	if (!split_line || split_line[1] == NULL || split_line[2] != NULL)
+	if (!split_line || split_line[1] == NULL
+		|| (split_line[2] != NULL
+			&& (ft_strcmp(split_line[2], "\n") == 0 && split_line[3] != NULL)))
 		print_and_exit("Wrong information on file line", 2, EXIT_FAILURE);
 	if (ft_strcmp(split_line[0], "NO") == 0 && flag->id_no == FALSE)
 		get_element(&data->north_path, split_line, &flag->id_no, n_elements);
