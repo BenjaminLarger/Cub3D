@@ -6,19 +6,19 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 18:08:44 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 18:09:11 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	calculate_col_height(t_data *data, t_pfv pfv)
+void	calculate_col_height(t_pfv *pfv)
 {
-	data->calculated_h = WIDTH / pfv.ray_length;
-	if (data->calculated_h > HEIGHT)
-		data->display_h = HEIGHT;
+	pfv->calculated_h = WIDTH / pfv->ray_length;
+	if (pfv->calculated_h > HEIGHT)
+		pfv->display_h = HEIGHT;
 	else
-		data->display_h = data->calculated_h;
+		pfv->display_h = pfv->calculated_h;
 }
 
 void	get_obstacle_type_on_right_side(t_data *data, t_pfv *pfv)

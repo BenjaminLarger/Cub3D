@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_move_player_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:42:18 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/15 15:47:09 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 18:36:18 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ bool	player_can_move(t_data *data, double end_x, double end_y)
 	else
 		return (true);
 }
-

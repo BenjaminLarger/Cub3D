@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 14:41:22 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 17:07:08 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 18:28:16 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	draw_line(t_data *data, t_mm_plyr plyr)
 		plyr.steps = fabs(plyr.dx);
 	else
 		plyr.steps = fabs(plyr.dy);
-	plyr.xIncrement = plyr.dx / (double)plyr.steps;
-	plyr.yIncrement = plyr.dy / (double)plyr.steps;
+	plyr.x_inc = plyr.dx / (double)plyr.steps;
+	plyr.y_inc = plyr.dy / (double)plyr.steps;
 	k = 0;
 	while (k < plyr.steps)
 	{
 		mlx_put_pixel(data->minimap, x, y, 0xffaa00AA);
-		x += plyr.xIncrement;
-		y += plyr.yIncrement;
+		x += plyr.x_inc;
+		y += plyr.y_inc;
 		k++;
 	}
 }

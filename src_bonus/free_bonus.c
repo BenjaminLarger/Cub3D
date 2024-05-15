@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:56:10 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 15:46:55 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 18:37:57 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ int	free_string_array_and_return(char **str_array, int to_return)
 	free(str_array);
 	return (to_return);
 }
-

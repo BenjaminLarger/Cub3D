@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:25:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 15:48:17 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 18:36:55 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ void	mouse_control(double xpos, double ypos, void *param)
 	t_data	*data;
 	double	diff_mouse_x;
 	double	angle_rotate;
-	
+
 	data = (t_data *)param;
 	(void)ypos;
 	if (data->prev_mouse_x == -1)
 		data->prev_mouse_x = xpos;
 	diff_mouse_x = data->prev_mouse_x - xpos;
 	data->prev_mouse_x = xpos;
-
 	if (fabs(diff_mouse_x) > 20)
 		angle_rotate = M_PI * 0.07;
 	else
