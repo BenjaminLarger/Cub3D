@@ -6,11 +6,20 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 12:45:43 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 19:41:50 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+
+# define FORWARD "Forward"
+# define BACKWARD "Backward"
+# define RIGHT "Right"
+# define LEFT "Left"
+
+# define HW 1 //horizontal wall
+# define VW 2 //vertical wall
+
 
 void	move_forward(t_data *data)
 {
@@ -31,6 +40,8 @@ void	move_forward(t_data *data)
 		data->player_x += (end_x / 4);
 		data->player_y += (end_y / 4);
 	}
+	else
+		player_slide_on_wall(data, FORWARD, end_x, end_y);
 	if (data->paint_in_render == FALSE)
 	{
 		paint_world(data);
@@ -57,6 +68,8 @@ void	move_backward(t_data *data)
 		data->player_x -= end_x / 4;
 		data->player_y -= end_y / 4;
 	}
+	else
+		player_slide_on_wall(data, BACKWARD, end_x, end_y);
 	if (data->paint_in_render == FALSE)
 	{
 		paint_world(data);

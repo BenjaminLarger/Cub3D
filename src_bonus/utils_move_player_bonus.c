@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:42:18 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/15 15:47:09 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 19:42:29 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ bool	is_wall(t_map *map, t_data *data, double ray_angle)
 		return (false);
 }
 
+
+
 bool	player_can_move(t_data *data, double end_x, double end_y)
 {
 	double	x;
@@ -59,3 +61,46 @@ bool	player_can_move(t_data *data, double end_x, double end_y)
 		return (true);
 }
 
+int	get_next_wall(t_data *data, double angle)
+{
+	double	vertical_wall_dist;
+	double	horizontal_wall_dist;
+
+	vertical_wall_dist = find_vertical_intersection(data, angle);
+	horizontal_wall_dist = find_horizontal_intersection(data, angle);
+	if (vertical_wall_dist < 0.4 && horizontal_wall_dist < 0.4)
+		return (-1);
+	else if (vertical_wall_dist > horizontal_wall_dist)
+	{
+		return (HW);
+	}
+	else
+	{
+		return (VW);
+	}
+}
+
+void	player_slide_on_wall(t_data *data, char *direction,
+	double end_x, double end_y)
+{
+	double	angle;
+
+	if (!ft_strcmp(direction, FORWARD))
+		angle = data->player_angle;
+	else
+	{
+		end_x *= -1;
+		end_y *= -1;
+		angle = data->player_angle - M_PI;
+	}
+	if (angle < 0)
+		angle += 2 * M_PI;
+	if (get_next_wall(data, angle) == HW && end_x > 0)
+		data->player_x += 0.05;
+	else if (get_next_wall(data, angle) == HW && end_x < 0)
+		data->player_x -= 0.05;
+	else if (get_next_wall(data, angle) == VW && end_y > 0)
+		data->player_y += 0.05;
+	else if (get_next_wall(data, angle) == VW && end_y < 0)
+		data->player_y -= 0.05;
+}
