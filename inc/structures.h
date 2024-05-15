@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 18:15:11 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 18:08:10 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ typedef struct s_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*world;
-	mlx_image_t		*buffer_world;
 	mlx_image_t		*minimap;
 	mlx_texture_t	*wall_no;
 	mlx_texture_t	*wall_so;
@@ -39,14 +38,10 @@ typedef struct s_data
 	unsigned int	row;
 	double			player_x;
 	double			player_y;
-	double			pdx;
-	double			pdy;
 	double			player_angle;
 	double			player_speed;
 	double			angle_step;
 	double			view_angle;
-	double			calculated_h;
-	double			display_h;
 }			t_data;
 
 // ----------- Identifier flags
@@ -79,17 +74,10 @@ typedef struct s_pfv
 	double	ray_length;
 	double	ray_length_n1;
 	double	ray_length_n2;
-	double	ray_length_to_door;
-	double	endX;
-	double	endY;
-	int		n_pixels_to_draw;
-	int		total_pixels_to_draw;
-	double	pixelX;
-	double	pixelY;
-	double	view_angle;
-	double	angle_step;
 	double	ray_angle;
 	int		i;
+	double	calculated_h;
+	double	display_h;
 	double	wall_x;
 	double	wall_y;
 	double	wall_x_n1;

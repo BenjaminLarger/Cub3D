@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   world_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:58:42 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 19:48:40 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 18:10:56 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	calculate_col_height(t_data *data, t_pfv pfv)
+static void	calculate_col_height(t_pfv *pfv)
 {
-	data->calculated_h = WIDTH / pfv.ray_length;
-	if (data->calculated_h > HEIGHT)
-		data->display_h = HEIGHT;
+	pfv->calculated_h = WIDTH / pfv->ray_length;
+	if (pfv->calculated_h > HEIGHT)
+		pfv->display_h = HEIGHT;
 	else
-		data->display_h = data->calculated_h;
+		pfv->display_h = pfv->calculated_h;
 }
 
 static void	paint_column(t_data *data, double display_h,
@@ -37,7 +37,7 @@ static void	paint_column(t_data *data, double display_h,
 		mlx_put_pixel(data->world, pfv.i, h++, data->sky_color);
 	while (h < adjusted_col_start_y + display_h)
 	{
-		wall_color = get_col_px_colour((h - col_start_y) / data->calculated_h,
+		wall_color = get_col_px_colour((h - col_start_y) / pfv.calculated_h,
 				data, pfv);
 		mlx_put_pixel(data->world, pfv.i, h, wall_color);
 		h++;
@@ -60,8 +60,8 @@ static void	check_anomalies(t_data *data, t_pfv *pfv)
 	if (pfv->i != 0 && diff1 > threshold1 && diff2 > threshold2)
 	{
 		pfv->i--;
-		paint_column(data, data->display_h,
-			(HEIGHT / 2) - (data->calculated_h / 2), *pfv);
+		paint_column(data, pfv->display_h,
+			(HEIGHT / 2) - (pfv->calculated_h / 2), *pfv);
 		pfv->i++;
 	}
 }
@@ -90,10 +90,10 @@ void	paint_walls(t_data *data)
 		pfv.wall_x = data->player_x + cos(pfv.ray_angle) * pfv.ray_length;
 		pfv.wall_y = data->player_y + sin(pfv.ray_angle) * pfv.ray_length;
 		pfv.ray_length *= cos(pfv.ray_angle - data->player_angle);
-		calculate_col_height(data, pfv);
+		calculate_col_height(&pfv);
 		if (pfv.i < WIDTH)
-			paint_column(data, data->display_h,
-				(HEIGHT / 2) - (data->calculated_h / 2), pfv);
+			paint_column(data, pfv.display_h,
+				(HEIGHT / 2) - (pfv.calculated_h / 2), pfv);
 		check_anomalies(data, &pfv);
 		pfv.i++;
 	}

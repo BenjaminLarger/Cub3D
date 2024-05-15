@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 13:50:50 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 18:27:30 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ typedef struct s_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*world;
-	mlx_image_t		*buffer_world;
 	mlx_image_t		*minimap;
 	mlx_image_t		*sprite;
 	mlx_texture_t	*wall_no;
@@ -55,23 +54,16 @@ typedef struct s_data
 	unsigned int	row;
 	double			player_x;
 	double			player_y;
-	double			pdx;//player direction x
-	double			pdy;//player direction y
 	double			player_angle;
 	double			player_speed;
-	double	angle_step;
-	double	view_angle;
-	double			calculated_h;
-	double			display_h;
+	double			angle_step;
+	double			view_angle;
 	int paint_in_render; // to delete
 	int				loop;
-	bool	player_can_open_door;
-	bool	player_can_close_door;
-	bool	door_is_open;
-	double	x_door_op;
-	double	y_door_op;
-	double	x_door_cl;
-	double	y_door_cl;
+	bool			player_can_open_door;
+	bool			door_is_open;
+	double			x_door_op;
+	double			y_door_op;
 	double			prev_mouse_x;
 }			t_data;
 
@@ -105,16 +97,10 @@ typedef struct s_pfv
 	double	ray_length;
 	double	ray_length_n1;
 	double	ray_length_n2;
-	double	endX;
-	double	endY;
-	int		n_pixels_to_draw;
-	int		total_pixels_to_draw;
-	double	pixelX;
-	double	pixelY;
-	double	view_angle;
-	double	angle_step;
 	double	ray_angle;
 	int		i;
+	double	calculated_h;
+	double	display_h;
 	double	wall_x;
 	double	wall_y;
 	double	wall_x_n1;
@@ -147,5 +133,21 @@ typedef struct s_corner
 	bool	north_west_blocked;
 	bool	north_est_blocked;
 }			t_corner;
+
+// ----------- player icon minimap
+
+typedef struct s_mm_plyr
+{
+	unsigned int	center_x;
+	unsigned int	center_y;
+	double			radius;
+	double			dx;
+	double			dy;
+	int				x;
+	int				y;
+	int				steps;
+	double			x_inc;
+	double			y_inc;
+}			t_mm_plyr;
 
 #endif
