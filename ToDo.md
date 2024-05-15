@@ -1,10 +1,6 @@
 To implement:
 
 1)  
-Refactor minimap_player.c or delete it and keep square player on minimap
-
-2)  
-Slide along walls
 
 3) 
 
@@ -15,6 +11,8 @@ Slide along walls
 Bug:
 
 1)  
+src_bonus/doors_bonus.c:19:12: runtime error: load of value 184, which is not a valid value for type '_Bool'
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior src_bonus/doors_bonus.c:19:12 in
 --------------
 
 Crash:
