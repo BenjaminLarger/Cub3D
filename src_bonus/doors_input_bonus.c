@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 09:34:29 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/15 11:07:52 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 11:26:53 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,24 @@ static int	get_col(char **map)
 	return (i);
 }
 
-static int	doors_are_too_close(t_data *data, int y, int x)
+static bool	doors_are_between_walls(char **map, int y, int x)
+{
+	if (map[y - 1][x] != WALL || map[y + 1][x] != WALL)
+	{
+		if (map[y][x - 1] != WALL || map[y][x + 1] != WALL)
+		{
+			ft_putstr_fd("Doors must be between walls\n", 2);
+			return (false);
+		}
+	}
+	return (true);
+}
+
+static bool	doors_are_too_close(t_data *data, int y, int x)
 {
 	int	ya;
 	int	xa;
 
-	data->col = get_col(data->map);
 	ya = -2;
 	if (y + ya < 1)
 		ya = 1 - y;
@@ -41,12 +53,15 @@ static int	doors_are_too_close(t_data *data, int y, int x)
 			if (ya == 0 && xa == 0)
 				xa++;
 			if (data->map[y + ya][x + xa] == DOOR_CLOSED)
-				return (FAILURE);
+			{
+				ft_putstr_fd("Doors are too close.\n", 2);
+				return (true);
+			}
 			xa++;
 		}
 		ya++;
 	}
-	return (SUCCESS);
+	return (false);
 }
 
 int	doors_input(t_data *data)
@@ -55,6 +70,7 @@ int	doors_input(t_data *data)
 	int	j;
 
 	i = 0;
+	data->col = get_col(data->map);
 	while (data->map[i])
 	{
 		j = 0;
@@ -62,8 +78,11 @@ int	doors_input(t_data *data)
 		{
 			if (data->map[i][j] == DOOR_CLOSED)
 			{
-				if (doors_are_too_close(data, i, j) == FAILURE)
+				if (doors_are_too_close(data, i, j) == true
+					|| doors_are_between_walls(data->map, i, j) == false)
+				{
 					return (FAILURE);
+				}
 			}
 			j++;
 		}

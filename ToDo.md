@@ -14,6 +14,8 @@ Sometimes wrong distance_to_wall for pfv.i == 384 or 960 or 1536, see map small.
 1536, wall_x:y: 2.207107:1.500000, player_x:y: 1.500000:1.500000, distance_to_wall: 0.67, colour: 858993544
 960, wall_x:y: 2.207107:1.500000, player_x:y: 1.500000:1.500000, distance_to_wall: 0.71, colour: 858993544
 
+2) Relink ?
+
 --------------
 
 Crash:
