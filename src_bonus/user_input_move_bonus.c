@@ -6,19 +6,19 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 19:41:50 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 20:46:50 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-# define FORWARD "Forward"
+/* # define FORWARD "Forward"
 # define BACKWARD "Backward"
 # define RIGHT "Right"
 # define LEFT "Left"
 
 # define HW 1 //horizontal wall
-# define VW 2 //vertical wall
+# define VW 2 //vertical wall */
 
 
 void	move_forward(t_data *data)
