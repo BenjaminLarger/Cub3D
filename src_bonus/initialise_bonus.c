@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 19:49:08 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 13:51:10 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ static void	initialise_texture(t_data *data)
 	data->sprite_texture3 = mlx_load_png("./texture/flame3.png");
 	data->sprite_texture4 = mlx_load_png("./texture/flame4.png");
 	data->door_close = mlx_load_png("./texture/forest_door_closed.png");
-	data->door_open = mlx_load_png("./texture/forest_door_open.png");
 	if (!data->wall_no || !data->wall_so || !data->wall_we || !data->wall_ea
 		|| !data->sprite_texture1 || !data->sprite_texture2
 		|| !data->sprite_texture3 || !data->sprite_texture4
-		|| !data->door_close || !data->door_open)
+		|| !data->door_close)
 		print_and_exit("Failed to initialise textures", 2, EXIT_FAILURE);
 }
 
