@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 18:26:56 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 19:45:01 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@
 # define INC2 0.000000000000001
 # define DESINC 0.999999999999999
 
+// Slide on wall
+
+# define FORWARD "Forward"
+# define BACKWARD "Backward"
+// HW = Horizontal wall // VW Vertical wall
+# define HW 1
+# define VW 2
+
 // Initialisation
 
 void			initialise(char *filename, t_data *data);
@@ -95,6 +103,11 @@ void			minimap_control(mlx_key_data_t keydata, void *param);
 bool			player_can_move(t_data *data, double end_x, double end_y);
 bool			move_in_corner(t_data *data, double x, double y);
 void			mouse_control(double xpos, double ypos, void *param);
+int				get_next_wall(t_data *data, double angle);
+void			player_slide_on_wall(t_data *data, char *direction,
+					double end_x, double end_y);
+
+
 
 // Ray casting
 void			get_slope_info(t_data *data, t_map *map, double ray_angle);
@@ -104,6 +117,9 @@ double			find_horizontal_wall_loop(t_data *data, t_map *map,
 					double ray_angle);
 void			adjust_extrem_value(t_map *map, t_data *data);
 double			get_wall_distance(t_data *data, double ray_angle);
+double			find_vertical_intersection(t_data *data, double ray_angle);
+double			find_horizontal_intersection(t_data *data, double ray_angle);
+
 
 // Sprite
 
