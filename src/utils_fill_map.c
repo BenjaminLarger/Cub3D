@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:37:30 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 12:22:11 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 20:40:54 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ bool	invalid_char(char *map)
 	while (map[++i])
 	{
 		if (map[i] == '2')
+		{
+			free(map);
 			return (true);
+		}
 	}
 	return (false);
 }

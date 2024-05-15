@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fill_map_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:37:30 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 15:48:23 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 20:37:38 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ bool	invalid_char(char *map)
 	while (map[++i])
 	{
 		if (map[i] == '2')
+		{
+			free(map);
 			return (true);
+		}
 	}
 	return (false);
 }
