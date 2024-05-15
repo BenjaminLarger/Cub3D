@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 15:46:49 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 09:46:15 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	check_map(t_data *data)
 	if (check_last_line(data->map[i - 1], data->map[i - 2]) == FAILURE
 		|| data->map_departure_count != 1)
 		return (FAILURE);
-	return (SUCCESS);
+	return (doors_input(data));
 }
 
 static int	fill_map_empty_space(t_data *data)

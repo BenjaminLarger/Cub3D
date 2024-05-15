@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:48:23 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/15 09:12:35 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 09:34:43 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,4 @@ void	check_player_can_open_door(t_data *data, t_pfv pfv)//can delete
 		data->player_can_open_door = false;
 	}
 }
+

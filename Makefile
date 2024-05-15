@@ -49,7 +49,7 @@ SRCS_BONUS		:= main_bonus.c free_bonus.c print_bonus.c exit_bonus.c \
 	world_bonus.c world_walls_bonus.c world_walls_colour_bonus.c \
 	utils_joinfree_bonus.c utils_fill_map_bonus.c utils_move_player_bonus.c\
 	utils_dev_bonus.c \
-	doors_bonus.c \
+	doors_bonus.c doors_input_bonus.c\
 	sprite_bonus.c world_door_colour_bonus.c user_input_mouse_bonus.c \
 	world_walls_utils_bonus.c \
 

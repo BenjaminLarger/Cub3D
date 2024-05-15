@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 08:49:58 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 09:46:37 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void			paint_sprite(t_data *data);
 
 // Door
 
+int				doors_input(t_data *data);
 uint32_t		get_col_px_colour_door(double calc_h, t_data *data, t_pfv pfv,
 					mlx_texture_t *door_state);
 void			open_door(t_data *data);
