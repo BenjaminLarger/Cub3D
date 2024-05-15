@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 12:21:50 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 20:40:40 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	load_map(t_data *data, int fd)
 		free(line);
 	}
 	if (splitted_map(map) == true || invalid_char(map) == true)
-		return (free(map), FAILURE);
+		return (FAILURE);
 	data->map = ft_split(map, '\n');
 	free(map);
 	if (!data->map)
