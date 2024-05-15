@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   user_input_minimap_bonus.c                         :+:      :+:    :+:   */
+/*   user_input_minimap.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 08:49:36 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:24:25 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
 static void	toggle_display_minimap(t_data *data)
 {
@@ -49,6 +49,4 @@ void	minimap_control(mlx_key_data_t keydata, void *param)
 		resize_minimap(MLX_KEY_KP_ADD, data);
 	else if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
 		toggle_display_minimap(data);
-	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
-		open_door(data);
 }

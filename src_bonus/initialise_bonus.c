@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 13:43:39 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 13:51:10 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	initialise(char *filename, t_data *data)
 	data->display_minimap = TRUE;
 	data->player_speed = 1;
 	data->loop = 0;
+	data->player_can_open_door = false;
 	data->view_angle = PLAYER_FOV * (M_PI / 180);
 	data->angle_step = PLAYER_FOV * (M_PI / 180) / NUM_OF_RAYS;
 	if (check_file_extension(filename) != SUCCESS)

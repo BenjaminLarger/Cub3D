@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:30:35 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 13:46:20 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 13:50:50 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ typedef struct s_data
 	double			display_h;
 	int paint_in_render; // to delete
 	int				loop;
+	bool	player_can_open_door;
+	bool	player_can_close_door;
+	bool	door_is_open;
+	double	x_door_op;
+	double	y_door_op;
+	double	x_door_cl;
+	double	y_door_cl;
 	double			prev_mouse_x;
 }			t_data;
 
@@ -115,6 +122,7 @@ typedef struct s_pfv
 	char	obstacle;
 	int		obs_x;
 	int		obs_y;
+	bool	door_found;
 }			t_pfv;
 
 // ----------- Ray-Casting

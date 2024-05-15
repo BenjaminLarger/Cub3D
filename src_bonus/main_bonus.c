@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/14 14:59:44 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/14 19:49:24 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	render(void *param)
 	player_input(data);
 	if (data->paint_in_render == TRUE)
 	{
+		check_close_door(data);
 		paint_world(data);
 		paint_minimap(data);
 		paint_sprite(data);

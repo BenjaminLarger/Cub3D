@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_valid_map_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:19:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/13 21:24:18 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 09:20:37 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	line_has_valid_char(t_data *data, char *line, int y)
 		if (line[i] != OUT && line[i] != WALL
 			&& line[i] != WEST && line[i] != EST
 			&& line[i] != NORTH && line[i] != SOUTH
-			&& line[i] != FLOOR && line[i] != '2' && line[i] != 'C')
+			&& line[i] != FLOOR && line[i] != '2' && line[i] != DOOR_CLOSED)
 			return (FAILURE);
 		if (line[i] == WEST || line[i] == EST
 			|| line[i] == NORTH || line[i] == SOUTH)
