@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:03:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 13:51:10 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/15 14:32:52 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ void	initialise(char *filename, t_data *data)
 	paint_world(data);
 	paint_minimap(data);
 	paint_sprite(data);
-	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_DISABLED);
+	if (data->paint_in_render == TRUE) // to delete
+		mlx_set_cursor_mode(data->mlx, MLX_MOUSE_DISABLED);
 }

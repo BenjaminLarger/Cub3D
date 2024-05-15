@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input_minimap_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 08:49:36 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/15 15:10:09 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 static void	toggle_display_minimap(t_data *data)
 {
 	if (data->display_minimap == TRUE)
+	{
 		data->display_minimap = FALSE;
+		mlx_delete_image(data->mlx, data->minimap);
+	}
 	else
+	{
 		data->display_minimap = TRUE;
-	mlx_delete_image(data->mlx, data->minimap);
-	initialise_minimap(data);
-	paint_minimap(data);
+		initialise_minimap(data);
+		paint_minimap(data);
+	}
 }
 
 static void	resize_minimap(int key, t_data *data)
