@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 21:15:52 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:32:28 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	move_forward(t_data *data)
 		data->player_x += (end_x / 4);
 		data->player_y += (end_y / 4);
 	}
-	/* else if (data->move_in_corner == false)
-		player_slide_on_wall(data, FORWARD, end_x, end_y); */
 	if (data->paint_in_render == FALSE)
 	{
 		paint_world(data);
@@ -60,8 +58,6 @@ void	move_backward(t_data *data)
 		data->player_x -= end_x / 4;
 		data->player_y -= end_y / 4;
 	}
-	/* else if (data->move_in_corner == false)
-		player_slide_on_wall(data, BACKWARD, end_x, end_y); */
 	if (data->paint_in_render == FALSE)
 	{
 		paint_world(data);
