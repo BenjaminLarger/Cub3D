@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/16 12:55:04 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:58:06 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ static void	rotate_player(int key, t_data *data)
 			data->player_angle += angle_rotate;
 		else
 			data->player_angle = angle_rotate - (2 * M_PI - data->player_angle);
-	}
-	if (data->paint_in_render == FALSE)
-	{
-		paint_world(data);
-		paint_minimap(data);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/16 12:53:28 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:56:37 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,8 @@ int				get_next_wall(t_data *data, double angle);
 void			player_slide_on_wall(t_data *data, char *direction,
 					double end_x, double end_y);
 
-
-
 // Ray casting
+
 void			get_slope_info(t_data *data, t_map *map, double ray_angle);
 double			find_vertical_wall_loop(t_data *data, t_map *map,
 					double ray_angle);
@@ -119,7 +118,6 @@ void			adjust_extrem_value(t_map *map, t_data *data);
 double			get_wall_distance(t_data *data, double ray_angle);
 double			find_vertical_intersection(t_data *data, double ray_angle);
 double			find_horizontal_intersection(t_data *data, double ray_angle);
-
 
 // Sprite
 

@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:25:08 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 18:36:55 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/16 12:58:21 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ static void	set_player_angle(t_data *data, double diff_mouse_x,
 			data->player_angle += angle_rotate;
 		else
 			data->player_angle = angle_rotate - (2 * M_PI - data->player_angle);
-	}
-	if (data->paint_in_render == FALSE)
-	{
-		paint_world(data);
-		paint_minimap(data);
 	}
 }
 
