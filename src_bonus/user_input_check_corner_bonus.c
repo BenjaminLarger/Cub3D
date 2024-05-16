@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input_check_corner_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:01:40 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/15 18:37:21 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/16 12:04:41 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,23 @@
 static double	player_move_into_corner(t_data *data, t_corner *corner,
 	double x, double y)
 {
+	if ((corner->north_west_blocked == true || corner->north_est_blocked == true
+			|| corner->south_west_blocked == true
+			|| corner->south_est_blocked == true)
+		&& (fabs(x - round(x)) <= 0.1 && fabs(y - round(y)) <= 0.1))
+		return (true);	
 	if (ceil(y) < ceil(data->player_y) && ceil(x) < ceil(data->player_x)
 		&& corner->north_west_blocked == true)
-	{
 		return (true);
-	}
 	if (ceil(y) < ceil(data->player_y) && floor(x) > floor(data->player_x)
 		&& corner->north_est_blocked == true)
-	{
 		return (true);
-	}
 	if (floor(y) > floor(data->player_y) && ceil(x) < ceil(data->player_x)
 		&& corner->south_west_blocked == true)
-	{
 		return (true);
-	}
 	if (floor(y) > floor(data->player_y) && floor(x) > floor(data->player_x)
 		&& corner->south_est_blocked == true)
-	{
 		return (true);
-	}
 	return (false);
 }
 
