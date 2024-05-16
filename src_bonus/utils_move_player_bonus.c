@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:42:18 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/16 12:32:15 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:38:49 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ bool	is_wall(t_map *map, t_data *data, double ray_angle)
 		return (false);
 }
 
-
-
 bool	player_can_move(t_data *data, double end_x, double end_y)
 {
 	double	x;
@@ -54,7 +52,6 @@ bool	player_can_move(t_data *data, double end_x, double end_y)
 	y = data->player_y + end_y;
 	if (move_in_corner(data, x, y) == true)
 	{
-		data->move_in_corner = true;
 		return (false);
 	}
 	if (data->map[(int)y][(int)x] == WALL || data->map[(int)y][(int)x] == '2'

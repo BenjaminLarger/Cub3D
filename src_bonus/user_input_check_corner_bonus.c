@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:01:40 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/16 12:28:16 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:34:41 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static double	player_move_into_corner(t_data *data, t_corner *corner,
 			|| corner->south_west_blocked == true
 			|| corner->south_est_blocked == true)
 		&& (fabs(x - round(x)) <= 0.1 && fabs(y - round(y)) <= 0.1))
-		return (true);	
+		return (true);
 	if (ceil(y) < ceil(data->player_y) && ceil(x) < ceil(data->player_x)
 		&& corner->north_west_blocked == true)
 		return (true);

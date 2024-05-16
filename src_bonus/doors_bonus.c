@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:48:23 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/15 12:38:26 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:50:51 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ void	open_door(t_data *data)
 		data->map[(int)data->y_door_op][(int)data->x_door_op] = DOOR_OPEN;
 		data->player_can_open_door = false;
 		data->door_is_open = true;
-		if (data->paint_in_render == FALSE)
-		{
-			paint_world(data);
-			paint_minimap(data);
-		}
 	}
 }
 
@@ -63,4 +58,3 @@ void	check_player_can_open_door(t_data *data, t_pfv pfv)//can delete
 		data->player_can_open_door = false;
 	}
 }
-

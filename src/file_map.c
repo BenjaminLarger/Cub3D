@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:31:37 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 20:40:40 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:46:33 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int	check_map(t_data *data)
 	int	j;
 
 	i = 0;
-	print_map(data->map);
 	if (check_first_line(data->map[0], data->map[1]) == FAILURE)
 		return (FAILURE);
 	while (data->map[i])

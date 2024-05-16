@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:05:24 by demre             #+#    #+#             */
-/*   Updated: 2024/05/15 19:45:01 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:53:28 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,11 +166,5 @@ int				valid_surrounded_wall(t_data *data, int i, int j);
 int				get_max_column(t_data *data);
 char			*line_filled_with_2(char *line, int max_column);
 bool			invalid_char(char *map);
-
-// Dev utils
-
-void			print_array(char **array, char *message);
-void			check_leaks(void);
-void			display_fps(void);
 
 #endif

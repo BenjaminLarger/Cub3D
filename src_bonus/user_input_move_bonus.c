@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:33:58 by demre             #+#    #+#             */
-/*   Updated: 2024/05/16 12:32:28 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:38:58 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	move_forward(t_data *data)
 		paint_world(data);
 		paint_minimap(data);
 	}
-	data->move_in_corner = false;
 }
 
 void	move_backward(t_data *data)
@@ -63,7 +62,6 @@ void	move_backward(t_data *data)
 		paint_world(data);
 		paint_minimap(data);
 	}
-	data->move_in_corner = false;
 }
 
 void	move_right(t_data *data)

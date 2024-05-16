@@ -26,7 +26,7 @@ SRCS		:= main.c free.c print.c exit.c \
 	file_map.c utils_valid_map.c utils_ray_casting.c \
 	ray_casting.c \
 	world.c world_walls.c world_walls_colour.c \
-	utils_joinfree.c utils_fill_map.c utils_move_player.c utils_dev.c \
+	utils_joinfree.c utils_fill_map.c utils_move_player.c \
 
 SRC_DIR		:= src
 BUILD_DIR	:= build
@@ -48,7 +48,6 @@ SRCS_BONUS		:= main_bonus.c free_bonus.c print_bonus.c exit_bonus.c \
 	ray_casting_bonus.c \
 	world_bonus.c world_walls_bonus.c world_walls_colour_bonus.c \
 	utils_joinfree_bonus.c utils_fill_map_bonus.c utils_move_player_bonus.c\
-	utils_dev_bonus.c \
 	doors_bonus.c doors_input_bonus.c\
 	sprite_bonus.c world_door_colour_bonus.c user_input_mouse_bonus.c \
 	world_walls_utils_bonus.c \
