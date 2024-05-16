@@ -6,7 +6,7 @@
 /*   By: demre <demre@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:20:02 by demre             #+#    #+#             */
-/*   Updated: 2024/05/13 15:46:40 by demre            ###   ########.fr       */
+/*   Updated: 2024/05/16 11:58:51 by demre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	initialise_rgb_variables(t_rgb *rgb)
 	rgb->g = 0;
 	rgb->b = 0;
 	rgb->index = 0;
+	rgb->i = 0;
+	rgb->comma_count = 0;
 	rgb->num = 0;
 }
 
@@ -31,28 +33,38 @@ static void	assign_rgb_value(t_rgb *rgb)
 		rgb->b = rgb->num;
 }
 
+static void	handle_commas(t_rgb *rgb)
+{
+	rgb->i++;
+	rgb->comma_count++;
+	if (rgb->comma_count > 2)
+		print_and_exit("Wrong RGB data", 2, EXIT_FAILURE);
+}
+
 unsigned int	rgb_to_hex(char *rgb_str)
 {
 	t_rgb	rgb;
 
 	initialise_rgb_variables(&rgb);
-	while (*rgb_str)
+	while (rgb_str[rgb.i])
 	{
-		if (*rgb_str >= '0' && *rgb_str <= '9')
+		if (rgb_str[rgb.i] >= '0' && rgb_str[rgb.i] <= '9')
 		{
 			rgb.num = 0;
-			while (*rgb_str >= '0' && *rgb_str <= '9')
+			while (rgb_str[rgb.i] >= '0' && rgb_str[rgb.i] <= '9')
 			{
-				rgb.num = rgb.num * 10 + (*rgb_str - '0');
-				rgb_str++;
+				rgb.num = rgb.num * 10 + (rgb_str[rgb.i] - '0');
+				rgb.i++;
 			}
+			if (rgb.num > 255)
+				print_and_exit("Wrong RGB data", 2, EXIT_FAILURE);
 			assign_rgb_value(&rgb);
-			if (*rgb_str == ',')
-				rgb_str++;
 			rgb.index++;
 		}
+		else if (rgb_str[rgb.i] == ',' && rgb.i != 0)
+			handle_commas(&rgb);
 		else
-			rgb_str++;
+			print_and_exit("Wrong RGB data", 2, EXIT_FAILURE);
 	}
 	return ((uint32_t)(rgb.r << 24) | (uint32_t)(rgb.g << 16)
 		| (uint32_t)(rgb.b << 8) | 0xFF);
