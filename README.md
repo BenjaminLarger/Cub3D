@@ -22,5 +22,4 @@ To get started with `cub3d`, clone the repository and compile the program using 
 ```bash
 git clone https://github.com/BenjaminLarger/cub3d.git
 cd cub3d
-make_bonus
-./cub3d_bonus
+make bonus
